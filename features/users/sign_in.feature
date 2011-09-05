@@ -30,3 +30,5 @@ Feature: Sign in
       And I should be signed in
       When I return next time
       Then I should be already signed in
+
+    Scenario: New User can sign in

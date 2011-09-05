@@ -3,10 +3,11 @@ Given /^no user exists with an email of "(.*)"$/ do |email|
 end
 
 Given /^I am a user named "([^"]*)" with an email "([^"]*)" and password "([^"]*)"$/ do |name, email, password|
-  User.new(:name => name,
+  @user = User.new(:name => name,
             :email => email,
             :password => password,
-            :password_confirmation => password).save!
+            :password_confirmation => password)
+  @user.save!
 end
 
 Then /^I should be already signed in$/ do
@@ -56,4 +57,11 @@ Then /^I should be signed out$/ do
   And %{I should see "Sign up"}
   And %{I should see "Login"}
   And %{I should not see "Logout"}
+end
+
+Given /^I have a like "([^"]*)"$/ do |like_name|
+  like = Like.create(name: like_name)
+  like.save!()
+  @user.likes.concat([like])
+  @user.save!()
 end

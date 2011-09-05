@@ -2,3 +2,15 @@
   User: #{@user.name}
 %p
   Email: #{@user.email if @user.email}
+
+= form_for @user do |form|
+  %p
+    = form.text_field :like_name
+    
+    = form.submit "Add Like"
+   
+
+%p Likes:
+%script
+- UsersHelper.returnLikes(@user).each do |like|
+  %p #{like}
