@@ -10,12 +10,10 @@ class UsersController < ApplicationController
   end
 
   def show
-    puts "USER SHOW CALLED--------------"
     @user = User.find(params[:id])
   end
   
   def create
-    puts "USER CREATE CALLED---------------"
     @user.addLike(params[:user])
     redirect_to users_url, :notice => "Added Like"
 
@@ -23,7 +21,6 @@ class UsersController < ApplicationController
   
   def update
     @user = User.find(params[:id])
-    puts "USER UPDATE CALLED---------------- #{@user.like_name}"
     if @user.update_attributes(params[:user])
       redirect_to :action => 'show', :id => @user
     else

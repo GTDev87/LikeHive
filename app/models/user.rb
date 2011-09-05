@@ -21,28 +21,20 @@ class User
   
   
   attr_accessor :like_name
-  
   attr_accessible :like_name
-  
   after_save :assign_like
-
   
   def assign_like
-    puts "$$$$$$$$$$$ calling assign_like1 with like_name:[#{@like_name}] $$$$$"
     if @like_name
-      self.likes << Like.find_or_create_by(:name => @like_name)
-      puts "THIS WAS CALLED IN SERVER################"
-      #puts "the file was saved? #{self.save}"
-    end
-  end
-  
-  def has_like?(like_name)
-    self.likes.each do |like|
-      if like.name.upcase == like_name.upcase
-        return true
+      like = nil
+      like = find_like(like_name)
+      if like == nil
+        like = Like.create(like_name: like_name)
+        self.likes << like
+        self.reload#clearly not ideal but a mongoid bug for now
+        self.num_likes = self.likes.count
       end
-    end
-    return false
+    end 
   end
   
   def find_like(like_name)    
@@ -53,19 +45,5 @@ class User
     end
     return nil
   end
-  
-  def add_like!(like_name)
-      like = nil
-      like = find_like(like_name)
-      if like == nil
-        like = Like.create(name: like_name)
-        self.num_likes = self.num_likes + 1
-        self.likes << like
-        self.save!
-        self.reload#clearly not ideal but a mongoid bug for now
-      end
-  end
-  
-
 end
 

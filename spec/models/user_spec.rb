@@ -109,33 +109,47 @@ describe User do
       @user.num_likes.should == 0
     end
     
+    def has_like?(like_name)
+      @user.likes.each do |like|
+        if like.name == like_name
+          return true
+        end
+      end
+      return false
+    end
+    
+    def add_like(like)
+      @user.like_name = like
+      @user.save
+    end
+       
     it "should be able to accept likes" do
-      @user.add_like!("Pizza")
-      @user.add_like!("BreadSticks")
-      @user.has_like?("Pizza").should be_true
-      @user.has_like?("BreadSticks").should be_true
+      add_like("Pizza")
+      add_like("BreadSticks")
+      has_like?("Pizza").should be_true
+      has_like?("Breadsticks").should be_true
     end
     
     it "should keep track of number of likes" do
-      @user.add_like!("Pizza")
-      @user.add_like!("BreadSticks")
+      add_like("Pizza")
+      add_like("BreadSticks")
       @user.num_likes.should == 2
     end
     
     it "should not find non-existant likes" do
-      @user.add_like!("Parkour")
-      @user.has_like?("Running").should_not be_true
+      add_like("Parkour")
+      has_like?("Running").should_not be_true
     end
     
-    it "should not be affected by casing" do
-      @user.add_like!("Dogs")
-      @user.has_like?("dogs").should be_true
+    it "should be converted to capitalized format" do
+      add_like("dogs")
+      has_like?("Dogs").should be_true
     end
     
     it "should not double count likes" do
-      @user.add_like!("Cats")
-      @user.add_like!("Cats")
-      @user.has_like?("Cats").should be_true
+      add_like("Cats")
+      add_like("Cats")
+      has_like?("Cats").should be_true
       @user.num_likes.should == 1
     end
   end
