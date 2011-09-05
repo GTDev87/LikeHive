@@ -37,5 +37,11 @@ describe Like do
     it "should start with no likers" do
       @like.num_users.should == 0
     end
+    
+    it "should keep track of users when added to a user" do
+      user = User.create(@attr)
+      user.likes << @like
+      @like.num_users == 1
+    end
   end
 end

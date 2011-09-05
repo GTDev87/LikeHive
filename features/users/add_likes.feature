@@ -31,3 +31,11 @@ Feature: Add Likes
       And I press "Add Like"
       Then I should see "Cucumbers"
       Then I should see "Cheese"
+      
+    Scenario: Likes are capitalized
+      Given I am a user named "greg" with an email "greg@test.com" and password "please"
+      When I sign in as "greg@test.com/please"
+      And I follow "greg"
+      And I fill in "user_like_name" with "cUcUmBeRs"
+      And I press "Add Like"
+      Then I should see "Cucumbers"
