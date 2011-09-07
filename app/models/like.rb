@@ -12,13 +12,20 @@ class Like
     self.num_users = self.users.count
   end
   
-  #use like_name instead of name as setter/getter
-  def like_name=(likename)
-    self.name = capitalize_words(likename)
+  def name=(likename)
+    super(capitalize_words(likename))
   end
-
-  def like_name
-    return self.name 
+  
+  def return_user_names
+    if self.users == nil || self.users.size == 0
+	    return ["No Users"]
+    else
+	    userArray = Array.new
+	    self.users.each do |user|
+	      userArray << user.name
+	    end
+	    return userArray
+    end
   end
   
 private

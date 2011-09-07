@@ -99,6 +99,20 @@ describe User do
     end
 
   end
+  
+  def has_like?(like_name)
+    @user.likes.each do |like|
+      if like.name == like_name
+        return true
+      end
+    end
+    return false
+  end
+    
+  def add_like(like)
+    @user.like_name = like
+    @user.save
+  end
 
   describe "Finding Like Data" do
     before(:each) do
@@ -109,19 +123,7 @@ describe User do
       @user.num_likes.should == 0
     end
     
-    def has_like?(like_name)
-      @user.likes.each do |like|
-        if like.name == like_name
-          return true
-        end
-      end
-      return false
-    end
     
-    def add_like(like)
-      @user.like_name = like
-      @user.save
-    end
        
     it "should be able to accept likes" do
       add_like("Pizza")
@@ -151,6 +153,61 @@ describe User do
       add_like("Cats")
       has_like?("Cats").should be_true
       @user.num_likes.should == 1
+    end
+  end
+  
+  describe "Finding Like Names" do
+    before(:each) do
+      @user = User.create!(@attr)
+    end
+    
+    it "should return no likes when the user has no likes" do
+      @user.return_like_names.should == ["No Likes"]
+    end
+    
+    it "should display all likes added" do
+      add_like("Pizza")
+      add_like("BreadSticks")
+      @user.return_like_names.should == ["Breadsticks", "Pizza"]
+    end
+    
+    it "should display likes capitalized" do
+      add_like("capitalized")
+      @user.return_like_names.should == ["Capitalized"]
+    end
+    
+    it "should display all likes in alphabetical order" do
+      add_like("e")
+      add_like("c")
+      add_like("d")
+      add_like("b")
+      add_like("a")
+      @user.return_like_names.should == ["A", "B", "C" ,"D", "E"]
+    end
+  end
+  
+  describe "between multiple users" do    
+    
+    it "should keep likes referenced between multiple users" do 
+      greg = User.create(
+      :name => "Greg",
+      :email => "greg@example.com",
+      :password => "foobar",
+      :password_confirmation => "foobar")
+      
+      greg.like_name = "ketchup"
+      greg.save!
+      
+      amol = User.create(
+      :name => "Amol",
+      :email => "amol@example.com",
+      :password => "foobar",
+      :password_confirmation => "foobar")
+      
+      amol.like_name = "ketchup"
+      amol.save!      
+      
+      Like.count.should == 1
     end
   end
 end

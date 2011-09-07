@@ -10,6 +10,13 @@ Given /^I am a user named "([^"]*)" with an email "([^"]*)" and password "([^"]*
   @user.save!
 end
 
+Given /^There is a user named "([^"]*)" with an email "([^"]*)" and password "([^"]*)"$/ do |name, email, password|
+  User.new(:name => name,
+            :email => email,
+            :password => password,
+            :password_confirmation => password).save!
+end
+
 Then /^I should be already signed in$/ do
   And %{I should see "Logout"}
 end

@@ -24,16 +24,33 @@ class User
   attr_accessible :like_name
   after_save :assign_like
   
+  def return_like_names
+    if self.likes == nil || self.likes.size == 0
+	    return ["No Likes"]
+    else
+	    likeArray = Array.new
+	    self.likes.each do |like|
+	      likeArray << like.name
+	    end
+	    return likeArray
+    end
+  end
+  
   def assign_like
     if @like_name
-      like = nil
-      like = find_like(like_name)
+      
+      like = find_like(@like_name)
+      
       if like == nil
-        like = Like.create(like_name: like_name)
-        self.likes << like
-        self.reload#clearly not ideal but a mongoid bug for now
-        self.num_likes = self.likes.count
+        like = Like.first(conditions: { name: @like_name })
+      
+        if like == nil
+          like = Like.create(:name => @like_name)
+        end
       end
+      self.likes << like
+      self.reload#clearly not ideal but a mongoid bug for now
+      self.num_likes = self.likes.count
     end 
   end
   

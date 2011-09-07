@@ -170,6 +170,8 @@ GEM
       actionpack (~> 3.1.0.rc6)
       railties (~> 3.1.0.rc6)
       sass (>= 3.1.4)
+    searchlogic (2.4.28)
+      activerecord (>= 2.0.0)
     selenium-webdriver (2.5.0)
       childprocess (>= 0.2.1)
       ffi (>= 1.0.7)
@@ -220,5 +222,6 @@ DEPENDENCIES
   rails-footnotes (>= 3.7)
   rspec-rails (>= 2.6.1)
   sass-rails (~> 3.1.0.rc)
+  searchlogic
   therubyracer (>= 0.8.2)
   uglifier

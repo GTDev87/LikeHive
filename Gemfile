@@ -23,3 +23,4 @@ gem "devise", ">= 1.4.2"
 gem "frontend-helpers"
 gem "rails-footnotes", ">= 3.7", :group => :development
 gem "barista"
+gem "searchlogic"

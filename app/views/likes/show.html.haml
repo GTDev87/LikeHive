@@ -1,0 +1,7 @@
+%p
+  #{@like.name}
+  
+%p Users:
+%script
+- @like.return_user_names.each do |user|
+  %p #{user}

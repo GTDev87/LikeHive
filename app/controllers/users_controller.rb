@@ -6,7 +6,7 @@ class UsersController < ApplicationController
   end
   
   def list
-    @users = User.find_all()
+    @users = User.all()
   end
 
   def show

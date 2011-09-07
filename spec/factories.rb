@@ -1,8 +1,12 @@
 require 'factory_girl'
 
-Factory.define :user do |u|
-  u.name 'Test User'
-  u.email 'user@test.com'
-  u.password 'please'
+Factory.define :user do |user|
+  user.name 'Test User'
+  user.email 'user@test.com'
+  user.password 'please'
+end
+
+Factory.define :like do |like|
+  like.name 'Test Like'
 end
 
