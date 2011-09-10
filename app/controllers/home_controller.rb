@@ -1,5 +1,7 @@
 class HomeController < ApplicationController
   def index
-    @users = User.all
+    @users = UserQuery.all
+    @likes = LikeQuery.all
   end
+
 end

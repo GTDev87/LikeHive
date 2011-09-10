@@ -16,6 +16,8 @@ RSpec.configure do |config|
   # config.mock_with :flexmock
   # config.mock_with :rr
   config.mock_with :rspec
+  
+  config.include SunspotMatchers
 
   # Remove this line if you're not using ActiveRecord or ActiveRecord fixtures
   # config.fixture_path = "#{::Rails.root}/spec/fixtures"
@@ -30,6 +32,7 @@ RSpec.configure do |config|
   config.before(:suite) do
     DatabaseCleaner.strategy = :truncation
     DatabaseCleaner.orm = "mongoid"
+    Sunspot.session = SunspotMatchers::SunspotSessionSpy.new(Sunspot.session)
   end
 
   config.before(:each) do

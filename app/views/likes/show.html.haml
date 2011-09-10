@@ -1,7 +1,7 @@
 %p
-  #{@like.name}
+  #{StringFormatter.capitalize_words(@like.name)}
   
 %p Users:
 %script
-- @like.return_user_names.each do |user|
+- @like.get_followers.return_user_names.each do |user|
   %p #{user}

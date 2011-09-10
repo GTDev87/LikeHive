@@ -1,5 +1,7 @@
 source 'http://rubygems.org'
-gem 'rails', '3.1.0.rc6'
+
+gem 'rails', '3.1.0.rc8'
+
 group :assets do
   gem 'sass-rails', "  ~> 3.1.0.rc"
   gem 'coffee-rails', "~> 3.1.0.rc"
@@ -19,8 +21,13 @@ gem "capybara", ">= 1.0.1", :group => :test
 gem "launchy", ">= 2.0.5", :group => :test
 gem "bson_ext", ">= 1.3.1"
 gem "mongoid", ">= 2.1.9"
-gem "devise", ">= 1.4.2"
+gem 'devise', :git => 'git://github.com/plataformatec/devise.git', :branch => 'master'
 gem "frontend-helpers"
 gem "rails-footnotes", ">= 3.7", :group => :development
 gem "barista"
-gem "searchlogic"
+gem "sunspot"
+gem 'sunspot_rails'
+gem "sunspot_mongoid"
+gem 'vinova_sunspot_mongoid', :require => 'sunspot_mongoid'
+gem "fakeweb", "~> 1.3.0", :group => :test
+gem "sunspot_matchers", "~> 1.2.1.4", :group => :test

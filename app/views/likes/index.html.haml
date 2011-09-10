@@ -1,0 +1,10 @@
+%p Search For Likes:
+= form_tag likes_path, :method => 'get' do
+  %p
+    = text_field_tag :search, params[:search]
+    = submit_tag "Search", :name => nil
+
+%p Results:
+%script
+- @likes.each do |like|
+  %p #{link_to StringFormatter.capitalize_words(like.name), like}

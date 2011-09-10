@@ -12,5 +12,5 @@
 
 %p Likes:
 %script
-- @user.return_like_names.each do |like|
-  %p #{like}
+- @user.get_likes().return_like_names.each do |like|
+  %p #{StringFormatter.capitalize_words(like)}

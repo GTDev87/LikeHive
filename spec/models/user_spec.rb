@@ -98,20 +98,10 @@ describe User do
       @user.encrypted_password.should_not be_blank
     end
 
-  end
-  
-  def has_like?(like_name)
-    @user.likes.each do |like|
-      if like.name == like_name
-        return true
-      end
-    end
-    return false
-  end
+  end  
     
   def add_like(like)
-    @user.like_name = like
-    @user.save
+    
   end
 
   describe "Finding Like Data" do
@@ -120,71 +110,20 @@ describe User do
     end
     
     it "should have no likes on creation" do
-      @user.num_likes.should == 0
+      @user.num_likes == 0
     end
-    
-    
        
-    it "should be able to accept likes" do
-      add_like("Pizza")
-      add_like("BreadSticks")
-      has_like?("Pizza").should be_true
-      has_like?("Breadsticks").should be_true
+    it "should add like data after save" do
+      @user.like_name = "Pizza"
+      @user.save
+      @user.like_name = "BreadSticks"
+      @user.save
+      
+      @user.get_likes.find_like("pizza").should be_true
+      @user.get_likes.find_like("breadsticks").should be_true
+      @user.get_likes.find_like("running").should be_false
     end
-    
-    it "should keep track of number of likes" do
-      add_like("Pizza")
-      add_like("BreadSticks")
-      @user.num_likes.should == 2
-    end
-    
-    it "should not find non-existant likes" do
-      add_like("Parkour")
-      has_like?("Running").should_not be_true
-    end
-    
-    it "should be converted to capitalized format" do
-      add_like("dogs")
-      has_like?("Dogs").should be_true
-    end
-    
-    it "should not double count likes" do
-      add_like("Cats")
-      add_like("Cats")
-      has_like?("Cats").should be_true
-      @user.num_likes.should == 1
-    end
-  end
-  
-  describe "Finding Like Names" do
-    before(:each) do
-      @user = User.create!(@attr)
-    end
-    
-    it "should return no likes when the user has no likes" do
-      @user.return_like_names.should == ["No Likes"]
-    end
-    
-    it "should display all likes added" do
-      add_like("Pizza")
-      add_like("BreadSticks")
-      @user.return_like_names.should == ["Breadsticks", "Pizza"]
-    end
-    
-    it "should display likes capitalized" do
-      add_like("capitalized")
-      @user.return_like_names.should == ["Capitalized"]
-    end
-    
-    it "should display all likes in alphabetical order" do
-      add_like("e")
-      add_like("c")
-      add_like("d")
-      add_like("b")
-      add_like("a")
-      @user.return_like_names.should == ["A", "B", "C" ,"D", "E"]
-    end
-  end
+  end  
   
   describe "between multiple users" do    
     

@@ -7,33 +7,23 @@ class Like
   
   after_save :assign_num_users
   
+  include Sunspot::Mongoid
+  searchable do
+    string :name
+  end
+  
   def assign_num_users
-    self.reload
-    self.num_users = self.users.count
+    get_followers.recompute_users
+  end
+  
+  def get_followers
+    if @like_followers == nil  
+      @like_followers = LikeFollowers.new(self)
+    end
+    return @like_followers
   end
   
   def name=(likename)
-    super(capitalize_words(likename))
-  end
-  
-  def return_user_names
-    if self.users == nil || self.users.size == 0
-	    return ["No Users"]
-    else
-	    userArray = Array.new
-	    self.users.each do |user|
-	      userArray << user.name
-	    end
-	    return userArray
-    end
-  end
-  
-private
-  def capitalize_words(string_words)
-    words = []
-    string_words.split(/\s+/).each do |word|
-      words << word.capitalize
-    end
-    return words.join(' ')
-  end
+    super(StringFormatter.lowercase(likename))
+  end    
 end

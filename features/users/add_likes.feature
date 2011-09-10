@@ -6,8 +6,8 @@ Feature: Add Likes
 
     Scenario: Seeing likes
       Given I am a user named "greg" with an email "greg@test.com" and password "please"
-      And I have a like "Pizza"
-      And I have a like "Breadsticks"
+      And I have a like "pizza"
+      And I have a like "breadsticks"
       When I sign in as "greg@test.com/please"
       When I follow "greg"
       Then I should see "Pizza"
