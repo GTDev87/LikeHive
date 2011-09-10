@@ -9,7 +9,7 @@ class Like
   
   include Sunspot::Mongoid
   searchable do
-    string :name
+    text :name
   end
   
   def assign_num_users

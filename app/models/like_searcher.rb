@@ -1,12 +1,11 @@
 class LikeSearcher
-  #def self.search(search_string)
-  #  if(search_string != nil)
-  #    return LikeQuery.all_in(search_string)
-  #  end
-  #  return []
-  #end
   def self.search(search_string)    
-    search = Sunspot.search(Like) do
+    
+    Like.all.each do |like|
+      puts "the liek found was #{like.name}"
+    end
+    
+    search = Like.search do
       keywords search_string
     end
     
