@@ -29,7 +29,7 @@ class UserInterests
       if like == nil
         like = LikeQuery.find_one(like_name)
         if like == nil
-          like = LikeQuery.create(:name => like_name)
+          like = LikeCreator.create(:name => like_name)
         end
       end
       @user.likes << like

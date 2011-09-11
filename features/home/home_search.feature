@@ -1,3 +1,4 @@
+@search
 Feature: Search Like Home
   As a visitor to the website
   I want 
