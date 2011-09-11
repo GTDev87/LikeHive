@@ -1,15 +1,17 @@
 class LikeSearcher
-  def self.search(search_string)    
-    
-    Like.all.each do |like|
-      puts "the liek found was #{like.name}"
+  
+  def initialize()
+  end
+  
+  def search(search_string)
+    if StringEvaluator.string_is_blank(search_string)
+      return []
     end
-    
     search = Like.search do
       keywords search_string
+      paginate :page => 1, :per_page => 10
     end
-    
-    puts "the serach results are #{search.results}"
+
     return search.results
   end
 end

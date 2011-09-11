@@ -24,18 +24,20 @@ class UserInterests
   end
   
   def add_like(like_name)
-    if like_name
-      like = find_like(like_name)
+    if like_name == nil || StringEvaluator.string_is_blank(like_name) 
+      return
+    end  
+      
+    like = find_like(like_name)
+    if like == nil
+      like = LikeQuery.find_one(like_name)
       if like == nil
-        like = LikeQuery.find_one(like_name)
-        if like == nil
-          like = LikeCreator.create(:name => like_name)
-        end
+        like = LikeCreator.create(:name => like_name)
       end
-      @user.likes << like
-      @user.reload#clearly not ideal but a mongoid bug for now
-      @user.num_likes = @user.likes.count
     end
+    @user.likes << like
+    @user.reload#clearly not ideal but a mongoid bug for now
+    @user.num_likes = @user.likes.count
   end
   
   def <<(like)

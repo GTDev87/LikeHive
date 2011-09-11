@@ -1,6 +1,7 @@
 class LikesController < ApplicationController
   def index
-    @likes = LikeSearcher.search(params[:search])   
+    @searcher = LikeSearcher.new()
+    @likes = @searcher.search(params[:search])   
   end
   
   def new

@@ -10,11 +10,8 @@ development:
     port: 8982
     log_level: INFO
 
-test: &TEST
+test:
   solr:
     hostname: localhost
     port: 8981
     log_level: WARNING
-    
-cucumber:
-  <<: *TEST

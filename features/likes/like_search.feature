@@ -45,4 +45,48 @@ Feature: Search Like Page
       And There is a like named "catfish"
       When I fill in "search" with ""
       And I press "Search"
+      Then I should not see "Catfish"
+      
+    Scenario: Searching should not return anything if blank is entered
+      Given I am not logged in
+      And I am on the likes page
+      And There is a like named "catfish"
+      When I fill in "search" with " "
+      And I press "Search"
       Then I should not see "Catfish"  
+      
+    Scenario: Searching should not return more than 10 results
+      Given I am not logged in
+      And I am on the likes page
+      And There is a like named "Like 1"
+      And There is a like named "Like 2"
+      And There is a like named "Like 3"
+      And There is a like named "Like 4"
+      And There is a like named "Like 5"
+      And There is a like named "Like 6"
+      And There is a like named "Like 7"
+      And There is a like named "Like 8"
+      And There is a like named "Like 9"
+      And There is a like named "Like 10"
+      And There is a like named "Like 11"
+      And There is a like named "Like 12"
+      And There is a like named "Like 13"
+      And There is a like named "Like 14"
+      And There is a like named "Like 15"
+      When I fill in "search" with "Like"
+      And I press "Search"
+      Then I should see "Like 1"
+      Then I should see "Like 2"
+      Then I should see "Like 3"
+      Then I should see "Like 4"
+      Then I should see "Like 5"
+      Then I should see "Like 6"
+      Then I should see "Like 7"
+      Then I should see "Like 8"
+      Then I should see "Like 9"
+      Then I should see "Like 10"
+      Then I should not see "Like 11"
+      Then I should not see "Like 12"
+      Then I should not see "Like 13"
+      Then I should not see "Like 14"
+      Then I should not see "Like 15"

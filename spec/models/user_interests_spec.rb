@@ -58,6 +58,18 @@ describe UserInterests do
       @userInterests.find_like("cats").should_not be_nil
       @userInterests.num_likes.should == 1
     end
+    
+    it "should not add empty likes" do
+      @userInterests.add_like("")
+      @userInterests.find_like("").should be_nil
+      @userInterests.num_likes.should == 0
+    end
+    
+    it "should not add blank likes" do
+      @userInterests.add_like(" ")
+      @userInterests.find_like(" ").should be_nil
+      @userInterests.num_likes.should == 0
+    end
   end
   
   describe "Finding Like Names" do

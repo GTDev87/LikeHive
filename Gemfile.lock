@@ -204,6 +204,8 @@ GEM
     sunspot_rails (1.2.1)
       nokogiri
       sunspot (= 1.2.1)
+    sunspot_test (0.3.2)
+      sunspot_rails (>= 1.2.1)
     term-ansicolor (1.0.6)
     therubyracer (0.9.4)
       libv8 (~> 3.3.10)
@@ -254,6 +256,7 @@ DEPENDENCIES
   sunspot_matchers (~> 1.2.1.4)
   sunspot_mongoid
   sunspot_rails
+  sunspot_test (~> 0.3.2)
   therubyracer (>= 0.8.2)
   uglifier
   vinova_sunspot_mongoid

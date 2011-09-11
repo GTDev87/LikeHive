@@ -5,6 +5,11 @@
 # files.
 
 require 'cucumber/rails'
+require 'sunspot_test/cucumber'
+
+#Use the following to find your process
+#ps aux | grep solr # this will search existing processes for a solr process.
+#kill <pid of the solr java process> # this will kill the process with the given PID.
 
 # Capybara defaults to XPath selectors rather than Webrat's default of CSS3. In
 # order to ease the transition to Capybara we set the default here. If you'd
@@ -52,27 +57,27 @@ end
 
 
 # Set up solr sunspot testing enviornment
-$original_sunspot_session = Sunspot.session
+#$original_sunspot_session = Sunspot.session
 
-Before("~@search") do
-  Sunspot.session = Sunspot::Rails::StubSessionProxy.new($original_sunspot_session)
-end
+#Before("~@search") do
+#  Sunspot.session = Sunspot::Rails::StubSessionProxy.new($original_sunspot_session)
+#end
 
-Before("@search") do
-  unless $sunspot
-    $sunspot = Sunspot::Rails::Server.new
-    pid = fork do
-      #STDERR.reopen('/dev/null')
-      #STDOUT.reopen('/dev/null')
-      $sunspot.run
-    end
-    # shut down the Solr server
-    at_exit { Process.kill('TERM', pid) }
-    # wait for solr to start
-    sleep 8
-  end
-  Sunspot.session = $original_sunspot_session
-
-  Like.remove_all_from_index!
-end
+#Before("@search") do
+#  unless $sunspot
+#    $sunspot = Sunspot::Rails::Server.new
+#    pid = fork do
+#      #STDERR.reopen('/dev/null')
+#      #STDOUT.reopen('/dev/null')
+#      $sunspot.run
+#    end
+#    # shut down the Solr server
+#    at_exit { Process.kill('TERM', pid) }
+#    # wait for solr to start
+#    sleep 8
+#  end
+#  Sunspot.session = $original_sunspot_session
+#
+#  Like.remove_all_from_index!
+#end
 
