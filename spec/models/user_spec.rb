@@ -98,11 +98,7 @@ describe User do
       @user.encrypted_password.should_not be_blank
     end
 
-  end  
-    
-  def add_like(like)
-    
-  end
+  end      
 
   describe "Finding Like Data" do
     before(:each) do
@@ -122,6 +118,16 @@ describe User do
       @user.get_likes.find_like("pizza").should be_true
       @user.get_likes.find_like("breadsticks").should be_true
       @user.get_likes.find_like("running").should be_false
+    end
+    
+    it "should add multiple likes data after save" do
+      @user.like_box = "Pizza, BreadSticks"
+      @user.save
+      
+      @user.get_likes.find_like("pizza").should be_true
+      @user.get_likes.find_like("breadsticks").should be_true
+      @user.get_likes.num_likes.should == 2
+      
     end
   end  
   

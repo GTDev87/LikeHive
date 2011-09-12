@@ -10,10 +10,7 @@ class UsersController < ApplicationController
   end
 
   def show
-    @user = UserQuery.find(params[:id])
-    @user.likes.each do |like|
-      puts "like name = #{like.name}"
-    end
+    @user = UserQuery.find(params[:id])    
   end
   
   def create

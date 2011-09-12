@@ -23,9 +23,13 @@ class User
   attr_accessor :like_name
   attr_accessible :like_name
   
+  attr_accessor :like_box
+  attr_accessible :like_box
+  
   before_save :assign_like
+  before_save :assign_multiple_likes
   after_save :update_num_likes#hackish
-
+  
   
   def get_likes()
     if @user_likes == nil  
@@ -36,6 +40,10 @@ class User
   
   def update_num_likes
     get_likes.update_num_likes
+  end
+  
+  def assign_multiple_likes
+    get_likes.add_multiple_likes(@like_box)
   end
   
   def assign_like

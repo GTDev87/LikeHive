@@ -29,6 +29,15 @@ class UserInterests
     @user.num_likes = @user.likes.size
   end
   
+  def add_multiple_likes(likes_names)
+    if likes_names == nil || StringEvaluator.string_is_blank(likes_names)
+      return
+    end
+    StringFormatter.split_by_commas(likes_names).each do |like_name|
+      add_like(like_name)
+    end
+  end
+  
   def update_num_likes()
     @user.num_likes = @user.likes.size
   end

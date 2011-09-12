@@ -1,7 +1,7 @@
 Feature: Add Likes
   In order to keep track of my interests
   As a registered user of the website
-  I want to see the list of likes I have
+  I want to add likes
 
 
     Scenario: Seeing likes
@@ -39,6 +39,17 @@ Feature: Add Likes
       And I fill in "user_like_name" with "cUcUmBeRs"
       And I press "Add Like"
       Then I should see "Cucumbers"
+      
+    Scenario: Adding likes with leading and trailing spaces the same like
+      Given I am a user named "greg" with an email "greg@test.com" and password "please"
+      When I sign in as "greg@test.com/please"
+      And I follow "greg"
+      And I fill in "user_like_name" with " potato"
+      And I press "Add Like"
+      And I fill in "user_like_name" with "potato "
+      And I press "Add Like"
+      Then I should see "Likes (1):"
+      Then I should see "Potato"
       
     Scenario: "No Likes" is displayed with user has no likes
       Given I am a user named "greg" with an email "greg@test.com" and password "please"

@@ -6,8 +6,12 @@
 = form_for @user do |form|
   %p
     = form.text_field :like_name
-    
     = form.submit "Add Like"
+    
+= form_for @user do |form|
+  %p
+    = form.text_area :like_box
+    = form.submit "Add Likes"
     
 %p Likes (#{@user.get_likes.num_likes}):
 %script
