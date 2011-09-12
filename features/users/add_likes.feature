@@ -52,7 +52,7 @@ Feature: Add Likes
       And I follow "greg"
       And I fill in "user_like_name" with " "
       And I press "Add Like"
-      Then I should see /Likes:\n/
+      Then I should see "No Likes"
       
     Scenario: Empty Likes are not created program does not crash
       Given I am a user named "greg" with an email "greg@test.com" and password "please"
@@ -60,4 +60,4 @@ Feature: Add Likes
       And I follow "greg"
       And I fill in "user_like_name" with ""
       And I press "Add Like"
-      Then I should see /Likes:\n/
+      Then I should see "No Likes"

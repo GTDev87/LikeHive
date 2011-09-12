@@ -10,19 +10,7 @@ class UserInterests
   def likes
     return @user.likes
   end
-  
-  def return_like_names
-    if @user.likes == nil || @user.likes.size == 0
-	    return ["No Likes"]
-    else
-	    likeArray = Array.new
-	    @user.likes.each do |like|
-	      likeArray << like.name
-	    end
-	    return likeArray
-    end
-  end
-  
+   
   def add_like(like_name)
     if like_name == nil || StringEvaluator.string_is_blank(like_name) 
       return
@@ -36,8 +24,13 @@ class UserInterests
       end
     end
     @user.likes << like
+    like.save
     @user.reload#clearly not ideal but a mongoid bug for now
-    @user.num_likes = @user.likes.count
+    @user.num_likes = @user.likes.size
+  end
+  
+  def update_num_likes()
+    @user.num_likes = @user.likes.size
   end
   
   def <<(like)

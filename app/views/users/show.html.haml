@@ -8,9 +8,11 @@
     = form.text_field :like_name
     
     = form.submit "Add Like"
-   
-
-%p Likes:
+    
+%p Likes (#{@user.get_likes.num_likes}):
 %script
-- @user.get_likes().return_like_names.each do |like|
-  %p #{StringFormatter.capitalize_words(like)}
+- if @user.get_likes.num_likes == 0#find way of updating num_likes
+  %p No Likes
+- else
+  - @user.get_likes.likes.each do |like|
+    %p #{link_to StringFormatter.capitalize_words(like.name), like}

@@ -31,24 +31,4 @@ describe Like do
       @likeFollowers.num_users == 1
     end
   end
-  
-  describe "displaying users" do
-    before(:each) do
-      @like = Like.create!(:name => "ketchup")
-      @likeFollowers = @like.get_followers
-    end
-    
-    it "should return No Users if no users exist" do
-      @likeFollowers.return_user_names.should == ["No Users"]
-    end
-    
-    it "should return user if like has a user" do
-      @like.users << User.create(
-      :name => "Greg",
-      :email => "greg@example.com",
-      :password => "foobar",
-      :password_confirmation => "foobar")
-      @likeFollowers.return_user_names.should == ["Greg"]
-    end
-  end
 end

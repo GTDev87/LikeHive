@@ -6,6 +6,7 @@ class Like
   has_and_belongs_to_many :users, class_name: "User", inverse_of: :likes
   
   after_save :assign_num_users
+  before_save :assign_num_users#hackish
   
   include Sunspot::Mongoid
   searchable do

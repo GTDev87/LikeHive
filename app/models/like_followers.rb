@@ -4,7 +4,6 @@ class LikeFollowers
   end
   
   def recompute_users
-    @like.reload
     @like.num_users = @like.users.count
   end
   
@@ -16,20 +15,10 @@ class LikeFollowers
     return @like.users
   end
   
-  def return_user_names
-    if @like.users == nil || @like.users.size == 0
-	    return ["No Users"]
-    else
-	    userArray = Array.new
-	    @like.users.each do |user|
-	      userArray << user.name
-	    end
-	    return userArray
-    end
-  end
-  
   def <<(user)
     @like.users << user
     @like.save
+    @like.num_users = @like.users.count
+    @like.save #this may be a temporary patch
   end
 end

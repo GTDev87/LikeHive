@@ -1,7 +1,10 @@
 %p
   #{StringFormatter.capitalize_words(@like.name)}
   
-%p Users:
+%p Users (#{@like.get_followers.num_users}):
 %script
-- @like.get_followers.return_user_names.each do |user|
-  %p #{user}
+- if @like.get_followers.num_users == 0#find way of updating num_users
+  %p No Users
+- else
+  - @like.get_followers.users.each do |user|
+    %p #{user.name}

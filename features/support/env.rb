@@ -7,6 +7,11 @@
 require 'cucumber/rails'
 require 'sunspot_test/cucumber'
 
+
+
+
+SunspotTest.solr_startup_timeout = 60
+
 #Use the following to find your process
 #ps aux | grep solr # this will search existing processes for a solr process.
 #kill <pid of the solr java process> # this will kill the process with the given PID.

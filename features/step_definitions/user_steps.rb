@@ -67,8 +67,7 @@ Then /^I should be signed out$/ do
 end
 
 Given /^I have a like "([^"]*)"$/ do |like_name|
-  like = Like.create(name: like_name)
-  like.save!()
-  @user.likes.concat([like])
+  like = LikeCreator.create(name: like_name)
+  @user.get_likes.add_like(like_name)
   @user.save!()
 end
