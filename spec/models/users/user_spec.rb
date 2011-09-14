@@ -12,7 +12,7 @@ describe User do
   end
   
   it "should create a new instance given a valid attribute" do
-    User.create!(@attr)
+    UserCreator.create!(@attr)
   end
   
   it "should require an email address" do

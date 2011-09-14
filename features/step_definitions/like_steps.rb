@@ -3,7 +3,7 @@ Given /^There is a like named "([^"]*)"$/ do |name|
 end
 
 Given /^"([^"]*)" has a like of "([^"]*)"$/ do |user_name, like_name|  
-  user = UserQuery.find_one(user_name)
+  user = UserQuery.find_one_by_name(user_name)
   like = LikeCreator.create(:name => like_name.downcase)
   like.get_followers << user
 end
@@ -13,6 +13,6 @@ When /^I look at the "([^"]*)" like page$/ do |like|
 end
 
 Given /^Nobody likes "([^"]*)"$/ do |like_name|
-  assert_equal LikeQuery.find_one(like_name).get_followers.num_users, 0
+  assert_equal LikeQuery.find_one_by_name(like_name).get_followers.num_users, 0
 end
 

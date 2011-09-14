@@ -4,7 +4,7 @@ class UserInterests
     #@userInterestLocator = userInterestLocator
     @user_interest_locator = UserInterestLocator.new(self)
     #@userAdder = userAdder
-    @user_adder = UserInterestAdder.new(user, @user_interest_locator)
+    @user_adder = UserInterestAdder.new(user)
   end
   
   def num_likes
@@ -16,15 +16,15 @@ class UserInterests
   end
    
   def add_like(like_name)
-    @user_adder.add_interest(like_name)
+    add_like_if_new(like_name)
   end
   
   def add_multiple_likes(likes_names)
-    likes_string = LikeString.new(likes_names)
+    likes_string = ModelString.new(likes_names)
     if not likes_string.is_valid then return end
       
     StringFormatter.split_by_commas(likes_string.string).each do |like_name|
-      @user_adder.add_interest(like_name)
+      add_like_if_new(like_name)
     end
   end
   
@@ -39,4 +39,13 @@ class UserInterests
   def find_like(like_name)   
     return @user_interest_locator.find_like(like_name)
   end  
+  
+private
+  def add_like_if_new(like_name)
+    like_string = ModelString.new(like_name)
+    if not like_string.is_valid or @user_interest_locator.find_like(like_name) then 
+      return 
+    end
+    @user_adder.add_interest(like_name)
+  end
 end

@@ -1,15 +1,11 @@
 class UserInterestAdder
-  def initialize(user, user_interest_locator)
+  def initialize(user)
     @user = user
-    @user_interest_locator = user_interest_locator
   end
   
   def add_interest(like_name)
-    like_string = LikeString.new(like_name)
-    if not like_string.is_valid or @user_interest_locator.find_like(like_name) then 
-      return 
-    end
-    like = LikeQuery.find_one(like_name)
+    
+    like = LikeQuery.find_one_by_name(like_name)
     if like == nil
       like = LikeCreator.create(:name => like_name)
     end

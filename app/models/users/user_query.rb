@@ -1,6 +1,6 @@
 class UserQuery
-  def self.find_one(like_name)
-    return User.first(conditions: { name: like_name })
+  def self.find_one_by_name(user_name)
+    return User.first(conditions: { name: user_name })
   end
   
   def self.all()
