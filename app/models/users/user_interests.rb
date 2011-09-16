@@ -1,10 +1,12 @@
 class UserInterests
-  def initialize(user)    
+  def initialize(user, user_interest_locator, user_interest_adder)    
     @user = user
     #@userInterestLocator = userInterestLocator
-    @user_interest_locator = UserInterestLocator.new(self)
+    @user_interest_locator = user_interest_locator
+    
     #@userAdder = userAdder
-    @user_adder = UserInterestAdder.new(user)
+    @user_adder = user_interest_adder
+    
   end
   
   def num_likes
@@ -30,11 +32,7 @@ class UserInterests
   
   def update_num_likes()
     @user.num_likes = @user.likes.size
-  end
-  
-  def <<(like)
-    @user.likes << like
-  end
+  end  
   
   def find_like(like_name)   
     return @user_interest_locator.find_like(like_name)

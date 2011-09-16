@@ -1,29 +1,19 @@
 require 'spec_helper'
 
-describe User do
-  
-  before(:each) do
-    @attr = { 
-      :name => "Example User",
-      :email => "user@example.com",
-      :password => "foobar",
-      :password_confirmation => "foobar"
-    }
-  end
-  
+describe User do 
   it "should create a new instance given a valid attribute" do
-    UserCreator.create!(@attr)
+    Factory(:user)
   end
   
   it "should require an email address" do
-    no_email_user = User.new(@attr.merge(:email => ""))
+    no_email_user = Factory.build(:user, :email => "")
     no_email_user.should_not be_valid
   end
   
   it "should accept valid email addresses" do
     addresses = %w[user@foo.com THE_USER@foo.bar.org first.last@foo.jp]
     addresses.each do |address|
-      valid_email_user = User.new(@attr.merge(:email => address))
+      valid_email_user = no_email_user = Factory.build(:user, :email => address)
       valid_email_user.should be_valid
     end
   end
@@ -31,28 +21,29 @@ describe User do
   it "should reject invalid email addresses" do
     addresses = %w[user@foo,com user_at_foo.org example.user@foo.]
     addresses.each do |address|
-      invalid_email_user = User.new(@attr.merge(:email => address))
+      invalid_email_user = Factory.build(:user, :email => address)
       invalid_email_user.should_not be_valid
     end
   end
   
   it "should reject duplicate email addresses" do
-    User.create!(@attr)
-    user_with_duplicate_email = User.new(@attr)
+    Factory(:user, :email => "duplicate@email.com")
+    user_with_duplicate_email = Factory.build(:user, :email => "duplicate@email.com")
     user_with_duplicate_email.should_not be_valid
   end
   
   it "should reject email addresses identical up to case" do
-    upcased_email = @attr[:email].upcase
-    User.create!(@attr.merge(:email => upcased_email))
-    user_with_duplicate_email = User.new(@attr)
+    email = "caseinsensitive@email.com"
+    upcased_email = email.upcase
+    Factory(:user, :email => upcased_email)
+    user_with_duplicate_email = Factory.build(:user, :email => email)
     user_with_duplicate_email.should_not be_valid
   end
   
   describe "passwords" do
 
     before(:each) do
-      @user = User.new(@attr)
+      @user = Factory.build(:user)
     end
 
     it "should have a password attribute" do
@@ -66,20 +57,25 @@ describe User do
   
   describe "password validations" do
 
+    it "should be valid if matching" do
+      Factory.build(:user, :password => "validpass", :password_confirmation => "validpass")
+        .should be_valid
+    end
+
     it "should require a password" do
-      User.new(@attr.merge(:password => "", :password_confirmation => "")).
-        should_not be_valid
+      Factory.build(:user, :password => "", :password_confirmation => "")
+        .should_not be_valid
     end
 
     it "should require a matching password confirmation" do
-      User.new(@attr.merge(:password_confirmation => "invalid")).
-        should_not be_valid
+      Factory.build(:user, :password_confirmation => "invalid")
+        .should_not be_valid
     end
     
     it "should reject short passwords" do
       short = "a" * 5
-      hash = @attr.merge(:password => short, :password_confirmation => short)
-      User.new(hash).should_not be_valid
+      Factory.build(:user, :password => short, :password_confirmation => short)
+        .should_not be_valid
     end
     
   end
@@ -87,7 +83,7 @@ describe User do
   describe "password encryption" do
     
     before(:each) do
-      @user = User.create!(@attr)
+      @user = Factory(:user)
     end
     
     it "should have an encrypted password attribute" do
@@ -102,7 +98,7 @@ describe User do
 
   describe "Finding Like Data" do
     before(:each) do
-      @user = User.create!(@attr)
+      @user = Factory(:user)
     end
     
     it "should have no likes on creation" do
@@ -134,20 +130,12 @@ describe User do
   describe "between multiple users" do    
     
     it "should keep likes referenced between multiple users" do 
-      greg = User.create(
-      :name => "Greg",
-      :email => "greg@example.com",
-      :password => "foobar",
-      :password_confirmation => "foobar")
+      greg = Factory(:user, :name => "Greg")
       
       greg.like_name = "ketchup"
       greg.save!
       
-      amol = User.create(
-      :name => "Amol",
-      :email => "amol@example.com",
-      :password => "foobar",
-      :password_confirmation => "foobar")
+      amol = Factory(:user, :name => "Amol")
       
       amol.like_name = "ketchup"
       amol.save!      

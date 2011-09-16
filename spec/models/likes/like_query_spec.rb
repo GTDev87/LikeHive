@@ -2,9 +2,9 @@ require 'spec_helper'
 
 describe LikeQuery do
   before(:each) do
-    @pizza = LikeCreator.create(name: "Pizza")
-    @french_fries = LikeCreator.create(name: "French Fries")
-    @sunshine = LikeCreator.create(name: "Sunshine")
+    @pizza = Factory(:like, :name => 'Pizza')
+    @french_fries = Factory(:like, :name => 'French Fries')
+    @sunshine = Factory(:like, :name => 'Sunshine')
   end
   describe "finding likes" do
     it "should find likes with the name mentioned by id" do      
@@ -30,6 +30,10 @@ describe LikeQuery do
     
     it "should return one like case insensitive" do
       LikeQuery.find_one_by_name("SuNsHiNe").name.should == "sunshine"
+    end
+    
+    it "should return nil if find_one is called with unknown like" do
+      LikeQuery.find_one_by_name("kickboxing") == nil
     end
   end
 end

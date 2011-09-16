@@ -33,7 +33,9 @@ class User
   after_save :update_num_likes#hackish
   
   def initialize_user_interests
-    @user_likes = UserInterests.new(self)
+    
+    
+    @user_likes = UserInterests.new(self,UserInterestLocator.new(self),UserInterestAdder.new(self))
   end
   
   def get_likes()    

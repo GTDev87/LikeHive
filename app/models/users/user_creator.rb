@@ -3,7 +3,7 @@ class UserCreator
     return User.new
   end
   
-  def self.create!(like_name)
-    return User.create!(like_name)
+  def self.create!(user_name)
+    return User.create!(user_name)
   end
 end

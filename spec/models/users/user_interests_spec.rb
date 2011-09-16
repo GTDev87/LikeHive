@@ -1,29 +1,19 @@
 require 'spec_helper'
 
 describe UserInterests do  
-  before(:each) do
-    @attr = { 
-      :name => "Example User",
-      :email => "user@example.com",
-      :password => "foobar",
-      :password_confirmation => "foobar"
-    }
-  end
-  
-  def has_like?(like_name)
-    @user.likes.each do |like|
-      if like.name == like_name
-        return true
-      end
-    end
-    return false
-  end
+  before(:each) do    
+    @user = Factory(:user)
+    @userAdder = UserInterestAdder.new(@user)
+    @userLocator = UserInterestLocator.new(@user)
+    @userInterests = UserInterests.new(@user, @userLocator, @userAdder)
+    
+    @user2 = Factory(:user)
+    @userAdder2 = UserInterestAdder.new(@user2)
+    @userLocator2 = UserInterestLocator.new(@user2)
+    @userInterests2 = UserInterests.new(@user2, @userLocator2, @userAdder2)
+  end  
 
   describe "Adding single likes" do
-    before(:each) do
-      @user = User.create!(@attr)
-      @userInterests = @user.get_likes
-    end
     
     it "should have no likes on creation" do
       @userInterests.num_likes == 0
@@ -45,20 +35,7 @@ describe UserInterests do
     it "should not find non-existant likes" do
       @userInterests.add_like("Parkour")
       @userInterests.find_like("running").should be_nil
-    end
-    
-    it "should be converted to lowercase format" do
-      @userInterests.add_like("dOgS")
-      @userInterests.find_like("dogs").should_not be_nil
-    end
-    
-    it "should ignore leading end ending space" do
-      @userInterests.add_like(" dogs")
-      @userInterests.add_like("cats ")
-      @userInterests.find_like("dogs").should_not be_nil
-      @userInterests.find_like("cats").should_not be_nil
-      @userInterests.num_likes.should == 2
-    end
+    end    
     
     it "should not double count likes" do
       @userInterests.add_like("Cats")
@@ -80,13 +57,20 @@ describe UserInterests do
     end    
   end
   
-  describe "Adding multiple likes" do
-    before(:each) do
-      @user = User.create!(@attr)
-      @userInterests = @user.get_likes
+  describe "Adding likes to database behavior" do
+    it "should add a like if it does not exist" do
+      @userInterests.add_like("New Like")
+      Like.count.should == 1
     end
     
-    
+    it "should not add a like to database if already exist" do
+      @userInterests.add_like("New Like")
+      @userInterests2.add_like("New Like")
+      Like.count.should == 1
+    end
+  end
+  
+  describe "Adding multiple likes" do
     it "should be able to accept multiple comma delimited likes" do
       @userInterests.add_multiple_likes("Pizza, Breadsticks")
       @userInterests.find_like("pizza").should_not be_nil

@@ -1,23 +1,14 @@
 require 'spec_helper'
 
-describe Like do
-  before(:each) do
-    @attr = { 
-      :name => "Example User",
-      :email => "user@example.com",
-      :password => "foobar",
-      :password_confirmation => "foobar"
-    }
-  end
-  
+describe Like do  
   describe "users_followers_count" do
     before(:each) do
-      @like = Like.create!(:name => "ketchup")
+      @like = Factory(:like)
       @likeFollowers = @like.get_followers
     end
     
     it "should keep track of users which like it" do
-      @likeFollowers << User.create(@attr)
+      @likeFollowers << Factory(:user)
       @likeFollowers.num_users.should == 1
     end
     
@@ -26,8 +17,7 @@ describe Like do
     end
     
     it "should keep track of users when added to a user" do
-      user = User.create(@attr)
-      user.likes << @like
+      Factory(:user).likes << @like
       @likeFollowers.num_users == 1
     end
   end

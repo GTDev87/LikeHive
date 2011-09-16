@@ -1,13 +1,13 @@
 class UserInterestLocator
-  def initialize(user_interests)
-    @user_interests = user_interests
+  def initialize(user)
+    @user = user
   end
   
   def find_like(like_name)
-    if @user_interests.likes == nil
+    if @user.likes == nil
       return nil
     end
-    @user_interests.likes.each do |like|
+    @user.likes.each do |like|
       if like.name == like_name
         return like
       end
