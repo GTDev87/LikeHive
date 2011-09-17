@@ -54,6 +54,31 @@ module CustomMatchers
   def return_results_name_array(expected)
     ReturnResultsNameArray.new(expected)
   end
+  
+  class ContainResultFirstNamed
+    def initialize(expected)
+      @expected = expected
+    end
+    def matches?(target)
+      @target = target
+      @target.each do |result|
+        if result.first_name == @expected
+          return true
+        end
+      end
+      return false
+    end
+    def failure_message
+      "expected #{@target.inspect} to contain result named #{@expected}"
+    end
+    def negative_failure_message
+      "expected #{@target.inspect} not to contain result named #{@expected}"
+    end
+  end
+
+  def contain_result_with_first_name(expected)
+    ContainResultFirstNamed.new(expected)
+  end
 end
 
 RSpec.configure do |config|

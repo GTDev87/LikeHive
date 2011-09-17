@@ -3,6 +3,7 @@ class Like
   field :name, :type => String
   field :num_users, type: Integer, default: 0
   key :name
+  validates_uniqueness_of :name, :case_sensitive => false
   has_and_belongs_to_many :users, class_name: "User", inverse_of: :likes
   
   after_save :assign_num_users

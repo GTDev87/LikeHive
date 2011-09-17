@@ -14,7 +14,7 @@ Feature: Sign in
 
     Scenario: User enters wrong password
       Given I am not logged in
-      And I am a user named "foo" with an email "user@test.com" and password "please"
+      And I am a user with an email "user@test.com" and password "please"
       When I go to the sign in page
       And I sign in as "user@test.com/wrongpassword"
       Then I should see "Invalid email or password."
@@ -23,12 +23,10 @@ Feature: Sign in
 
     Scenario: User signs in successfully with email
       Given I am not logged in
-      And I am a user named "foo" with an email "user@test.com" and password "please"
+      And I am a user with an email "user@test.com" and password "please"
       When I go to the sign in page
       And I sign in as "user@test.com/please"
       Then I should see "Signed in successfully."
       And I should be signed in
       When I return next time
       Then I should be already signed in
-
-    Scenario: New User can sign in

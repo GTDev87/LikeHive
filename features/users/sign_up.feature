@@ -10,7 +10,7 @@ Feature: Sign up
 
     Scenario: User signs up with valid data
       And I fill in the following:
-        | Name                  | Testy McUserton |
+        | First name            | Testy McUserton |
         | Email                 | user@test.com   |
         | Password              | please          |
         | Password confirmation | please          |
@@ -19,7 +19,7 @@ Feature: Sign up
       
     Scenario: User signs up with invalid email
       And I fill in the following:
-        | Name                  | Testy McUserton |
+        | First name            | Testy McUserton |
         | Email                 | invalidemail    |
         | Password              | please          |
         | Password confirmation | please          |
@@ -28,7 +28,7 @@ Feature: Sign up
 
     Scenario: User signs up without password
       And I fill in the following:
-        | Name                  | Testy McUserton |
+        | First name            | Testy McUserton |
         | Email                 | user@test.com   |
         | Password              |                 |
         | Password confirmation | please          |
@@ -37,7 +37,7 @@ Feature: Sign up
 
     Scenario: User signs up without password confirmation
       And I fill in the following:
-        | Name                  | Testy McUserton |
+        | First name            | Testy McUserton |
         | Email                 | user@test.com   |
         | Password              | please          |
         | Password confirmation |                 |
@@ -46,7 +46,7 @@ Feature: Sign up
 
     Scenario: User signs up with mismatched password and confirmation
       And I fill in the following:
-        | Name                  | Testy McUserton |
+        | First name            | Testy McUserton |
         | Email                 | user@test.com   |
         | Password              | please          |
         | Password confirmation | please1         |

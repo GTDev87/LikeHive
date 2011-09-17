@@ -15,10 +15,10 @@ Feature: Show Like Page
       Then I should see "Flying Fish"
       
     Scenario: Seeing users on likes page
-      Given There is a user named "Greg" with an email "Greg@test.com" and password "OhThatGreg"
-      And "Greg" has a like of "pizza"
+      Given There is a user with an email "Greg@test.com" and password "OhThatGreg"
+      And The user with email "Greg@test.com" likes "Pizza" 
       When I look at the "pizza" like page
-      Then I should see "Greg"
+      Then I should see "greg@test.com"
       
     Scenario: Seeing no users on likes page
       Given There is a like named "pizza"

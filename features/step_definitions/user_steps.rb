@@ -2,20 +2,32 @@ Given /^no user exists with an email of "(.*)"$/ do |email|
   User.find(:first, :conditions => { :email => email }).should be_nil
 end
 
-Given /^I am a user named "([^"]*)" with an email "([^"]*)" and password "([^"]*)"$/ do |name, email, password|
-  @user = User.new(:name => name,
-            :email => email,
-            :password => password,
-            :password_confirmation => password)
-  @user.save!
+Given /^I am a user with an email "([^"]*)" and password "([^"]*)"$/ do |email, password|
+  @user = Factory(:user, :email => email, :password => password)
 end
 
-Given /^There is a user named "([^"]*)" with an email "([^"]*)" and password "([^"]*)"$/ do |name, email, password|
-  User.new(:name => name,
-            :email => email,
-            :password => password,
-            :password_confirmation => password).save!
+Given /^There is a user with an email "([^"]*)" and password "([^"]*)"$/ do |email, password|
+  Factory(:user, :email => email, :password => password)
 end
+
+Given /^The following user:$/ do |table|
+  #Feed the following attributes like the following:
+  # | First name  | email         | Password  |
+  # | Greg        | Greg@greg.com | password  |
+  table.hashes.each do |attributes|
+    Factory.create(:user, attributes)
+  end
+end
+
+Given /^I am a user with the following:$/ do |table|
+  #Feed the following attributes like the following:
+  # | First name  | email         | Password  |
+  # | Greg        | Greg@greg.com | password  |
+  table.hashes.each do |attributes|
+    @user = Factory.create(:user, attributes)
+  end
+end
+
 
 Then /^I should be already signed in$/ do
   And %{I should see "Logout"}

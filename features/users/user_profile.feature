@@ -4,9 +4,11 @@ Feature: User Page
   so I can view my profile
 
     Scenario: I see my account
-      Given I am a user named "foo" with an email "user@test.com" and password "please"
-      When I sign in as "user@test.com/please"
+      Given I am a user with the following:
+      | first_name  | email         | password  | 
+      | Greg        | greg@test.com | please    |
+      When I sign in as "greg@test.com/please"
       Then I should be signed in
-      When I follow "foo"
-      Then I should see "User: foo"
-      And I should see "Email: user@test.com"
+      When I follow "greg@test.com"
+      Then I should see "User: Greg"
+      And I should see "Email: greg@test.com"

@@ -7,6 +7,8 @@
 require 'cucumber/rails'
 require 'sunspot_test/cucumber'
 
+#for now not sure if this is a good place
+
 
 
 

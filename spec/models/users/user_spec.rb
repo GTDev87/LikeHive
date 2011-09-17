@@ -26,6 +26,11 @@ describe User do
     end
   end
   
+  it "should require first name" do    
+    invalid_first_name = Factory.build(:user, :first_name => "")
+    invalid_first_name.should_not be_valid
+  end
+  
   it "should reject duplicate email addresses" do
     Factory(:user, :email => "duplicate@email.com")
     user_with_duplicate_email = Factory.build(:user, :email => "duplicate@email.com")
@@ -130,12 +135,12 @@ describe User do
   describe "between multiple users" do    
     
     it "should keep likes referenced between multiple users" do 
-      greg = Factory(:user, :name => "Greg")
+      greg = Factory(:user, :first_name => "Greg")
       
       greg.like_name = "ketchup"
       greg.save!
       
-      amol = Factory(:user, :name => "Amol")
+      amol = Factory(:user, :first_name => "Amol")
       
       amol.like_name = "ketchup"
       amol.save!      

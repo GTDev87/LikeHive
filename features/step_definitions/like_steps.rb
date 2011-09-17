@@ -2,8 +2,8 @@ Given /^There is a like named "([^"]*)"$/ do |name|
   LikeCreator.new(:name => name).save!
 end
 
-Given /^"([^"]*)" has a like of "([^"]*)"$/ do |user_name, like_name|  
-  user = UserQuery.find_one_by_name(user_name)
+Given /^The user with email "([^"]*)" likes "([^"]*)"$/ do |email, like_name|
+  user = User.find(:first, :conditions => { :email => email.downcase })
   like = LikeCreator.create(:name => like_name.downcase)
   like.get_followers << user
 end

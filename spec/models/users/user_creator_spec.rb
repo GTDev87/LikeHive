@@ -9,7 +9,7 @@ describe UserCreator do
     
     it "should create a user when create is called" do
       UserCreator.create!({ 
-      :name => "Example User",
+      :first_name => "Example User",
       :email => "user@example.com",
       :password => "foobar",
       :password_confirmation => "foobar"})
