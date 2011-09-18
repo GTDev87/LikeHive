@@ -10,13 +10,12 @@ class UsersController < ApplicationController
   end
 
   def show
-    @user = UserQuery.find(params[:id])    
+    @user = UserQuery.find(params[:id])
+    authorize! :read, @user
   end
   
   def create
-    @user.addLike(params[:user])
-    redirect_to users_url, :notice => "Added Like"
-
+    @user = UserCreator.create!(params[:user])
   end
   
   def update

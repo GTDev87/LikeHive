@@ -1,5 +1,5 @@
 Given /^no user exists with an email of "(.*)"$/ do |email|
-  User.find(:first, :conditions => { :email => email }).should be_nil
+  UserQuery.find_user_by_email(email).should be_nil
 end
 
 Given /^I am a user with an email "([^"]*)" and password "([^"]*)"$/ do |email, password|
