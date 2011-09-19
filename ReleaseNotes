@@ -1,0 +1,32 @@
+Release Notes
+
+09/17/11 LikeHive0.0.1
+Notes: First Release
+Features:
+Database set up:
+  User 2 collections Users and Likes
+
+User Data:
+  Email addresss, first name, password and list of likes are user data
+
+Like Data:
+  Name, list of users with like the likes
+  Likes with no name cannot be added
+  Likes are stored in database as lowercase letter likenames
+  
+User Sign in functionality created:
+  User profile pages
+  User edit information
+  User signs in with password
+  User signs in with email as unique identifier
+
+Users Can Add things they like to page
+  Users can go to like pages when click on likes added
+  Users create likes by adding likes that don't exist
+  Users can add list of likes which are comma delimited
+  
+Like Pages
+  Like pages display all users which like them
+  
+Search for likes:
+  Like pages can be searched for using sunspot search engine
