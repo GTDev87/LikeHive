@@ -19,7 +19,7 @@ class User
   field :num_likes, type: Integer, default: 0
   validates_presence_of :first_name
   validates_uniqueness_of :email, :case_sensitive => false
-  attr_accessible :first_name, :email, :password, :password_confirmation, :remember_me
+  attr_accessible :first_name, :last_initial, :female, :email, :password, :password_confirmation, :remember_me 
   has_and_belongs_to_many :likes, class_name: "Like", inverse_of: :users
   
   after_initialize :initialize_user_interests

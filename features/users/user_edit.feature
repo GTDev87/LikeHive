@@ -10,6 +10,10 @@ Feature: Edit User
       When I follow "Edit account"
       And I fill in "First name" with "baz"
       And I fill in "Current password" with "please"
+      And I select "T" in "Last initial"
+      And choose "Female"
       And I press "Update"
-      And I go to the homepage
-      Then I should see "User: user@test.com"
+      And I follow "user@test.com"
+      Then I should see "User: baz T."
+      And I should see "Email: user@test.com"
+      And I should see "Gender: Female"

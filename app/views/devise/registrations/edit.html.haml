@@ -4,7 +4,7 @@
   = devise_error_messages!
   = f.inputs do
     = f.input :first_name
-    = f.input :last_initial, :as => :select, :collection => ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z']
+    = f.input :last_initial,  :as => :select, :collection => ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z']
     = f.input :female, :as => :radio, :label => "Gender", :collection => [["Male",false], ["Female",true]]
     = f.input :email, :as => :email
     

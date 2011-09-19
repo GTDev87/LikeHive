@@ -17,7 +17,39 @@ Feature: Sign up
       And I select "T" in "Last initial"
       And choose "Male"
       And I press "Sign up"
-      Then I should see "Welcome! You have signed up successfully." 
+      Then I should see "Welcome! You have signed up successfully."
+      When I follow "user@test.com"
+      Then I should see "User: Testy McUserton T."
+      And I should see "Gender: Male"
+      And I should see "Email: user@test.com"
+      
+    Scenario: User signs up Gender reflected
+      And I fill in the following:
+        | First name            | Testy McUserton |
+        | Email                 | user@test.com   |
+        | Password              | please          |
+        | Password confirmation | please          |
+      And I select "T" in "Last initial"
+      And choose "Female"
+      And I press "Sign up"
+      And I follow "user@test.com"
+      Then I should see "User: Testy McUserton T."
+      And I should see "Gender: Female"
+      And I should see "Email: user@test.com"
+      
+    Scenario: User signs up Last Initial reflected
+      And I fill in the following:
+        | First name            | Testy McUserton |
+        | Email                 | user@test.com   |
+        | Password              | please          |
+        | Password confirmation | please          |
+      And I select "X" in "Last initial"
+      And choose "Female"
+      And I press "Sign up"
+      And I follow "user@test.com"
+      Then I should see "User: Testy McUserton X."
+      And I should see "Gender: Female"
+      And I should see "Email: user@test.com"      
     
     Scenario: User signs up without first name
       And I fill in the following:
