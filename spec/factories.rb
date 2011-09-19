@@ -4,6 +4,7 @@ Factory.define :user do |user|
   user.sequence(:first_name) { |n| "Test User #{n}"}
   user.sequence(:email) { |n| "user#{n}@test.com"}
   user.password "please"
+  user.female false
 end
 
 Factory.define :like do |like|

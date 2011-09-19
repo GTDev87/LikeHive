@@ -33,3 +33,5 @@ gem "fakeweb", "~> 1.3.0", :group => :test
 gem "sunspot_matchers", "~> 1.2.1.4", :group => :test
 gem "sunspot_test", "~> 0.3.2"
 gem "cancan", "~> 1.6.5"
+gem "formtastic", "~> 2.0.0.rc5"
+gem "nifty-generators", "~> 0.4.6"

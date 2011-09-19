@@ -31,6 +31,17 @@ describe User do
     invalid_first_name.should_not be_valid
   end
   
+  it "should record last initial" do    
+    user = Factory.build(:user, :last_initial => "T")
+    user.last_initial.should == "T"
+  end
+  
+  it "should record gender" do    
+    user = Factory.build(:user, :female => true)
+    user.female.should be_true
+  end
+  
+  
   it "should reject duplicate email addresses" do
     Factory(:user, :email => "duplicate@email.com")
     user_with_duplicate_email = Factory.build(:user, :email => "duplicate@email.com")

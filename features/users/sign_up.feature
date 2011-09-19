@@ -14,8 +14,20 @@ Feature: Sign up
         | Email                 | user@test.com   |
         | Password              | please          |
         | Password confirmation | please          |
+      And I select "T" in "Last initial"
+      And choose "Male"
       And I press "Sign up"
       Then I should see "Welcome! You have signed up successfully." 
+    
+    Scenario: User signs up without first name
+      And I fill in the following:
+        | First name            |                 |
+        | Email                 | user@test.com   |
+        | Password              | please          |
+        | Password confirmation | please          |
+      And I select "T" in "Last initial"
+      And I press "Sign up"
+      Then I should see "First name can't be blank"
       
     Scenario: User signs up with invalid email
       And I fill in the following:
@@ -23,6 +35,8 @@ Feature: Sign up
         | Email                 | invalidemail    |
         | Password              | please          |
         | Password confirmation | please          |
+      And I select "T" in "Last initial"
+      And choose "Male"
       And I press "Sign up"
       Then I should see "Email is invalid"
 
@@ -32,6 +46,8 @@ Feature: Sign up
         | Email                 | user@test.com   |
         | Password              |                 |
         | Password confirmation | please          |
+      And I select "T" in "Last initial"
+      And choose "Male"
       And I press "Sign up"
       Then I should see "Password can't be blank"
 
@@ -41,6 +57,8 @@ Feature: Sign up
         | Email                 | user@test.com   |
         | Password              | please          |
         | Password confirmation |                 |
+      And I select "T" in "Last initial"
+      And choose "Male"
       And I press "Sign up"
       Then I should see "Password doesn't match confirmation"
 
@@ -50,6 +68,8 @@ Feature: Sign up
         | Email                 | user@test.com   |
         | Password              | please          |
         | Password confirmation | please1         |
+      And I select "T" in "Last initial"
+      And choose "Male"
       And I press "Sign up"
       Then I should see "Password doesn't match confirmation"
 

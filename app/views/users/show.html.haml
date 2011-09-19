@@ -1,5 +1,10 @@
 %p
-  User: #{@user.first_name}
+  User: #{@user.first_name} #{@user.last_initial}.
+%p
+- if @user.female == true
+  %p Gender: Female
+- else
+  %p Gender: Male
 %p
   Email: #{@user.email if @user.email}
 

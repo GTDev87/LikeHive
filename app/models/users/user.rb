@@ -12,6 +12,8 @@ class User
          :recoverable, :rememberable, :trackable, :validatable
 
   field :first_name
+  field :last_initial
+  field :female, type: Boolean, default: false
   key :email
   
   field :num_likes, type: Integer, default: 0
