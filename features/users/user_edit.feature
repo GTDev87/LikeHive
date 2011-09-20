@@ -40,4 +40,16 @@ Feature: Edit User
       And I follow "user@test.com"
       And I should see "Gender: Female"
       
+    Scenario: Age updates
+      Given the current date is "09/19/2011"
+      And I am a user with an email "user@test.com" and password "please"
+      When I sign in as "user@test.com/please"
+      And I follow "Edit account"
+      And I fill in "First name" with "baz"
+      And I fill in "Current password" with "please"
+      And I select date "06/27/1987" in "Date of birth"
+      And I press "Update"
+      And I follow "user@test.com"
+      And I should see "Age: 24"
+      
     

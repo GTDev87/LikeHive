@@ -90,6 +90,16 @@ When /^(?:|I )select "([^"]*)" from "([^"]*)"$/ do |value, field|
   select(value, :from => field)
 end
 
+Given /^I select date "([^"]*)" in "([^"]*)"$/ do |date, field|
+  date_parts = date.split("/")
+  month = date_parts[0]
+  day = date_parts[1]
+  year = date_parts[2]
+  select(month, :from => field)
+  select(day, :from => field)
+  select(year, :from => field)
+end
+
 When /^(?:|I )check "([^"]*)"$/ do |field|
   check(field)
 end

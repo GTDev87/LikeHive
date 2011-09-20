@@ -15,7 +15,9 @@ class UsersController < ApplicationController
   end
   
   def create
+    puts "user birthday = #{params[:date_of_birth]}"
     @user = UserCreator.create!(params[:user])
+    
   end
   
   def update

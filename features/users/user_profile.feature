@@ -5,8 +5,8 @@ Feature: User Page
 
     Scenario: I see my account
       Given I am a user with the following:
-      | first_name  | email         | password  | last_initial  | female  |
-      | Greg        | greg@test.com | please    | T             | false   |
+      | first_name  | email         | password  | last_initial  | female  | date_of_birth |
+      | Greg        | greg@test.com | please    | T             | false   | 1987/06/27    |
       When I sign in as "greg@test.com/please"
       Then I should be signed in
       When I follow "greg@test.com"
@@ -16,8 +16,8 @@ Feature: User Page
       
     Scenario: Displays Gender Correctly
       Given I am a user with the following:
-      | female  | email         | password  |
-      | true    | greg@test.com | please    |
+      | female  | email         | password  | date_of_birth |
+      | true    | greg@test.com | please    | 1987/06/27    |
       When I sign in as "greg@test.com/please"
       Then I should be signed in
       When I follow "greg@test.com"
@@ -25,8 +25,8 @@ Feature: User Page
       
     Scenario: Displays Name Correctly
       Given I am a user with the following:
-      | first_name  | last_initial  | email         | password  |
-      | Greg        | T             | greg@test.com | please    |
+      | first_name  | last_initial  | email         | password  | date_of_birth |
+      | Greg        | T             | greg@test.com | please    | 1987/06/27    |
       When I sign in as "greg@test.com/please"
       Then I should be signed in
       When I follow "greg@test.com"
@@ -34,11 +34,20 @@ Feature: User Page
       
     Scenario: Displays Email Correctly
       Given I am a user with the following:
-      | email         | password  |
-      | greg@test.com | please    |
+      | email         | password  | date_of_birth |
+      | greg@test.com | please    | 1987/06/27    |
       When I sign in as "greg@test.com/please"
       Then I should be signed in
       When I follow "greg@test.com"
       Then I should see "Email: greg@test.com"
       
+    Scenario: Displays Age Correctly
+      Given the current date is "09/19/2011"
+      And I am a user with the following:
+      | email         | password  | date_of_birth |
+      | greg@test.com | please    | 1987/06/27    |
+      When I sign in as "greg@test.com/please"
+      Then I should be signed in
+      When I follow "greg@test.com"
+      Then I should see "Age: 24"
       

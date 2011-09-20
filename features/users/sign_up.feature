@@ -16,6 +16,7 @@ Feature: Sign up
         | Password confirmation | please          |
       And I select "T" in "Last initial"
       And choose "Male"
+      And I select date "06/27/1987" in "Date of birth"
       And I press "Sign up"
       Then I should see "Welcome! You have signed up successfully."
       When I follow "user@test.com"
@@ -31,11 +32,10 @@ Feature: Sign up
         | Password confirmation | please          |
       And I select "T" in "Last initial"
       And choose "Female"
+      And I select date "06/27/1987" in "Date of birth"
       And I press "Sign up"
       And I follow "user@test.com"
-      Then I should see "User: Testy McUserton T."
       And I should see "Gender: Female"
-      And I should see "Email: user@test.com"
       
     Scenario: User signs up Last Initial reflected
       And I fill in the following:
@@ -45,11 +45,24 @@ Feature: Sign up
         | Password confirmation | please          |
       And I select "X" in "Last initial"
       And choose "Female"
+      And I select date "06/27/1987" in "Date of birth"
       And I press "Sign up"
       And I follow "user@test.com"
       Then I should see "User: Testy McUserton X."
-      And I should see "Gender: Female"
-      And I should see "Email: user@test.com"      
+      
+    Scenario: User signs up Age is reflected
+      And the current date is "09/19/2011"
+      And I fill in the following:
+        | First name            | Testy McUserton |
+        | Email                 | user@test.com   |
+        | Password              | please          |
+        | Password confirmation | please          |
+      And I select "X" in "Last initial"
+      And choose "Female"
+      And I select date "06/27/1987" in "Date of birth"
+      And I press "Sign up"
+      And I follow "user@test.com"
+      Then I should see "Age: 24"
     
     Scenario: User signs up without first name
       And I fill in the following:

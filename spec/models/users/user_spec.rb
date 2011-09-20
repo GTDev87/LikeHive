@@ -41,6 +41,11 @@ describe User do
     user.female.should be_true
   end
   
+  it "should require birthday" do    
+    user_invalid_birthday = Factory.build(:user, :date_of_birth => "")
+    user_invalid_birthday.should_not be_valid
+  end
+  
   
   it "should reject duplicate email addresses" do
     Factory(:user, :email => "duplicate@email.com")

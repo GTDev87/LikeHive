@@ -6,6 +6,8 @@
 - else
   %p Gender: Male
 %p
+  Age: #{@user.get_age.age}
+%p
   Email: #{@user.email if @user.email}
 
 = form_for @user do |form|

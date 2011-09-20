@@ -12,7 +12,8 @@ describe UserCreator do
       :first_name => "Example User",
       :email => "user@example.com",
       :password => "foobar",
-      :password_confirmation => "foobar"})
+      :password_confirmation => "foobar", 
+      :date_of_birth => "1987-06-27"})
       User.count.should == 1
     end
   end
