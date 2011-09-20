@@ -32,7 +32,9 @@ gem 'vinova_sunspot_mongoid', :require => 'sunspot_mongoid'
 gem "fakeweb", "~> 1.3.0", :group => :test
 gem "sunspot_matchers", "~> 1.2.1.4", :group => :test
 gem "sunspot_test", "~> 0.3.2"
-gem "cancan", "~> 1.6.5"
+gem "libnotify"
+gem "cancan"
 gem "formtastic", "~> 2.0.0.rc5"
-gem "nifty-generators", "~> 0.4.6"
-gem "timecop", "~> 0.3.5"
+gem "nifty-generators"
+gem "timecop"
+gem "geocoder"
