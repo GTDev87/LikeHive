@@ -14,6 +14,7 @@ Feature: Sign up
         | Email                 | user@test.com   |
         | Password              | please          |
         | Password confirmation | please          |
+        | Zipcode               | 11210           |
       And I select "T" in "Last initial"
       And choose "Male"
       And I select date "06/27/1987" in "Date of birth"
@@ -30,6 +31,7 @@ Feature: Sign up
         | Email                 | user@test.com   |
         | Password              | please          |
         | Password confirmation | please          |
+        | Zipcode               | 11210           |
       And I select "T" in "Last initial"
       And choose "Female"
       And I select date "06/27/1987" in "Date of birth"
@@ -43,6 +45,7 @@ Feature: Sign up
         | Email                 | user@test.com   |
         | Password              | please          |
         | Password confirmation | please          |
+        | Zipcode               | 11210           |
       And I select "X" in "Last initial"
       And choose "Female"
       And I select date "06/27/1987" in "Date of birth"
@@ -57,6 +60,7 @@ Feature: Sign up
         | Email                 | user@test.com   |
         | Password              | please          |
         | Password confirmation | please          |
+        | Zipcode               | 11210           |
       And I select "X" in "Last initial"
       And choose "Female"
       And I select date "06/27/1987" in "Date of birth"
@@ -70,6 +74,7 @@ Feature: Sign up
         | Email                 | user@test.com   |
         | Password              | please          |
         | Password confirmation | please          |
+        | Zipcode               | 11210           |
       And I select "T" in "Last initial"
       And I press "Sign up"
       Then I should see "First name can't be blank"
@@ -80,6 +85,7 @@ Feature: Sign up
         | Email                 | invalidemail    |
         | Password              | please          |
         | Password confirmation | please          |
+        | Zipcode               | 11210           |
       And I select "T" in "Last initial"
       And choose "Male"
       And I press "Sign up"
@@ -91,6 +97,7 @@ Feature: Sign up
         | Email                 | user@test.com   |
         | Password              |                 |
         | Password confirmation | please          |
+        | Zipcode               | 11210           |
       And I select "T" in "Last initial"
       And choose "Male"
       And I press "Sign up"
@@ -102,6 +109,7 @@ Feature: Sign up
         | Email                 | user@test.com   |
         | Password              | please          |
         | Password confirmation |                 |
+        | Zipcode               | 11210           |
       And I select "T" in "Last initial"
       And choose "Male"
       And I press "Sign up"
@@ -113,6 +121,7 @@ Feature: Sign up
         | Email                 | user@test.com   |
         | Password              | please          |
         | Password confirmation | please1         |
+        | Zipcode               | 11210           |
       And I select "T" in "Last initial"
       And choose "Male"
       And I press "Sign up"

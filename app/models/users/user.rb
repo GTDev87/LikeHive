@@ -13,18 +13,28 @@ class User
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
 
+  #location information
+  # location{zipcode coordinate{lat, long}}
+  field :zipcode
+
+  #encapsulate in name class 1:1 maybe
   field :first_name
   field :last_initial
+  
   field :female, type: Boolean, default: false
   field :date_of_birth, type: Date
   
-  key :email
-  
+  #scary thought combine into embedded document 1:1 class
   field :num_likes, type: Integer, default: 0
-  validates_presence_of :first_name, :date_of_birth
-  validates_uniqueness_of :email, :case_sensitive => false
-  attr_accessible :first_name, :last_initial, :female, :date_of_birth, :email, :password, :password_confirmation, :remember_me, :like_box, :like_name
   has_and_belongs_to_many :likes, class_name: "Like", inverse_of: :users
+  
+  #properties
+  key :email
+  validates_presence_of :first_name, :date_of_birth, :zipcode
+  validates_uniqueness_of :email, :case_sensitive => false
+  validate :check_zipcode
+  
+  attr_accessible :first_name, :last_initial, :female, :date_of_birth, :email, :password, :password_confirmation, :remember_me, :like_box, :like_name, :zipcode
   
   after_initialize :initialize_user_interests
   attr_accessor :like_name, :like_box
@@ -59,6 +69,14 @@ class User
   
   def update_numlikes
     get_likes.update_numlikes()
+  end
+  
+  def check_zipcode
+    unless StringEvaluator.is_numeric?(self.zipcode) && (self.zipcode.size == 5 || self.zipcode.size == 9)
+      unless self.zipcode.size == 10 && self.zipcode[5] == "-" && StringEvaluator.is_numeric?(self.zipcode.sub("-", ""))
+        errors.add(:zipcode, "Zipcode is invalid")
+      end
+    end
   end
 end
 

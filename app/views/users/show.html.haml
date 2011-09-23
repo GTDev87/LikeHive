@@ -9,6 +9,8 @@
   Age: #{@user.get_age.age}
 %p
   Email: #{@user.email if @user.email}
+%p
+  Zipcode: #{@user.zipcode}
 
 = form_for @user do |form|
   %p

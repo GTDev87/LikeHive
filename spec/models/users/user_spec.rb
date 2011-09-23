@@ -46,6 +46,31 @@ describe User do
     user_invalid_birthday.should_not be_valid
   end
   
+  it "should require zipcode" do    
+    user_invalid_zipcode = Factory.build(:user, :zipcode => "")
+    user_invalid_zipcode.should_not be_valid
+  end
+  
+  it "should require valid zipcode" do    
+    user_invalid_zipcode = Factory.build(:user, :zipcode => "123456")
+    user_invalid_zipcode.should_not be_valid
+  end
+  
+  it "should 5 digit zipcode valid" do    
+    user_invalid_zipcode = Factory.build(:user, :zipcode => "123456789")
+    user_invalid_zipcode.should be_valid
+  end
+  
+  it "should 9 digit zipcode valid" do    
+    user_invalid_zipcode = Factory.build(:user, :zipcode => "123456789")
+    user_invalid_zipcode.should be_valid
+  end
+  
+  it "should 9 digit zipcode with dash valid" do    
+    user_invalid_zipcode = Factory.build(:user, :zipcode => "12345-6789")
+    user_invalid_zipcode.should be_valid
+  end
+  
   
   it "should reject duplicate email addresses" do
     Factory(:user, :email => "duplicate@email.com")

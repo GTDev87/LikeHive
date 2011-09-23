@@ -6,6 +6,7 @@ Factory.define :user do |user|
   user.password "please"
   user.female false
   user.date_of_birth "1987-06-27"
+  user.zipcode "11210"
 end
 
 Factory.define :like do |like|
