@@ -30,7 +30,7 @@ end
 
 
 Then /^I should be already signed in$/ do
-  And %{I should see "Logout"}
+  And %{I should see "Logged in as"}
 end
 
 Given /^I am signed up as "(.*)\/(.*)"$/ do |email, password|
@@ -44,8 +44,16 @@ Given /^I am signed up as "(.*)\/(.*)"$/ do |email, password|
   And %{I am logout}
 end
 
-Then /^I sign out$/ do
-  visit('/users/sign_out')
+When /^I sign out$/ do
+  visit('/logout')
+end
+
+When /^I signup$/ do
+  visit('/signup')
+end
+
+When /^I login$/ do
+  visit('/login')
 end
 
 Given /^I am logout$/ do
@@ -58,10 +66,10 @@ end
 
 When /^I sign in as "(.*)\/(.*)"$/ do |email, password|
   Given %{I am not logged in}
-  When %{I go to the sign in page}
+  When %{I login}
   And %{I fill in "Email" with "#{email}"}
   And %{I fill in "Password" with "#{password}"}
-  And %{I press "Sign in"}
+  And %{I press "Log in"}
 end
 
 Then /^I should be signed in$/ do
@@ -74,7 +82,7 @@ end
 
 Then /^I should be signed out$/ do
   And %{I should see "Sign up"}
-  And %{I should see "Login"}
+  And %{I should see "Log in"}
   And %{I should not see "Logout"}
 end
 

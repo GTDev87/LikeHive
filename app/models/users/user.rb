@@ -7,11 +7,12 @@
 class User
   include Mongoid::Document
   include Mongoid::MultiParameterAttributes
+  authenticates_with_sorcery!
 
   # Include default devise modules. Others available are:
   # :token_authenticatable, :encryptable, :confirmable, :lockable, :timeoutable and :omniauthable
-  devise :database_authenticatable, :registerable,
-         :recoverable, :rememberable, :trackable, :validatable
+  #devise :database_authenticatable, :registerable,
+  #       :recoverable, :rememberable, :trackable, :validatable
 
   #location information
   # location{zipcode coordinate{lat, long}}
@@ -24,6 +25,10 @@ class User
   field :female, type: Boolean, default: false
   field :date_of_birth, type: Date
   
+  
+  validates_confirmation_of :password
+  validates_presence_of :password, :on => :create
+  
   #scary thought combine into embedded document 1:1 class
   field :num_likes, type: Integer, default: 0
   has_and_belongs_to_many :likes, class_name: "Like", inverse_of: :users
@@ -33,6 +38,7 @@ class User
   validates_presence_of :first_name, :date_of_birth, :zipcode
   validates_uniqueness_of :email, :case_sensitive => false
   validate :check_zipcode
+  validates :email, :presence => true, :email => true
   
   attr_accessible :first_name, :last_initial, :female, :date_of_birth, :email, :password, :password_confirmation, :remember_me, :like_box, :like_name, :zipcode
   
@@ -45,6 +51,10 @@ class User
   def initialize_user_interests
     @user_likes = UserInterests.new(self,UserInterestLocator.new(self),UserInterestAdder.new(self))
     @user_age = UserAge.new(self)
+  end
+  
+  def email=(email_name)
+    self[:email] = StringFormatter.lowercase(email_name)
   end
   
   def get_likes()    

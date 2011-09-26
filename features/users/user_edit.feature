@@ -13,7 +13,6 @@ Feature: Edit User
       And I select "T" in "Last initial"
       And choose "Male"
       And I press "Update"
-      And I follow "user@test.com"
       Then I should see "User: baz T."
       And I should see "Email: user@test.com"
       And I should see "Gender: Male"
@@ -26,7 +25,6 @@ Feature: Edit User
       And I fill in "Current password" with "please"
       And I select "G" in "Last initial"
       And I press "Update"
-      And I follow "user@test.com"
       Then I should see "User: baz G."
       
     Scenario: Gender updates
@@ -36,7 +34,6 @@ Feature: Edit User
       And I fill in "Current password" with "please"
       And choose "Female"
       And I press "Update"
-      And I follow "user@test.com"
       Then I should see "Gender: Female"
       
     Scenario: Age updates
@@ -47,7 +44,6 @@ Feature: Edit User
       And I fill in "Current password" with "please"
       And I select date "06/27/1987" in "Date of birth"
       And I press "Update"
-      And I follow "user@test.com"
       Then I should see "Age: 24"
       
     Scenario: Zipcode updates
@@ -59,7 +55,6 @@ Feature: Edit User
       And I fill in "Current password" with "please"
       And I select date "06/27/1987" in "Date of birth"
       And I press "Update"
-      And I follow "user@test.com"
       Then I should see "Zipcode: 11210"
       
     

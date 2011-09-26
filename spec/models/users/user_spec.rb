@@ -118,12 +118,6 @@ describe User do
         .should_not be_valid
     end
     
-    it "should reject short passwords" do
-      short = "a" * 5
-      Factory.build(:user, :password => short, :password_confirmation => short)
-        .should_not be_valid
-    end
-    
   end
   
   describe "password encryption" do
@@ -133,11 +127,11 @@ describe User do
     end
     
     it "should have an encrypted password attribute" do
-      @user.should respond_to(:encrypted_password)
+      @user.should respond_to(:crypted_password)
     end
 
     it "should set the encrypted password attribute" do
-      @user.encrypted_password.should_not be_blank
+      @user.crypted_password.should_not be_blank
     end
 
   end      
@@ -153,9 +147,10 @@ describe User do
        
     it "should add like data after save" do
       @user.like_name = "Pizza"
-      @user.save
+      
+      @user.save!
       @user.like_name = "BreadSticks"
-      @user.save
+      @user.save!
       
       @user.get_likes.find_like("pizza").should be_true
       @user.get_likes.find_like("breadsticks").should be_true
@@ -164,7 +159,7 @@ describe User do
     
     it "should add multiple likes data after save" do
       @user.like_box = "Pizza, BreadSticks"
-      @user.save
+      @user.save!
       
       @user.get_likes.find_like("pizza").should be_true
       @user.get_likes.find_like("breadsticks").should be_true

@@ -1,6 +1,4 @@
 class UsersController < ApplicationController
-  before_filter :authenticate_user!
-
   def new
     @user = UserCreator.new
   end
@@ -15,9 +13,17 @@ class UsersController < ApplicationController
   end
   
   def create
-    puts "user birthday = #{params[:date_of_birth]}"
-    @user = UserCreator.create!(params[:user])
-    
+    @user = User.new(params[:user])
+    if @user.save
+      login(params[:user][:email], params[:user][:password])
+      redirect_to root_url, :notice => "Welcome! You have signed up successfully."
+    else
+      render :new
+    end
+  end
+  
+  def edit
+    @user = User.find(params[:id])
   end
   
   def update

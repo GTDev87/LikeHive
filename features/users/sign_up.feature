@@ -6,7 +6,7 @@ Feature: Sign up
     Background:
       Given I am not logged in
       And I am on the home page
-      And I go to the sign up page
+      And I signup
 
     Scenario: User signs up with valid data
       And I fill in the following:
@@ -77,7 +77,7 @@ Feature: Sign up
         | Zipcode               | 11210           |
       And I select "T" in "Last initial"
       And I press "Sign up"
-      Then I should see "First name can't be blank"
+      Then I should see "can't be blank"
       
     Scenario: User signs up with invalid email
       And I fill in the following:
@@ -89,7 +89,7 @@ Feature: Sign up
       And I select "T" in "Last initial"
       And choose "Male"
       And I press "Sign up"
-      Then I should see "Email is invalid"
+      Then I should see "is not formatted properly"
 
     Scenario: User signs up without password
       And I fill in the following:
@@ -101,7 +101,7 @@ Feature: Sign up
       And I select "T" in "Last initial"
       And choose "Male"
       And I press "Sign up"
-      Then I should see "Password can't be blank"
+      Then I should see "can't be blank"
 
     Scenario: User signs up without password confirmation
       And I fill in the following:
@@ -113,7 +113,7 @@ Feature: Sign up
       And I select "T" in "Last initial"
       And choose "Male"
       And I press "Sign up"
-      Then I should see "Password doesn't match confirmation"
+      Then I should see "doesn't match confirmation"
 
     Scenario: User signs up with mismatched password and confirmation
       And I fill in the following:
@@ -125,5 +125,5 @@ Feature: Sign up
       And I select "T" in "Last initial"
       And choose "Male"
       And I press "Sign up"
-      Then I should see "Password doesn't match confirmation"
+      Then I should see "doesn't match confirmation"
 

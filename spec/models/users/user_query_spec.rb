@@ -2,7 +2,7 @@ require 'spec_helper'
 
 describe UserQuery do
   before(:each) do
-    @greg = Factory(:user, :first_name => "Greg", :email => "Greg@greg.com")
+    @greg = Factory(:user, :first_name => "Greg", :email => "greg@greg.com")
     @zac = Factory(:user, :first_name => "Zac", :email => "Zac@Zac.com")
     @amol = Factory(:user, :first_name => "Amol", :email => "amol@amol.com")
   end
@@ -29,7 +29,7 @@ describe UserQuery do
       UserQuery.find_user_by_email("greg@greg.com").should == @greg
     end
     
-    it "should find the user user case insensitive" do
+    it "should find the user email case insensitive" do
       UserQuery.find_user_by_email("AMOL@AMOL.com").should == @amol
       UserQuery.find_user_by_email("zAc@ZaC.com").should == @zac 
     end

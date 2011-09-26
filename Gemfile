@@ -21,7 +21,6 @@ gem "capybara", ">= 1.0.1", :group => :test
 gem "launchy", ">= 2.0.5", :group => :test
 gem "bson_ext", ">= 1.3.1"
 gem "mongoid", ">= 2.1.9"
-gem 'devise', :git => 'git://github.com/plataformatec/devise.git', :branch => 'master'
 gem "frontend-helpers"
 gem "rails-footnotes", ">= 3.7", :group => :development
 gem "barista"
@@ -38,3 +37,4 @@ gem "formtastic", "~> 2.0.0.rc5"
 gem "nifty-generators"
 gem "timecop"
 gem "geocoder"
+gem "sorcery"

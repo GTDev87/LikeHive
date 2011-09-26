@@ -6,7 +6,7 @@ Feature: Sign up
     Background:
       Given I am not logged in
       And I am on the home page
-      And I go to the sign up page
+      And I signup
       And I fill in the following:
         | First name            | Testy McUserton |
         | Email                 | user@test.com   |
