@@ -19,6 +19,19 @@ Given /^The following user:$/ do |table|
   end
 end
 
+Given /^I have the following user name:$/ do |table|
+  table.hashes.each do |attributes|
+    @user.name = Factory.build(:user_name, attributes)
+    @user.save
+  end
+end
+
+Given /^the email "([^"]*)" has the user name "([^"]*)"$/ do |email, name|
+  user = UserQuery.find_user_by_email(email)
+  user.name = Factory.build(:user_name, :first => name)
+  user.name.save
+end
+
 Given /^I am a user with the following:$/ do |table|
   #Feed the following attributes like the following:
   # | First name  | email         | Password  |

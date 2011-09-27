@@ -14,6 +14,7 @@ class UsersController < ApplicationController
   
   def create
     @user = User.new(params[:user])
+    @user.name = UserName.new(params[:user_name])
     if @user.save
       login(params[:user][:email], params[:user][:password])
       redirect_to root_url, :notice => "Welcome! You have signed up successfully."
@@ -28,7 +29,7 @@ class UsersController < ApplicationController
   
   def update
     @user = UserQuery.find(params[:id])
-    if @user.update_attributes(params[:user])
+    if @user.update_attributes(params[:user]) && @user.name.update_attributes(params[:user_name])
       redirect_to :action => 'show', :id => @user
     else
       render :action => 'edit'

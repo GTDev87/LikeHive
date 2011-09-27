@@ -19,8 +19,7 @@ class User
   field :zipcode
 
   #encapsulate in name class 1:1 maybe
-  field :first_name
-  field :last_initial
+  embeds_one :name, class_name: "UserName"
   
   field :female, type: Boolean, default: false
   field :date_of_birth, type: Date
@@ -35,7 +34,7 @@ class User
   
   #properties
   key :email
-  validates_presence_of :first_name, :date_of_birth, :zipcode
+  validates_presence_of :name, :date_of_birth, :zipcode
   validates_uniqueness_of :email, :case_sensitive => false
   validate :check_zipcode
   validates :email, :presence => true, :email => true

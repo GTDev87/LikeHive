@@ -2,15 +2,15 @@ require 'spec_helper'
 
 describe UserQuery do
   before(:each) do
-    @greg = Factory(:user, :first_name => "Greg", :email => "greg@greg.com")
-    @zac = Factory(:user, :first_name => "Zac", :email => "Zac@Zac.com")
-    @amol = Factory(:user, :first_name => "Amol", :email => "amol@amol.com")
+    @greg = Factory(:user, :name => Factory.build(:user_name, :first => "Greg"), :email => "Greg@greg.com")
+    @zac = Factory(:user, :name => Factory.build(:user_name, :first => "Zac"), :email => "Zac@Zac.com")
+    @amol = Factory(:user, :name => Factory.build(:user_name, :first => "Amol"), :email => "amol@amol.com")
   end
   describe "finding users" do
     it "should find users with the name mentioned by id" do      
-      UserQuery.find(@zac.id).first_name.should == "Zac"
-      UserQuery.find(@amol.id).first_name.should == "Amol"
-      UserQuery.find(@greg.id).first_name.should == "Greg"
+      UserQuery.find(@zac.id).name.first.should == "Zac"
+      UserQuery.find(@amol.id).name.first.should == "Amol"
+      UserQuery.find(@greg.id).name.first.should == "Greg"
     end
   end
   describe "finding all users" do

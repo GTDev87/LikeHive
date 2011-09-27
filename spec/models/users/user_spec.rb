@@ -27,13 +27,13 @@ describe User do
   end
   
   it "should require first name" do    
-    invalid_first_name = Factory.build(:user, :first_name => "")
+    invalid_first_name = Factory.build(:user, :name => Factory.build(:user_name, :first => ""))
     invalid_first_name.should_not be_valid
   end
   
   it "should record last initial" do    
-    user = Factory.build(:user, :last_initial => "T")
-    user.last_initial.should == "T"
+    user = Factory.build(:user, :name => Factory.build(:user_name, :last_initial => "T"))
+    user.name.last_initial.should == "T"
   end
   
   it "should record gender" do    
@@ -171,15 +171,15 @@ describe User do
   describe "between multiple users" do    
     
     it "should keep likes referenced between multiple users" do 
-      greg = Factory(:user, :first_name => "Greg")
+      user1 = Factory(:user)
       
-      greg.like_name = "ketchup"
-      greg.save!
+      user1.like_name = "ketchup"
+      user1.save!
       
-      amol = Factory(:user, :first_name => "Amol")
+      user2 = Factory(:user)
       
-      amol.like_name = "ketchup"
-      amol.save!      
+      user2.like_name = "ketchup"
+      user2.save!      
       
       Like.count.should == 1
     end

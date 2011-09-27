@@ -1,5 +1,5 @@
 %p
-  User: #{@user.first_name} #{@user.last_initial}.
+  User: #{@user.name.first} #{@user.name.last_initial}.
 %p
 - if @user.female == true
   %p Gender: Female

@@ -5,8 +5,11 @@ Feature: User Page
 
     Scenario: I see my account
       Given I am a user with the following:
-      | first_name  | email         | password  | last_initial  | female  | date_of_birth | zipcode |
-      | Greg        | greg@test.com | please    | T             | false   | 1987/06/27    | 11210   |
+      | email         | password  | female  | date_of_birth | zipcode |
+      | greg@test.com | please    | false   | 1987/06/27    | 11210   |
+      And I have the following user name:
+      | first       | last_initial  |
+      | Greg        | T             |
       When I sign in as "greg@test.com/please"
       Then I should be signed in
       When I follow "greg@test.com"
@@ -25,8 +28,11 @@ Feature: User Page
       
     Scenario: Displays Name Correctly
       Given I am a user with the following:
-      | first_name  | last_initial  | email         | password  | date_of_birth | zipcode |
-      | Greg        | T             | greg@test.com | please    | 1987/06/27    | 11210   |
+      | email         | password  | date_of_birth | zipcode |
+      | greg@test.com | please    | 1987/06/27    | 11210   |
+      And I have the following user name:
+      | first       | last_initial  |
+      | Greg        | T             |
       When I sign in as "greg@test.com/please"
       Then I should be signed in
       When I follow "greg@test.com"
