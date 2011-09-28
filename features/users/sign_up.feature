@@ -53,6 +53,18 @@ Feature: Sign up
       And I follow "user@test.com"
       Then I should see "User: Testy McUserton X."
       
+    Scenario: User signs up without age
+      And I fill in the following:
+        | First name            | Testy McUserton |
+        | Email                 | user@test.com   |
+        | Password              | please          |
+        | Password confirmation | please          |
+        | Zipcode               | 11210           |
+      And I select "X" in "Last initial"
+      And choose "Female"
+      And I press "Sign up"
+      Then I should see "can't be blank"
+      
     Scenario: User signs up Age is reflected
       And the current date is "09/19/2011"
       And I fill in the following:
@@ -75,6 +87,7 @@ Feature: Sign up
         | Password              | please          |
         | Password confirmation | please          |
         | Zipcode               | 11210           |
+      And I select date "06/27/1987" in "Date of birth"
       And I select "T" in "Last initial"
       And I press "Sign up"
       Then I should see "can't be blank"

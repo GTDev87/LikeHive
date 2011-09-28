@@ -6,7 +6,6 @@
 
 class User
   include Mongoid::Document
-  include Mongoid::MultiParameterAttributes
   authenticates_with_sorcery!
 
   # Include default devise modules. Others available are:
@@ -20,11 +19,14 @@ class User
 
   #encapsulate in name class 1:1 maybe
   embeds_one :name, class_name: "UserName"
+  accepts_nested_attributes_for :name
   
+
+  embeds_one :age, class_name: "UserAge"
+  accepts_nested_attributes_for :age
+
   field :female, type: Boolean, default: false
-  field :date_of_birth, type: Date
-  
-  
+
   validates_confirmation_of :password
   validates_presence_of :password, :on => :create
   
@@ -34,12 +36,12 @@ class User
   
   #properties
   key :email
-  validates_presence_of :name, :date_of_birth, :zipcode
+  validates_presence_of :name, :zipcode, :age
   validates_uniqueness_of :email, :case_sensitive => false
   validate :check_zipcode
   validates :email, :presence => true, :email => true
   
-  attr_accessible :first_name, :last_initial, :female, :date_of_birth, :email, :password, :password_confirmation, :remember_me, :like_box, :like_name, :zipcode
+  attr_accessible :first_name, :last_initial, :female, :email, :password, :password_confirmation, :remember_me, :like_box, :like_name, :zipcode, :name_attributes, :age_attributes
   
   after_initialize :initialize_user_interests
   attr_accessor :like_name, :like_box
@@ -49,7 +51,6 @@ class User
   
   def initialize_user_interests
     @user_likes = UserInterests.new(self,UserInterestLocator.new(self),UserInterestAdder.new(self))
-    @user_age = UserAge.new(self)
   end
   
   def email=(email_name)

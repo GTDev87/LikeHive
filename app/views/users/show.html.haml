@@ -5,12 +5,9 @@
   %p Gender: Female
 - else
   %p Gender: Male
-%p
-  Age: #{@user.get_age.age}
-%p
-  Email: #{@user.email if @user.email}
-%p
-  Zipcode: #{@user.zipcode}
+%p Age: #{@user.age.age_in_years}
+%p Email: #{@user.email if @user.email}
+%p Zipcode: #{@user.zipcode}
 
 = form_for @user do |form|
   %p

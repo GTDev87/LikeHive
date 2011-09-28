@@ -10,15 +10,6 @@ Given /^There is a user with an email "([^"]*)" and password "([^"]*)"$/ do |ema
   Factory(:user, :email => email, :password => password)
 end
 
-Given /^The following user:$/ do |table|
-  #Feed the following attributes like the following:
-  # | First name  | email         | Password  |
-  # | Greg        | Greg@greg.com | password  |
-  table.hashes.each do |attributes|
-    Factory.create(:user, attributes)
-  end
-end
-
 Given /^I have the following user name:$/ do |table|
   table.hashes.each do |attributes|
     @user.name = Factory.build(:user_name, attributes)
@@ -32,15 +23,25 @@ Given /^the email "([^"]*)" has the user name "([^"]*)"$/ do |email, name|
   user.name.save
 end
 
-Given /^I am a user with the following:$/ do |table|
-  #Feed the following attributes like the following:
-  # | First name  | email         | Password  |
-  # | Greg        | Greg@greg.com | password  |
-  table.hashes.each do |attributes|
-    @user = Factory.create(:user, attributes)
+Given /^my gender is "([^"]*)"$/ do |gender|
+  if gender.downcase == "male"
+    @user.female = false
   end
+  if gender.downcase == "female"
+    @user.female = true
+  end
+  @user.save!
 end
 
+Given /^my date of birth is "([^"]*)"$/ do |date_of_birth|
+  @user.age = Factory.build(:user_age, :date_of_birth => date_of_birth)
+  @user.save!
+end
+
+Given /^my zipcode is "([^"]*)"$/ do |zipcode|
+  @user.zipcode = zipcode
+  @user.save!
+end
 
 Then /^I should be already signed in$/ do
   And %{I should see "Logged in as"}

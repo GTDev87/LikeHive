@@ -42,7 +42,7 @@ describe User do
   end
   
   it "should require birthday" do    
-    user_invalid_birthday = Factory.build(:user, :date_of_birth => "")
+    user_invalid_birthday = Factory.build(:user, :age => Factory.build(:user_age, :date_of_birth => ""))
     user_invalid_birthday.should_not be_valid
   end
   
