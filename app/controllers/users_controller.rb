@@ -3,6 +3,7 @@ class UsersController < ApplicationController
     @user = UserCreator.new
     @user.build_name
     @user.build_age
+    @user.build_gender
   end
   
   def list

@@ -2,8 +2,8 @@ Factory.define :user do |user|
   user.name {Factory.build(:user_name)}
   user.sequence(:email) { |n| "user#{n}@test.com"}
   user.password "please"
-  user.female false
   user.age  {Factory.build(:user_age)}
+  user.gender {Factory.build(:user_gender)}
   user.zipcode "11210"
 end
 
@@ -14,6 +14,10 @@ end
 
 Factory.define :user_age do |age|
   age.date_of_birth "1987-06-27"
+end
+
+Factory.define :user_gender do |gender|
+  gender.female false 
 end
 
 Factory.define :like do |like|

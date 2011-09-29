@@ -25,10 +25,10 @@ end
 
 Given /^my gender is "([^"]*)"$/ do |gender|
   if gender.downcase == "male"
-    @user.female = false
+    @user.gender.female = false
   end
   if gender.downcase == "female"
-    @user.female = true
+    @user.gender.female = true
   end
   @user.save!
 end

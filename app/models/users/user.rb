@@ -1,17 +1,6 @@
-#Note to users of this class please, please, please,please please do not modifiy the document
-#like relationships with the accessors through external classes
-#try to keep all document modification done in methods added to this class
-#this is an attempt to keep the code base clean
-
-
 class User
   include Mongoid::Document
   authenticates_with_sorcery!
-
-  # Include default devise modules. Others available are:
-  # :token_authenticatable, :encryptable, :confirmable, :lockable, :timeoutable and :omniauthable
-  #devise :database_authenticatable, :registerable,
-  #       :recoverable, :rememberable, :trackable, :validatable
 
   #location information
   # location{zipcode coordinate{lat, long}}
@@ -21,9 +10,11 @@ class User
   embeds_one :name, class_name: "UserName"
   accepts_nested_attributes_for :name
   
-
   embeds_one :age, class_name: "UserAge"
   accepts_nested_attributes_for :age
+  
+  embeds_one :gender, class_name: "UserGender"
+  accepts_nested_attributes_for :gender
 
   field :female, type: Boolean, default: false
 
@@ -36,12 +27,12 @@ class User
   
   #properties
   key :email
-  validates_presence_of :name, :zipcode, :age
+  validates_presence_of :name, :zipcode, :age, :gender
   validates_uniqueness_of :email, :case_sensitive => false
   validate :check_zipcode
   validates :email, :presence => true, :email => true
   
-  attr_accessible :first_name, :last_initial, :female, :email, :password, :password_confirmation, :remember_me, :like_box, :like_name, :zipcode, :name_attributes, :age_attributes
+  attr_accessible :first_name, :last_initial, :email, :password, :password_confirmation, :remember_me, :like_box, :like_name, :zipcode, :name_attributes, :age_attributes, :gender_attributes
   
   after_initialize :initialize_user_interests
   attr_accessor :like_name, :like_box
@@ -59,11 +50,7 @@ class User
   
   def get_likes()    
     return @user_likes
-  end
-  
-  def get_age()
-    return @user_age
-  end
+  end  
   
   def update_num_likes
     get_likes.update_num_likes
