@@ -4,7 +4,7 @@ Factory.define :user do |user|
   user.password "please"
   user.age  {Factory.build(:user_age)}
   user.gender {Factory.build(:user_gender)}
-  user.zipcode "11210"
+  user.residence {Factory.build(:user_residence)}
 end
 
 Factory.define :user_name do |name|
@@ -18,6 +18,15 @@ end
 
 Factory.define :user_gender do |gender|
   gender.female false 
+end
+
+Factory.define :user_residence do |residence|
+
+  residence.locations []  
+end
+
+Factory.define :zipcode do |zipcode|
+  zipcode.number "11210"
 end
 
 Factory.define :like do |like|

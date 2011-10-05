@@ -4,10 +4,12 @@ end
 
 Given /^I am a user with an email "([^"]*)" and password "([^"]*)"$/ do |email, password|
   @user = Factory(:user, :email => email, :password => password)
+  @user.residence.locations = [Factory.build(:zipcode)]
 end
 
 Given /^There is a user with an email "([^"]*)" and password "([^"]*)"$/ do |email, password|
-  Factory(:user, :email => email, :password => password)
+  user = Factory(:user, :email => email, :password => password)
+  user.residence.locations = [Factory.build(:zipcode)]
 end
 
 Given /^I have the following user name:$/ do |table|
@@ -39,7 +41,8 @@ Given /^my date of birth is "([^"]*)"$/ do |date_of_birth|
 end
 
 Given /^my zipcode is "([^"]*)"$/ do |zipcode|
-  @user.zipcode = zipcode
+  zip = Factory.build(:zipcode, :number => zipcode)
+  @user.residence.locations = [zip]
   @user.save!
 end
 

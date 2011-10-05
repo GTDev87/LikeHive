@@ -37,8 +37,8 @@ describe User do
   end
   
   it "should record gender" do    
-    user = Factory.build(:user, :female => true)
-    user.female.should be_true
+    user = Factory.build(:user, :gender => Factory.build(:user_gender, :female => true))
+    user.gender.female.should be_true
   end
   
   it "should require birthday" do    
@@ -46,29 +46,40 @@ describe User do
     user_invalid_birthday.should_not be_valid
   end
   
-  it "should require zipcode" do    
-    user_invalid_zipcode = Factory.build(:user, :zipcode => "")
+  it "should require zipcode" do
+    zipcode = Factory.build(:zipcode, :number => "")
+    residence = Factory.build(:user_residence, :locations => [zipcode])
+    user_invalid_zipcode = Factory.build(:user, :residence => residence)
+    
     user_invalid_zipcode.should_not be_valid
   end
   
   it "should require valid zipcode" do    
-    user_invalid_zipcode = Factory.build(:user, :zipcode => "123456")
+    zipcode = Factory.build(:zipcode, :number => "123456")
+    residence = Factory.build(:user_residence, :locations => [zipcode])
+    user_invalid_zipcode = Factory.build(:user, :residence => residence)
     user_invalid_zipcode.should_not be_valid
   end
   
   it "should 5 digit zipcode valid" do    
-    user_invalid_zipcode = Factory.build(:user, :zipcode => "123456789")
+    zipcode = Factory.build(:zipcode, :number => "12345")
+    residence = Factory.build(:user_residence, :locations => [zipcode])
+    user_invalid_zipcode = Factory.build(:user, :residence => residence)
     user_invalid_zipcode.should be_valid
   end
   
-  it "should 9 digit zipcode valid" do    
-    user_invalid_zipcode = Factory.build(:user, :zipcode => "123456789")
+  it "should 9 digit zipcode valid" do
+    zipcode = Factory.build(:zipcode, :number => "123456789")
+    residence = Factory.build(:user_residence, :locations => [zipcode])
+    user_invalid_zipcode = Factory.build(:user, :residence => residence)
     user_invalid_zipcode.should be_valid
   end
   
   it "should 9 digit zipcode with dash valid" do    
-    user_invalid_zipcode = Factory.build(:user, :zipcode => "12345-6789")
-    user_invalid_zipcode.should be_valid
+    zipcode = Factory.build(:zipcode, :number => "12345-6789")
+    residence = Factory.build(:user_residence, :locations => [zipcode])
+    user_valid_zipcode = Factory.build(:user, :residence => residence)
+    user_valid_zipcode.should be_valid
   end
   
   
@@ -124,6 +135,7 @@ describe User do
     
     before(:each) do
       @user = Factory(:user)
+      puts "number of user locations = #{@user.residence.locations.size}"
     end
     
     it "should have an encrypted password attribute" do
@@ -144,9 +156,11 @@ describe User do
     it "should have no likes on creation" do
       @user.num_likes == 0
     end
-       
+    
     it "should add like data after save" do
       @user.like_name = "Pizza"
+      @user.save!
+
       
       @user.save!
       @user.like_name = "BreadSticks"
@@ -155,7 +169,7 @@ describe User do
       @user.get_likes.find_like("pizza").should be_true
       @user.get_likes.find_like("breadsticks").should be_true
       @user.get_likes.find_like("running").should be_false
-    end
+    end        
     
     it "should add multiple likes data after save" do
       @user.like_box = "Pizza, BreadSticks"
@@ -164,7 +178,6 @@ describe User do
       @user.get_likes.find_like("pizza").should be_true
       @user.get_likes.find_like("breadsticks").should be_true
       @user.get_likes.num_likes.should == 2
-      
     end
   end  
   

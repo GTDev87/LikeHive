@@ -2,10 +2,6 @@ class User
   include Mongoid::Document
   authenticates_with_sorcery!
 
-  #location information
-  # location{zipcode coordinate{lat, long}}
-  field :zipcode
-
   #encapsulate in name class 1:1 maybe
   embeds_one :name, class_name: "UserName"
   accepts_nested_attributes_for :name
@@ -15,8 +11,9 @@ class User
   
   embeds_one :gender, class_name: "UserGender"
   accepts_nested_attributes_for :gender
-
-  field :female, type: Boolean, default: false
+  
+  embeds_one :residence, class_name: "UserResidence"
+  accepts_nested_attributes_for :residence
 
   validates_confirmation_of :password
   validates_presence_of :password, :on => :create
@@ -27,17 +24,18 @@ class User
   
   #properties
   key :email
-  validates_presence_of :name, :zipcode, :age, :gender
+  validates_presence_of :name, :age, :gender, :residence
   validates_uniqueness_of :email, :case_sensitive => false
-  validate :check_zipcode
+
   validates :email, :presence => true, :email => true
   
-  attr_accessible :first_name, :last_initial, :email, :password, :password_confirmation, :remember_me, :like_box, :like_name, :zipcode, :name_attributes, :age_attributes, :gender_attributes
+  attr_accessible :email, :password, :password_confirmation, :remember_me, :like_box, :like_name, :name_attributes, :age_attributes, :gender_attributes, :residence_attributes
   
   after_initialize :initialize_user_interests
   attr_accessor :like_name, :like_box
   
-  before_save :assign_like, :assign_multiple_likes
+  before_save :assign_like
+  before_save :assign_multiple_likes
   after_save :update_num_likes#hackish
   
   def initialize_user_interests
@@ -62,18 +60,6 @@ class User
   
   def assign_like
     get_likes.add_like(@like_name)
-  end
-  
-  def update_numlikes
-    get_likes.update_numlikes()
-  end
-  
-  def check_zipcode
-    unless StringEvaluator.is_numeric?(self.zipcode) && (self.zipcode.size == 5 || self.zipcode.size == 9)
-      unless self.zipcode.size == 10 && self.zipcode[5] == "-" && StringEvaluator.is_numeric?(self.zipcode.sub("-", ""))
-        errors.add(:zipcode, "Zipcode is invalid")
-      end
-    end
-  end
+  end  
 end
 

@@ -4,6 +4,18 @@ class UsersController < ApplicationController
     @user.build_name
     @user.build_age
     @user.build_gender
+    @user.build_residence
+    @user.residence.locations = [Zipcode.new]
+  end
+  
+  def create
+    @user = User.new params[:user]
+    if @user.save      
+      login(params[:user][:email], params[:user][:password])
+      redirect_to root_url, :notice => "Welcome! You have signed up successfully."
+    else
+      render :new
+    end
   end
   
   def list
@@ -15,24 +27,19 @@ class UsersController < ApplicationController
     authorize! :read, @user
   end
   
-  def create
-    @user = User.new params[:user]
-    if @user.save
-      login(params[:user][:email], params[:user][:password])
-      redirect_to root_url, :notice => "Welcome! You have signed up successfully."
-    else
-      render :new
-    end
-  end
+  
   
   def edit
     @user = User.find(params[:id])
   end
   
   def update
+    
     @user = UserQuery.find(params[:id])
-    if @user.update_attributes(params[:user]) && @user.name.update_attributes(params[:user_name]) && @user.age.update_attributes(params[:user_age])
+    if @user.update_attributes(params[:user]) 
+        
       redirect_to :action => 'show', :id => @user
+
     else
       render :action => 'edit'
     end

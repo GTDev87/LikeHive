@@ -7,7 +7,9 @@
   %p Gender: Male
 %p Age: #{@user.age.age_in_years}
 %p Email: #{@user.email if @user.email}
-%p Zipcode: #{@user.zipcode}
+- @user.residence.locations.each do |location|
+  - if location._type == "Zipcode"
+    %p Zipcode: #{location.number}
 
 = form_for @user do |form|
   %p
