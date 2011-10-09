@@ -1,31 +1,20 @@
 class Like
   include Mongoid::Document
   field :name, :type => String
-  field :num_users, type: Integer, default: 0
   key :name
   validates_uniqueness_of :name, :case_sensitive => false
-  has_and_belongs_to_many :users, class_name: "User", inverse_of: :likes
   
-  after_save :assign_num_users
-  before_save :assign_num_users#hackish
+  belongs_to :user_personality, inverse_of: :likes
   
-  after_initialize :initialize_like_followers
+  embeds_one :following, class_name: "LikeFollowing"
+  accepts_nested_attributes_for :following
+  validates_presence_of :following
   
-  def initialize_like_followers
-    @like_followers = LikeFollowers.new(self)
-  end
+  attr_accessible :name, :following_attributes
   
   include Sunspot::Mongoid
   searchable do
     text :name
-  end
-  
-  def assign_num_users
-    get_followers.recompute_users
-  end
-  
-  def get_followers
-    return @like_followers
   end
   
   def name=(likename)

@@ -6,6 +6,7 @@ describe UserQuery do
     @zac = Factory(:user, :name => Factory.build(:user_name, :first => "Zac"), :email => "Zac@Zac.com")
     @amol = Factory(:user, :name => Factory.build(:user_name, :first => "Amol"), :email => "amol@amol.com")
   end
+  
   describe "finding users" do
     it "should find users with the name mentioned by id" do      
       UserQuery.find(@zac.id).name.first.should == "Zac"
@@ -13,6 +14,7 @@ describe UserQuery do
       UserQuery.find(@greg.id).name.first.should == "Greg"
     end
   end
+  
   describe "finding all users" do
     it "should return all users when all is called" do
       users = UserQuery.all

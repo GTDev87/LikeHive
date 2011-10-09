@@ -2,7 +2,6 @@ class User
   include Mongoid::Document
   authenticates_with_sorcery!
 
-  #encapsulate in name class 1:1 maybe
   embeds_one :name, class_name: "UserName"
   accepts_nested_attributes_for :name
   
@@ -15,51 +14,47 @@ class User
   embeds_one :residence, class_name: "UserResidence"
   accepts_nested_attributes_for :residence
 
+  embeds_one :personality, class_name: "UserPersonality"
+  accepts_nested_attributes_for :personality
+
   validates_confirmation_of :password
   validates_presence_of :password, :on => :create
   
-  #scary thought combine into embedded document 1:1 class
-  field :num_likes, type: Integer, default: 0
-  has_and_belongs_to_many :likes, class_name: "Like", inverse_of: :users
+  belongs_to :like_following, inverse_of: :users
   
-  #properties
   key :email
-  validates_presence_of :name, :age, :gender, :residence
+  validates_presence_of :name, :age, :gender, :residence, :personality
   validates_uniqueness_of :email, :case_sensitive => false
 
   validates :email, :presence => true, :email => true
   
-  attr_accessible :email, :password, :password_confirmation, :remember_me, :like_box, :like_name, :name_attributes, :age_attributes, :gender_attributes, :residence_attributes
+  attr_accessible :email, :password, :password_confirmation, :remember_me, :like_box, :like_name, :name_attributes, :age_attributes, :gender_attributes, :residence_attributes, :personality_attributes
   
-  after_initialize :initialize_user_interests
   attr_accessor :like_name, :like_box
   
-  before_save :assign_like
-  before_save :assign_multiple_likes
-  after_save :update_num_likes#hackish
-  
-  def initialize_user_interests
-    @user_likes = UserInterests.new(self,UserInterestLocator.new(self),UserInterestAdder.new(self))
-  end
+  after_save :assign_like
+  after_save :assign_multiple_likes  
   
   def email=(email_name)
     self[:email] = StringFormatter.lowercase(email_name)
-  end
-  
-  def get_likes()    
-    return @user_likes
   end  
   
-  def update_num_likes
-    get_likes.update_num_likes
-  end
-  
   def assign_multiple_likes
-    get_likes.add_multiple_likes(@like_box)
+    if @like_box == nil then return end
+    likes_names = @like_box
+    @like_box = nil
+    
+    @personality.get_new_likes(likes_names).each do |like|
+      UserLikeLinker.link_user_and_like(self, like)
+    end
   end
   
   def assign_like
-    get_likes.add_like(@like_name)
+    if @like_name == nil then return end
+    like_name = @like_name
+    @like_name = nil
+    
+    UserLikeLinker.link_user_and_like(self, @personality.get_new_like(like_name))
   end  
 end
 

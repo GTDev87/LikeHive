@@ -1,8 +1,4 @@
 class LikeSearcher
-  
-  def initialize()
-  end
-  
   def search(search_string)
     if StringEvaluator.string_is_blank(search_string)
       return []

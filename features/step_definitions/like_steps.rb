@@ -5,7 +5,7 @@ end
 Given /^The user with email "([^"]*)" likes "([^"]*)"$/ do |email, like_name|
   user = User.find(:first, :conditions => { :email => email.downcase })
   like = LikeCreator.create(:name => like_name.downcase)
-  like.get_followers << user
+  like.following.users << user
 end
 
 When /^I look at the "([^"]*)" like page$/ do |like|
@@ -13,6 +13,6 @@ When /^I look at the "([^"]*)" like page$/ do |like|
 end
 
 Given /^Nobody likes "([^"]*)"$/ do |like_name|
-  assert_equal LikeQuery.find_one_by_name(like_name).get_followers.num_users, 0
+  assert_equal LikeQuery.find_one_by_name(like_name).following.users.size, 0
 end
 

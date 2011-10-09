@@ -21,10 +21,10 @@
     = form.text_area :like_box
     = form.submit "Add Likes"
     
-%p Likes (#{@user.get_likes.num_likes}):
+%p Likes (#{@user.personality.likes.size}):
 %script
-- if @user.get_likes.num_likes == 0#find way of updating num_likes
+- if @user.personality.likes.size == 0#find way of updating num_likes
   %p No Likes
 - else
-  - @user.get_likes.likes.each do |like|
+  - @user.personality.likes.each do |like|
     %p #{link_to StringFormatter.capitalize_words(like.name), like}

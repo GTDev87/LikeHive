@@ -7,7 +7,4 @@ class UserResidence
   
   attr_accessible :locations_attributes
   accepts_nested_attributes_for :locations
-  
-  #validates_presence_of :locations
-  #validates :locations, :length => {:minimum => 1}
 end

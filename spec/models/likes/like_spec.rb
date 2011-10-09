@@ -1,39 +1,29 @@
 require 'spec_helper'
 
 describe Like do
-  
-  before(:each) do    
-    @user = Factory(:user)
+  describe "validation" do
+    it "should require a following" do
+      like = Factory.build(:like, :following => nil)
+      like.should_not be_valid
+    end
   end
   
   describe "name" do
     it "should create a like using a lowercase name" do
-      pizza = Factory(:like, :name => "pIzZa")
+      pizza = Factory.build(:like, :name => "pIzZa")
       pizza.name.should == "pizza"
     end
   
     it "should create a like using a lowercased name with multiple words" do
-      pizza = Factory(:like, :name => "PEPPERONNI pizza")
+      pizza = Factory.build(:like, :name => "PEPPERONNI pizza")
       pizza.name.should == "pepperonni pizza"
     end
-  end
-  
-  describe "num users" do
-    it "should initialize number of likes to 0" do
-      pizza = Factory(:like, :name => "pizza")
-      pizza.num_users.should == 0
-    end
     
-    it "should show number of users" do
-      pizza = Factory(:like, :name => "pizza")
-      pizza.get_followers << @user
-      pizza.num_users.should == 1
-    end
-    
-    it "should not update number of users if save is not called" do
-      pizza = Factory(:like, :name => "pizza")
-      pizza.users << @user
-      pizza.num_users.should == 0
+    it "should have a unique name" do
+      Factory(:like, :name => "pizza")
+      pizza = Factory.build(:like, :name => "pizza")
+
+      pizza.should_not be_valid
     end
   end
 end

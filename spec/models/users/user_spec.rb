@@ -5,6 +5,11 @@ describe User do
     Factory(:user)
   end
   
+  it "should be valid when proper arguments are passed" do
+    user = Factory.build(:user)
+    user.should be_valid
+  end
+  
   it "should require an email address" do
     no_email_user = Factory.build(:user, :email => "")
     no_email_user.should_not be_valid
@@ -24,64 +29,62 @@ describe User do
       invalid_email_user = Factory.build(:user, :email => address)
       invalid_email_user.should_not be_valid
     end
-  end
+  end  
   
-  it "should require first name" do    
-    invalid_first_name = Factory.build(:user, :name => Factory.build(:user_name, :first => ""))
-    invalid_first_name.should_not be_valid
-  end
-  
-  it "should record last initial" do    
-    user = Factory.build(:user, :name => Factory.build(:user_name, :last_initial => "T"))
-    user.name.last_initial.should == "T"
-  end
-  
-  it "should record gender" do    
-    user = Factory.build(:user, :gender => Factory.build(:user_gender, :female => true))
-    user.gender.female.should be_true
-  end
-  
-  it "should require birthday" do    
-    user_invalid_birthday = Factory.build(:user, :age => Factory.build(:user_age, :date_of_birth => ""))
-    user_invalid_birthday.should_not be_valid
-  end
-  
-  it "should require zipcode" do
-    zipcode = Factory.build(:zipcode, :number => "")
-    residence = Factory.build(:user_residence, :locations => [zipcode])
-    user_invalid_zipcode = Factory.build(:user, :residence => residence)
+  it "should require valid birthday" do    
+    user_invalid_age = Factory.build(:user, :age => Factory.build(:user_age, :date_of_birth => ""))
     
-    user_invalid_zipcode.should_not be_valid
+    user_invalid_age.should_not be_valid
   end
   
-  it "should require valid zipcode" do    
-    zipcode = Factory.build(:zipcode, :number => "123456")
-    residence = Factory.build(:user_residence, :locations => [zipcode])
-    user_invalid_zipcode = Factory.build(:user, :residence => residence)
-    user_invalid_zipcode.should_not be_valid
+  it "should require non nil birthday" do    
+    user_invalid_age = Factory.build(:user, :age => nil)
+    
+    user_invalid_age.should_not be_valid
   end
   
-  it "should 5 digit zipcode valid" do    
-    zipcode = Factory.build(:zipcode, :number => "12345")
-    residence = Factory.build(:user_residence, :locations => [zipcode])
-    user_invalid_zipcode = Factory.build(:user, :residence => residence)
-    user_invalid_zipcode.should be_valid
+  it "should require valid residence" do
+    residence = Factory.build(:user_residence, :locations => [Factory.build(:zipcode, :number => "")])
+    user_invalid_residence = Factory.build(:user, :residence => residence)
+    
+    user_invalid_residence.should_not be_valid
   end
   
-  it "should 9 digit zipcode valid" do
-    zipcode = Factory.build(:zipcode, :number => "123456789")
-    residence = Factory.build(:user_residence, :locations => [zipcode])
-    user_invalid_zipcode = Factory.build(:user, :residence => residence)
-    user_invalid_zipcode.should be_valid
+  it "should require non nil residence" do
+    user_invalid_residence = Factory.build(:user, :residence => nil)
+    
+    user_invalid_residence.should_not be_valid
   end
   
-  it "should 9 digit zipcode with dash valid" do    
-    zipcode = Factory.build(:zipcode, :number => "12345-6789")
-    residence = Factory.build(:user_residence, :locations => [zipcode])
-    user_valid_zipcode = Factory.build(:user, :residence => residence)
-    user_valid_zipcode.should be_valid
+  it "should require valid name" do
+    user_invalid_name = Factory.build(:user, :name => Factory.build(:user_name, :first => ""))
+    
+    user_invalid_name.should_not be_valid
   end
   
+  it "should require non nil name" do
+    user_invalid_name = Factory.build(:user, :name => nil)
+    
+    user_invalid_name.should_not be_valid
+  end
+  
+  it "should require valid gender" do
+    user_invalid_gender = Factory.build(:user, :gender => Factory.build(:user_gender, :female => nil))
+    
+    user_invalid_gender.should_not be_valid
+  end
+  
+  it "should require non nil gender" do
+    user_invalid_gender = Factory.build(:user, :gender => nil)
+    
+    user_invalid_gender.should_not be_valid
+  end
+  
+  it "should require non nil personality" do
+    user_invalid_personality = Factory.build(:user, :personality => nil)
+    
+    user_invalid_personality.should_not be_valid
+  end
   
   it "should reject duplicate email addresses" do
     Factory(:user, :email => "duplicate@email.com")
@@ -135,7 +138,6 @@ describe User do
     
     before(:each) do
       @user = Factory(:user)
-      puts "number of user locations = #{@user.residence.locations.size}"
     end
     
     it "should have an encrypted password attribute" do
@@ -154,45 +156,54 @@ describe User do
     end
     
     it "should have no likes on creation" do
-      @user.num_likes == 0
+      @user.personality.likes.size == 0
     end
     
     it "should add like data after save" do
       @user.like_name = "Pizza"
       @user.save!
 
-      
-      @user.save!
       @user.like_name = "BreadSticks"
       @user.save!
       
-      @user.get_likes.find_like("pizza").should be_true
-      @user.get_likes.find_like("breadsticks").should be_true
-      @user.get_likes.find_like("running").should be_false
+      @user.personality.find_like("pizza").should be_true
+      @user.personality.find_like("breadsticks").should be_true
+      @user.personality.find_like("running").should be_false
     end        
+    
+    it "should clear like_name after save" do
+      @user.like_name = "Pizza"
+      @user.save!
+      
+      @user.like_name.should be_nil
+    end
+    
+    it "should clear like_box after save" do
+      @user.like_box = "Pizza, French Fries"
+      @user.save!
+      
+      @user.like_box.should be_nil
+    end
     
     it "should add multiple likes data after save" do
       @user.like_box = "Pizza, BreadSticks"
       @user.save!
       
-      @user.get_likes.find_like("pizza").should be_true
-      @user.get_likes.find_like("breadsticks").should be_true
-      @user.get_likes.num_likes.should == 2
+      @user.personality.find_like("pizza").should be_true
+      @user.personality.find_like("breadsticks").should be_true
+      @user.personality.likes.size.should == 2
     end
   end  
   
   describe "between multiple users" do    
-    
     it "should keep likes referenced between multiple users" do 
       user1 = Factory(:user)
-      
       user1.like_name = "ketchup"
       user1.save!
       
       user2 = Factory(:user)
-      
       user2.like_name = "ketchup"
-      user2.save!      
+      user2.save!
       
       Like.count.should == 1
     end

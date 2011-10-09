@@ -5,6 +5,7 @@ Factory.define :user do |user|
   user.age  {Factory.build(:user_age)}
   user.gender {Factory.build(:user_gender)}
   user.residence {Factory.build(:user_residence)}
+  user.personality {Factory.build(:user_personality)}
 end
 
 Factory.define :user_name do |name|
@@ -21,14 +22,22 @@ Factory.define :user_gender do |gender|
 end
 
 Factory.define :user_residence do |residence|
-
-  residence.locations []  
+  residence.locations []
 end
 
 Factory.define :zipcode do |zipcode|
   zipcode.number "11210"
 end
 
+Factory.define :user_personality do |personality|
+  personality.likes []
+end
+
 Factory.define :like do |like|
   like.sequence(:name) {|n| "Test Like #{n}"}
+  like.following {Factory.build(:like_following)}
+end
+
+Factory.define :like_following do |like_following|
+  like_following.users []
 end

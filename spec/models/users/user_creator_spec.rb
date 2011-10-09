@@ -7,19 +7,13 @@ describe UserCreator do
       User.count.should == 0
     end
     
-#    it "should create a user when create is called" do
-#      user = UserBuilder.new.with_attributes({
-#        :email => "user@example.com",
-#        :password => "foobar",
-#        :password_confirmation => "foobar", 
-#        :date_of_birth => "1987-06-27",
-#        :zipcode => "11210"})
-#        .with_user_name({:first => "Example"})
-#        .create()
-      
-      #userName = Factory.build(:user_name, :first => "Example")
-      #puts "username created is #{userName}"      
-#      User.count.should == 1
-#    end
+    it "should have all embedded parts" do
+      user = UserCreator.new
+      user.name.should_not be_nil
+      user.age.should_not be_nil
+      user.gender.should_not be_nil
+      user.residence.should_not be_nil
+      user.personality.should_not be_nil
+    end
   end
 end

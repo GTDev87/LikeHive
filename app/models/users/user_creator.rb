@@ -1,9 +1,11 @@
 class UserCreator
   def self.new()
-    return User.new
-  end
-  
-  def self.create!(user_name)
-    return User.create!(user_name)
+    user = User.new
+    user.build_name
+    user.build_age
+    user.build_gender
+    user.build_residence
+    user.build_personality
+    return user
   end
 end
