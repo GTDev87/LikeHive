@@ -1,5 +1,8 @@
 Release Notes
 
+10/09/11 LikeHive0.0.3
+Database schema change
+
 09/24/11 LikeHive0.0.2
 User are now not all admins
   Means that if John logs in he cannot access Greg's data
