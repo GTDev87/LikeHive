@@ -3,7 +3,7 @@ class LikeSearcher
     if StringEvaluator.string_is_blank(search_string)
       return []
     end
-    search = Like.search do
+    search = Like.solr_search do
       keywords search_string
       paginate :page => 1, :per_page => 10
     end

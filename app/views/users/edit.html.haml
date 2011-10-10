@@ -1,5 +1,6 @@
 %h2
 = semantic_form_for @user do |f|
+  = f.error_messages
   = f.semantic_fields_for :name do |name_fields|
     = name_fields.inputs do
       = name_fields.input :first, :label => "First name"
@@ -10,7 +11,7 @@
   = f.semantic_fields_for :gender do |gender_fields|
     = gender_fields.inputs do
       = gender_fields.input :female, :as => :radio, :label => "Gender", :collection => [["Male",false], ["Female",true]]
-  = f.semantic_fields_for :residence do |residence_fields|
+  = f.semantic_fields_for :residence do |residence_fields|  
     - @user.residence.locations.each do |location|
       - if location._type == "Zipcode"
         = residence_fields.semantic_fields_for :locations, location do |location_fields|

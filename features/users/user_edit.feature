@@ -51,10 +51,10 @@ Feature: Edit User
       And I am a user with an email "user@test.com" and password "please"
       When I sign in as "user@test.com/please"
       And I follow "Edit account"
-      And I fill in "Zipcode" with "11210"
+      And I fill in "Zipcode" with "12345"
       And I fill in "Current password" with "please"
       And I select date "06/27/1987" in "Date of birth"
       And I press "Update"
-      Then I should see "Zipcode: 11210"
+      Then I should see "Zipcode: 12345"
       
     

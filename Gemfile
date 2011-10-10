@@ -1,12 +1,13 @@
 source 'http://rubygems.org'
 
-gem 'rails', '3.1.0.rc8'
+gem "rails", "~> 3.1.1"
 
 group :assets do
   gem 'sass-rails', "  ~> 3.1.0.rc"
   gem 'coffee-rails', "~> 3.1.0.rc"
   gem 'uglifier'
 end
+
 gem 'jquery-rails'
 gem "therubyracer", ">= 0.8.2"
 gem "haml", ">= 3.1.2"
@@ -20,11 +21,10 @@ gem "cucumber-rails", ">= 1.0.2", :group => :test
 gem "capybara", ">= 1.0.1", :group => :test
 gem "launchy", ">= 2.0.5", :group => :test
 gem "bson_ext", ">= 1.3.1"
-gem "mongoid", ">= 2.2.1"
+gem "mongoid", ">= 2.3.0"
 gem "frontend-helpers"
 gem "rails-footnotes", ">= 3.7", :group => :development
 gem "barista"
-gem "sunspot"
 gem 'sunspot_rails'
 gem "sunspot_mongoid"
 gem 'vinova_sunspot_mongoid', :require => 'sunspot_mongoid'

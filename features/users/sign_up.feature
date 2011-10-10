@@ -25,6 +25,26 @@ Feature: Sign up
       And I should see "Gender: Male"
       And I should see "Email: user@test.com"
       
+    Scenario: User signs up with invalid data redirects to signin page
+      And I fill in the following:
+        | First name            |                 |
+        | Email                 | user@test.com   |
+        | Password              | please          |
+        | Password confirmation | please          |
+        | Zipcode               | 11210           |
+      And I select "T" in "Last initial"
+      And choose "Male"
+      And I select date "06/27/1987" in "Date of birth"
+      And I press "Sign up"
+      Then I should see "First name"
+      And I should see "Last initial"
+      And I should see "Date of birth"
+      And I should see "Gender"
+      And I should see "Zipcode"
+      And I should see "Email"
+      And I should see "Password"
+      And I should see "Password confirmation"
+    
     Scenario: User signs up Gender reflected
       And I fill in the following:
         | First name            | Testy McUserton |

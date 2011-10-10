@@ -1,16 +1,17 @@
 LikeHive::Application.routes.draw do
-  get "logout" => "sessions#destroy", :as => "logout"
-  get "login" => "sessions#new", :as => "login"
-  get "signup" => "users#new", :as => "signup"
-
   #get \"users\/show\"
 
   root :to => "home#index"
 
-  #devise_for :users
-  resources :users
+  resources :users, :except => [:new, :create]
   resources :sessions
   resources :likes
+  
+  get "logout" => "sessions#destroy", :as => "logout"
+  get "login" => "sessions#new", :as => "login"
+  get "signup" => "users#new", :as => "signup"
+  
+  match "signup" => "users#create", :via => "post"
 
 
   # The priority is based upon order of creation:

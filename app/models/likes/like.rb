@@ -1,5 +1,6 @@
 class Like
   include Mongoid::Document
+  include Sunspot::Mongoid  
   field :name, :type => String
   key :name
   validates_uniqueness_of :name, :case_sensitive => false
@@ -12,7 +13,6 @@ class Like
   
   attr_accessible :name, :following_attributes
   
-  include Sunspot::Mongoid
   searchable do
     text :name
   end

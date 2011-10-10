@@ -1,5 +1,4 @@
-
-= semantic_form_for @user do |f|
+= semantic_form_for @user, :url => signup_path do |f|
   = f.semantic_fields_for :name do |name_fields|
     = name_fields.inputs do
       = name_fields.input :first, :label => "First name"
@@ -12,11 +11,11 @@
       = gender_fields.input :female, :as => :radio, :label => "Gender", :collection => [["Male",false], ["Female",true]]
   = f.semantic_fields_for :residence do |residence_fields|
     - @user.residence.locations.each do |location|
-      - if location._type == "Zipcode"
-        = residence_fields.semantic_fields_for :locations, location do |location_fields|
-          = location_fields.inputs do
-            = location_fields.input :_type, :as => :hidden, :value => "Zipcode"
-            = location_fields.input :number, :label => "Zipcode"
+      -# if location._type == "Zipcode"
+      = residence_fields.semantic_fields_for :locations, location do |location_fields|
+        = location_fields.inputs do
+          = location_fields.input :number, :label => "Zipcode"
+          = location_fields.input :_type, :as => :hidden, :value => "Zipcode"
   = f.inputs do
     = f.input :email, :as => :email
     = f.input :password, :as => :password

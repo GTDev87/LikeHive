@@ -1,6 +1,7 @@
 class UserGender
   include Mongoid::Document
-  field :female, type: Boolean
+
+  field :female, type: Boolean, default: false
   
   embedded_in :user, :inverse_of => :gender
   
