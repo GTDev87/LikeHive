@@ -3,16 +3,31 @@
  * and any sub-directories. You're free to add application-wide styles to this file and they'll appear at
  * the top of the compiled file, but it's generally better to create a new file per style scope.
  *= require_self
- *= require_tree . 
+ *= require_tree .
 */
-header nav ul {
-  list-style: none;
-  margin: 0 0 2em;
-  padding: 0;
+
+header {
+  background-color: #03507B;
+  color: #FFF;
+  padding: 6px;
+  
+  h1 {
+    font-size: 30px;
+  }
+
+  nav {
+    ul {
+      list-style: none;
+      margin: 0 0 2em;
+      padding: 0;
+    
+      li{
+        display: inline;
+      }
+    }
+  }
 }
-header nav ul li {
-  display: inline;
-}
+
 #flash_notice, #flash_alert {
   padding: 5px 8px;
   margin: 10px 0;
@@ -22,7 +37,7 @@ header nav ul li {
   border: solid 1px #6C6;
 }
 #flash_alert {
-  background-color: #FCC;
+  background-color: #ACC;
   border: solid 1px #C66;
 }
 

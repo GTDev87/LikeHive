@@ -1,3 +1,12 @@
 // Place all the styles related to the users controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+#users_controller {
+  .new_user {
+    color: #777;
+    padding: 50px 12px;
+    margin: 100px 0;
+    font-size: 16px;
+  }
+}

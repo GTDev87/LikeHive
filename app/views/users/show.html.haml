@@ -21,6 +21,7 @@
 = form_for @user do |form|
   %p
     = form.text_area :like_box
+  %p
     = form.submit "Add Likes"
     
 %p Likes (#{@user.personality.likes.size}):

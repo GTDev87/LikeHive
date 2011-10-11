@@ -25,3 +25,37 @@ Feature: Show Like Page
       Given Nobody likes "pizza"
       When I look at the "pizza" like page
       Then I should see "No Users"
+      
+    Scenario: Adding and seeing self on other likes page (end to end)
+      Given I am a user with an email "greg@test.com" and password "please"
+      When I sign in as "greg@test.com/please"
+      And I follow "greg@test.com"
+      And I fill in "user_like_name" with "sunny days"
+      And I press "Add Like"
+      And I fill in "user_like_name" with "chocolate"
+      And I press "Add Like"
+      And I follow "Sunny Days"
+      Then I should see "Users (1)"
+      
+    Scenario: Adding and seeing self on other likes page (end to end stress)
+      Given I am a user with an email "greg@test.com" and password "please"
+      When I sign in as "greg@test.com/please"
+      And I follow "greg@test.com"
+      And I fill in "user_like_name" with "like 1"
+      And I press "Add Like"
+      And I fill in "user_like_name" with "Like 2"
+      And I press "Add Like"
+      And I fill in "user_like_name" with "Like 3"
+      And I press "Add Like"
+      And I fill in "user_like_name" with "Like 4"
+      And I press "Add Like"
+      And I fill in "user_like_name" with "Like 5"
+      And I press "Add Like"
+      And I fill in "user_like_name" with "Like 6"
+      And I press "Add Like"
+      And I fill in "user_like_name" with "Like 7"
+      And I press "Add Like"
+      And I follow "Like 3"
+      Then I should see "Users (1"
+      
+      

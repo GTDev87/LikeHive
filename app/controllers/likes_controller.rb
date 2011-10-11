@@ -13,6 +13,6 @@ class LikesController < ApplicationController
   end
   
   def show
-    @like = LikeQuery.find(params[:id])
+    @like = LikeQuery.find(params[:id])    
   end
 end

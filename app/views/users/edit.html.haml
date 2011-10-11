@@ -13,7 +13,7 @@
       = gender_fields.input :female, :as => :radio, :label => "Gender", :collection => [["Male",false], ["Female",true]]
   = f.semantic_fields_for :residence do |residence_fields|  
     - @user.residence.locations.each do |location|
-      - if location._type == "Zipcode"
+      - if location.number != nil
         = residence_fields.semantic_fields_for :locations, location do |location_fields|
           = location_fields.inputs do
             = location_fields.input :_type, :as => :hidden, :value => "Zipcode"
@@ -22,8 +22,6 @@
     %i (leave blank if you don't want to change it)
     = f.input :password, :as => :password
     = f.input :password_confirmation, :as => :password
-    %i (we need your current password to confirm your changes)
-    = f.input :current_password, :as => :password
   
   %p= f.submit "Update"
 %h3 Cancel my account
