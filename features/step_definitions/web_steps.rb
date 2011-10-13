@@ -142,6 +142,18 @@ Then /^(?:|I )should not see "([^"]*)"$/ do |text|
   end
 end
 
+Then /^I should see (\d+) of the following:$/ do |number, likes|
+  likes_found = 0
+  likes.raw.flatten.map do |like_name|
+    if page.respond_to? :should
+      if page.has_content?(like_name)
+        likes_found = likes_found + 1
+      end
+    end
+  end
+  likes_found.should == number
+end
+
 Then /^(?:|I )should not see \/([^\/]*)\/$/ do |regexp|
   regexp = Regexp.new(regexp)
 

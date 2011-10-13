@@ -18,10 +18,10 @@ end
 module LikeHive
   class Application < Rails::Application
     #add subfolders in to model's root
-    config.autoload_paths += Dir[Rails.root.join('app', 'models', '{**}')]
-    
-    #add subfolders to lib
-    config.autoload_paths += Dir[Rails.root.join('lib', '{**}')]
+    config.autoload_paths += Dir["#{config.root}/app/models/**/"]
+
+    #add subfolders in lib
+    config.autoload_paths += Dir["#{config.root}/lib/**/"]
     
 
     # don't generate RSpec tests for views and helpers
