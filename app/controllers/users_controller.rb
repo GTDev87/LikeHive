@@ -25,8 +25,8 @@ class UsersController < ApplicationController
     @user = UserQuery.find(params[:id])
     number_of_interests = 5
     recommendation_generator = RandomLikeRecommendationGenerator.new(@user)
-    like_recommender = Recommender.new()
-    @like_recommendations = like_recommender.get_recommendations(recommendation_generator, number_of_interests)
+    like_recommender = Recommender.new(recommendation_generator)
+    @like_recommendations = like_recommender.get_recommendations(number_of_interests)
     authorize! :read, @user
   end
   
