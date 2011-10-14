@@ -1,0 +1,261 @@
+/* -------------------------------------------------------------------------------------------------
+
+It's *strongly* suggested that you don't modify this file.  Instead, load a new stylesheet after
+this one in your layouts (eg formtastic_changes.css) and override the styles to suit your needs.
+This will allow you to update formtastic.css with new releases without clobbering your own changes.
+
+This stylesheet forms part of the Formtastic Rails Plugin
+(c) 2008-2011 Justin French
+
+--------------------------------------------------------------------------------------------------*/
+/* line 12, ../../app/assets/stylesheets/formtastic_changes.css.scss */
+.formtastic {
+  margin: 0;
+  padding: 0;
+}
+/* line 13, ../../app/assets/stylesheets/formtastic_changes.css.scss */
+.formtastic ul {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+/* line 19, ../../app/assets/stylesheets/formtastic_changes.css.scss */
+.formtastic ol {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+/* line 25, ../../app/assets/stylesheets/formtastic_changes.css.scss */
+.formtastic li {
+  margin: 0;
+  padding: 0;
+}
+/* line 30, ../../app/assets/stylesheets/formtastic_changes.css.scss */
+.formtastic fieldset {
+  margin: 0;
+  padding: 0;
+  border: 0;
+}
+/* line 36, ../../app/assets/stylesheets/formtastic_changes.css.scss */
+.formtastic legend {
+  margin: 0;
+  padding: 0;
+  white-space: normal;
+  color: #000;
+}
+/* line 43, ../../app/assets/stylesheets/formtastic_changes.css.scss */
+.formtastic input {
+  margin: 0;
+  padding: 0;
+  font-family: sans-serif;
+  font-size: inherit;
+  font-weight: inherit;
+  font-size: 100%;
+}
+/* line 52, ../../app/assets/stylesheets/formtastic_changes.css.scss */
+.formtastic textarea {
+  margin: 0;
+  padding: 0;
+  font-family: sans-serif;
+  font-size: inherit;
+  font-weight: inherit;
+  font-size: 100%;
+}
+/* line 61, ../../app/assets/stylesheets/formtastic_changes.css.scss */
+.formtastic select {
+  margin: 0;
+  padding: 0;
+  font-size: 100%;
+}
+/* line 67, ../../app/assets/stylesheets/formtastic_changes.css.scss */
+.formtastic p {
+  margin: 0;
+  padding: 0;
+}
+/* line 72, ../../app/assets/stylesheets/formtastic_changes.css.scss */
+.formtastic em {
+  font-style: normal;
+  font-weight: normal;
+}
+/* line 77, ../../app/assets/stylesheets/formtastic_changes.css.scss */
+.formtastic strong {
+  font-style: normal;
+  font-weight: normal;
+}
+/* line 82, ../../app/assets/stylesheets/formtastic_changes.css.scss */
+.formtastic abbr {
+  border: 0;
+  font-variant: normal;
+}
+/* line 87, ../../app/assets/stylesheets/formtastic_changes.css.scss */
+.formtastic acronym {
+  border: 0;
+  font-variant: normal;
+}
+/* line 92, ../../app/assets/stylesheets/formtastic_changes.css.scss */
+.formtastic .errors {
+  color: #cc0000;
+  margin: 0.5em 0 1.5em 25%;
+  margin: 0.5em 0 0 25%;
+  list-style: square;
+}
+/* line 93, ../../app/assets/stylesheets/formtastic_changes.css.scss */
+.formtastic .errors li {
+  padding: 0;
+  border: none;
+  display: list-item;
+}
+/* line 105, ../../app/assets/stylesheets/formtastic_changes.css.scss */
+.formtastic .buttons {
+  overflow: hidden;
+  /* clear containing floats */
+  padding-left: 25%;
+}
+/* line 110, ../../app/assets/stylesheets/formtastic_changes.css.scss */
+.formtastic .button {
+  float: left;
+  padding-right: 0.5em;
+}
+/* line 115, ../../app/assets/stylesheets/formtastic_changes.css.scss */
+.formtastic .inputs {
+  overflow: hidden;
+  /* clear containing floats */
+}
+/* line 119, ../../app/assets/stylesheets/formtastic_changes.css.scss */
+.formtastic .input {
+  overflow: hidden;
+  /* clear containing floats */
+  padding: 0.5em 0;
+  /* padding and negative margin juggling is for Firefox */
+  margin-top: -0.5em;
+  margin-bottom: 1em;
+}
+/* line 120, ../../app/assets/stylesheets/formtastic_changes.css.scss */
+.formtastic .input .label {
+  display: block;
+  width: 25%;
+  float: left;
+  padding-top: .2em;
+}
+/* line 127, ../../app/assets/stylesheets/formtastic_changes.css.scss */
+.formtastic .input .inline-hints {
+  color: #666;
+  margin: 0.5em 0 0 25%;
+}
+/* line 138, ../../app/assets/stylesheets/formtastic_changes.css.scss */
+.formtastic .fragments {
+  position: relative;
+}
+/* line 139, ../../app/assets/stylesheets/formtastic_changes.css.scss */
+.formtastic .fragments .label {
+  position: absolute;
+  width: 95%;
+  left: 0px;
+}
+/* line 140, ../../app/assets/stylesheets/formtastic_changes.css.scss */
+.formtastic .fragments .label label {
+  position: absolute;
+}
+/* line 153, ../../app/assets/stylesheets/formtastic_changes.css.scss */
+.formtastic .fragments-group {
+  float: left;
+  width: 74%;
+  margin: 0;
+  padding: 0 0 0 25%;
+}
+/* line 160, ../../app/assets/stylesheets/formtastic_changes.css.scss */
+.formtastic .choices {
+  position: relative;
+}
+/* line 161, ../../app/assets/stylesheets/formtastic_changes.css.scss */
+.formtastic .choices .label {
+  position: absolute;
+  width: 95%;
+  left: 0px;
+}
+/* line 162, ../../app/assets/stylesheets/formtastic_changes.css.scss */
+.formtastic .choices .label label {
+  position: absolute;
+}
+/* line 173, ../../app/assets/stylesheets/formtastic_changes.css.scss */
+.formtastic .choices-group {
+  float: left;
+  width: 74%;
+  margin: 0;
+  padding: 0 0 0 25%;
+  margin-bottom: -0.5em;
+}
+/* line 181, ../../app/assets/stylesheets/formtastic_changes.css.scss */
+.formtastic .choice {
+  padding: 0;
+  border: 0;
+  margin: 0.1em 0 0.5em 0;
+}
+/* line 182, ../../app/assets/stylesheets/formtastic_changes.css.scss */
+.formtastic .choice label {
+  float: none;
+  width: 100%;
+  line-height: 100%;
+  padding-top: 0;
+  margin-bottom: 0.6em;
+}
+/* line 183, ../../app/assets/stylesheets/formtastic_changes.css.scss */
+.formtastic .choice label input {
+  margin: 0 0.3em 0 0.1em;
+  line-height: 100%;
+}
+/* line 200, ../../app/assets/stylesheets/formtastic_changes.css.scss */
+.formtastic .inline-errors {
+  color: #cc0000;
+  margin: 0.5em 0 0 25%;
+}
+/* line 206, ../../app/assets/stylesheets/formtastic_changes.css.scss */
+.formtastic .stringish input {
+  width: 72%;
+}
+/* line 211, ../../app/assets/stylesheets/formtastic_changes.css.scss */
+.formtastic .stringish input[size] {
+  width: auto;
+  max-width: 72%;
+}
+/* line 217, ../../app/assets/stylesheets/formtastic_changes.css.scss */
+.formtastic .text textarea {
+  width: 72%;
+}
+/* line 221, ../../app/assets/stylesheets/formtastic_changes.css.scss */
+.formtastic .text textarea[cols] {
+  width: auto;
+  max-width: 72%;
+}
+/* line 227, ../../app/assets/stylesheets/formtastic_changes.css.scss */
+.formtastic .hidden {
+  display: none;
+}
+/* line 232, ../../app/assets/stylesheets/formtastic_changes.css.scss */
+.formtastic .boolean label {
+  padding-left: 25%;
+  display: block;
+}
+/* line 233, ../../app/assets/stylesheets/formtastic_changes.css.scss */
+.formtastic .boolean label input {
+  margin: 0 0.3em 0 0.1em;
+  line-height: 100%;
+}
+/* line 243, ../../app/assets/stylesheets/formtastic_changes.css.scss */
+.formtastic .fragment {
+  float: left;
+  width: auto;
+  margin: 0 .3em 0 0;
+  padding: 0;
+  border: 0;
+}
+/* line 244, ../../app/assets/stylesheets/formtastic_changes.css.scss */
+.formtastic .fragment label {
+  display: none;
+}
+/* line 245, ../../app/assets/stylesheets/formtastic_changes.css.scss */
+.formtastic .fragment label input {
+  display: inline;
+  margin: 0;
+  padding: 0;
+}

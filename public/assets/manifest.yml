@@ -1,0 +1,23 @@
+---
+application.js: application.js
+application.css: application.css
+fancybox/blank.gif: fancybox/blank.gif
+fancybox/fancy_close.png: fancybox/fancy_close.png
+fancybox/fancy_loading.png: fancybox/fancy_loading.png
+fancybox/fancy_nav_left.png: fancybox/fancy_nav_left.png
+fancybox/fancy_nav_right.png: fancybox/fancy_nav_right.png
+fancybox/fancy_shadow_e.png: fancybox/fancy_shadow_e.png
+fancybox/fancy_shadow_n.png: fancybox/fancy_shadow_n.png
+fancybox/fancy_shadow_ne.png: fancybox/fancy_shadow_ne.png
+fancybox/fancy_shadow_nw.png: fancybox/fancy_shadow_nw.png
+fancybox/fancy_shadow_s.png: fancybox/fancy_shadow_s.png
+fancybox/fancy_shadow_se.png: fancybox/fancy_shadow_se.png
+fancybox/fancy_shadow_sw.png: fancybox/fancy_shadow_sw.png
+fancybox/fancy_shadow_w.png: fancybox/fancy_shadow_w.png
+fancybox/fancy_title_left.png: fancybox/fancy_title_left.png
+fancybox/fancy_title_main.png: fancybox/fancy_title_main.png
+fancybox/fancy_title_over.png: fancybox/fancy_title_over.png
+fancybox/fancy_title_right.png: fancybox/fancy_title_right.png
+fancybox/fancybox-x.png: fancybox/fancybox-x.png
+fancybox/fancybox-y.png: fancybox/fancybox-y.png
+fancybox/fancybox.png: fancybox/fancybox.png

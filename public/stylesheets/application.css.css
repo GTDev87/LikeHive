@@ -1,0 +1,53 @@
+/*
+ * This is a manifest file that'll automatically include all the stylesheets available in this directory
+ * and any sub-directories. You're free to add application-wide styles to this file and they'll appear at
+ * the top of the compiled file, but it's generally better to create a new file per style scope.
+ *= require_self
+ *= require_tree .
+*/
+/* line 9, ../../app/assets/stylesheets/application.css.scss */
+header {
+  background-color: #03507B;
+  color: #FFF;
+  padding: 6px;
+  height: 30px;
+}
+/* line 15, ../../app/assets/stylesheets/application.css.scss */
+header h1 {
+  margin-top: 0px;
+  font-size: 30px;
+}
+/* line 20, ../../app/assets/stylesheets/application.css.scss */
+header nav {
+  position: absolute;
+  right: 000px;
+  top: 000px;
+}
+/* line 21, ../../app/assets/stylesheets/application.css.scss */
+header nav ul {
+  list-style: none;
+  margin: 0 0 2em;
+  padding: 0;
+}
+/* line 26, ../../app/assets/stylesheets/application.css.scss */
+header nav ul li {
+  display: inline;
+}
+
+/* line 36, ../../app/assets/stylesheets/application.css.scss */
+#flash_notice, #flash_alert {
+  padding: 5px 8px;
+  margin: 10px 0;
+}
+
+/* line 40, ../../app/assets/stylesheets/application.css.scss */
+#flash_notice {
+  background-color: #CFC;
+  border: solid 1px #6C6;
+}
+
+/* line 44, ../../app/assets/stylesheets/application.css.scss */
+#flash_alert {
+  background-color: #ACC;
+  border: solid 1px #C66;
+}

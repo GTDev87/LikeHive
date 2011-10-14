@@ -6,6 +6,9 @@ group :assets do
   gem 'sass-rails', "  ~> 3.1.0.rc"
   gem 'coffee-rails', "~> 3.1.0.rc"
   gem 'uglifier'
+  gem 'compass', '~> 0.12.alpha'
+  # include other compass plugins here. E.g.:
+  gem 'compass-susy-plugin', :require => 'susy'
 end
 
 gem 'jquery-rails'
@@ -40,3 +43,4 @@ gem "geocoder"
 gem "sorcery"
 gem "spork", "> 0.9.0.rc"
 gem "guard-spork"
+

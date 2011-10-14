@@ -4,7 +4,7 @@ end
 
 Given /^There are likes named the following:$/ do |likes|
   likes.raw.flatten.map do |like_name|
-    LikeCreator.new(:name => like_name).save!
+    Factory(:like, :name => like_name)
   end
 end
 
