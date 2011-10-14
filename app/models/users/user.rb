@@ -40,21 +40,29 @@ class User
   end  
   
   def assign_multiple_likes
+    #maybe move sanitization up to here
     if @like_box == nil then return end
     likes_names = @like_box
     @like_box = nil
-    
+    add_likes(likes_names)
+  end
+  
+  def add_likes(likes_names)
     @personality.get_new_likes(likes_names).each do |like|
       UserLikeLinker.link_user_and_like(self, like)
     end
   end
   
   def assign_like
+    #maybe move sanitization up to here and here
     if @like_name == nil then return end
     like_name = @like_name
     @like_name = nil
-    
-    UserLikeLinker.link_user_and_like(self, @personality.get_new_like(like_name))
-  end  
+    add_like(like_name)
+  end
+  
+  def add_like(like_name)
+    UserLikeLinker.link_user_and_like(self, @personality.get_new_like(like_name))    
+  end
 end
 

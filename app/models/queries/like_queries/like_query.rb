@@ -18,4 +18,8 @@ class LikeQuery
     end
     return like
   end
+  
+  def self.query_likes_without_names(name_array)
+    return LikeCriteriaQuery.new(Like.not_in(name: name_array))
+  end
 end

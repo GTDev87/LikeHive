@@ -13,6 +13,18 @@ describe UserPersonality do
     end
   end
   
+  describe "Getting All Like Names" do
+    it "should return all like names" do
+      @user_personality.likes << Factory.build(:like, :name => "Pizza")
+      @user_personality.likes << Factory.build(:like, :name => "Fish")
+      @user_personality.likes << Factory.build(:like, :name => "French Fries")
+      @user_personality.likes << Factory.build(:like, :name => "Cheese")
+
+      like_names = @user_personality.get_like_names
+      like_names.should =~ ["pizza", "fish", "french fries", "cheese"]
+    end
+  end
+  
   describe "Adding likes" do
     it "should add a like if it does not exist" do
       likes = @user_personality.get_new_like("New Like")

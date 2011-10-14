@@ -24,5 +24,13 @@ class UserPersonality
   
   def find_like(like_name)   
     return @user_like_locator.find_like(like_name)
-  end    
+  end
+  
+  def get_like_names
+    array = []
+    self.likes.each do |like|
+      array << like.name
+    end
+    return array
+  end
 end

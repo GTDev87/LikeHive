@@ -23,6 +23,10 @@ class UsersController < ApplicationController
 
   def show
     @user = UserQuery.find(params[:id])
+    number_of_interests = 5
+    recommendation_generator = RandomLikeRecommendationGenerator.new(@user)
+    recommender = LikeRecommender.new()
+    @like_recommendations = recommender.recommend_interests(recommendation_generator, number_of_interests)
     authorize! :read, @user
   end
   

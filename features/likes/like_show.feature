@@ -56,6 +56,6 @@ Feature: Show Like Page
       And I fill in "user_like_name" with "Like 7"
       And I press "Add Like"
       And I follow "Like 3"
-      Then I should see "Users (1"
+      Then I should see "Users (1)"
       
       
