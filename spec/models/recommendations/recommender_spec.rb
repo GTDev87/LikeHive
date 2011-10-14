@@ -1,12 +1,12 @@
 require 'spec_helper'
 
-describe LikeRecommender do
+describe Recommender do
   before(:each) do
     @user = Factory(:user)
-    @recommender = LikeRecommender.new()
+    @recommender = Recommender.new()
   end
   
-  describe "creating random likes" do
+  describe "creating random like recommendations" do
     before (:each) do
       (1..20).each do
         Factory(:like)
@@ -15,7 +15,7 @@ describe LikeRecommender do
     
     it "should create n likes when give random generator" do
       random_generator = RandomLikeRecommendationGenerator.new(@user)
-      @recommender.recommend_interests(random_generator, 5).size.should == 5
+      @recommender.get_recommendations(random_generator, 5).size.should == 5
     end
   end
   
