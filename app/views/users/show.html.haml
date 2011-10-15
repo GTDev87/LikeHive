@@ -2,7 +2,7 @@
   %people
     People Recomendations:
     %br
-    - User.all.each do |user|
+    - @user_recommender.each do |user|
       #{user.name.first} #{user.name.last_initial}
       %br
   %interests

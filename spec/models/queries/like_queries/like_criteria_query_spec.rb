@@ -6,7 +6,7 @@ describe LikeCriteriaQuery do
   end
   describe "finding likes" do
     it "should return random likes" do      
-      (1..20).each do
+      7.times do
         like = Factory(:like)
       end
       
@@ -15,7 +15,7 @@ describe LikeCriteriaQuery do
     end
     
     it "should return all distinct likes" do      
-      (1..20).each do
+      7.times do
         like = Factory(:like)
       end
       

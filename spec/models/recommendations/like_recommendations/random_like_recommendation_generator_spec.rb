@@ -8,11 +8,10 @@ describe RandomLikeRecommendationGenerator do
 
   describe "Recommending likes" do
     it "should return likes equal to the number of likes requested" do
-      (1..20).each do
-        like = Factory(:like)
+      7.times do
+        Factory(:like)
       end
-      num = @recommendation_generator.generate_recommendations(5).size
-      num.should == 5
+      @recommendation_generator.generate_recommendations(5).size.should == 5
     end
     
     it "should return likes not owned by user" do

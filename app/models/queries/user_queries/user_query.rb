@@ -10,4 +10,8 @@ class UserQuery
   def self.find_user_by_email(email_addr)
     return User.first(conditions: { email: StringFormatter.lowercase(email_addr) })
   end
+  
+  def self.query_all
+      return UserCriteriaQuery.new(all())
+  end
 end

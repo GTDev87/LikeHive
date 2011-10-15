@@ -1,7 +1,7 @@
-class LikeCriteriaQuery
-  def initialize(like_criteria)
-    @like_criteria = like_criteria
-    @criteria_query = CriteriaQuery.new(like_criteria)
+class UserCriteriaQuery
+  def initialize(user_criteria)
+    @user_criteria = user_criteria
+    @criteria_query = CriteriaQuery.new(user_criteria)
   end
   
   def return_all()

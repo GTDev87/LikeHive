@@ -22,9 +22,9 @@ Feature: User Recomendations
     |o@test.com |
       
     Scenario: Seeing 5 User Recomendations
-      Given I am a user with an email "greg@test.com" and password "please"
-      When I sign in as "greg@test.com/please"
-      And I follow "greg@test.com"
+      Given I am a user with an email "greg@greg.com" and password "please"
+      When I sign in as "greg@greg.com/please"
+      And I follow "greg@greg.com"
       Then I should see 5 of the following:
       |a@test.com |
       |b@test.com |

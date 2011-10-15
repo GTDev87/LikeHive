@@ -24,6 +24,15 @@ describe UserQuery do
 
       users.size.should == 3   
     end
+    
+    it "should return all users when all is called" do
+      users_query = UserQuery.query_all
+      users_query.return_all.should contain_result_with_first_name("Zac")
+      users_query.return_all.should contain_result_with_first_name("Amol")
+      users_query.return_all.should contain_result_with_first_name("Greg")
+
+      users_query.return_all.size.should == 3   
+    end
   end
   
   describe "finding users by email" do
