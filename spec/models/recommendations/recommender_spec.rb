@@ -3,7 +3,7 @@ require 'spec_helper'
 describe Recommender do
   describe "creating random like recommendations" do
     before (:each) do
-      7.times.each do
+      7.times do
         Factory(:like)
       end
     end
@@ -18,7 +18,7 @@ describe Recommender do
   
   describe "creating random user recommendations" do
     before (:each) do
-      7.times.each do
+      7.times do
         Factory(:user)
       end
     end

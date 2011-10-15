@@ -1,0 +1,20 @@
+/* line 6, ../../../app/assets/stylesheets/users.css.sass */
+.users .show {
+  position: relative;
+}
+/* line 9, ../../../app/assets/stylesheets/users.css.sass */
+.users .show people {
+  border: solid 1px #777777;
+  color: #777777;
+  padding: 6px;
+  float: top;
+  float: right;
+}
+/* line 16, ../../../app/assets/stylesheets/users.css.sass */
+.users .show interests {
+  border: solid 1px #777777;
+  color: #777777;
+  padding: 6px;
+  float: top;
+  float: right;
+}
