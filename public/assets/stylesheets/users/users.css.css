@@ -1,8 +1,8 @@
-/* line 6, ../../../app/assets/stylesheets/users.css.sass */
+/* line 6, ../../../../app/assets/stylesheets/users/users.css.sass */
 .users .show {
   position: relative;
 }
-/* line 9, ../../../app/assets/stylesheets/users.css.sass */
+/* line 9, ../../../../app/assets/stylesheets/users/users.css.sass */
 .users .show people {
   border: solid 1px #777777;
   color: #777777;
@@ -10,7 +10,7 @@
   float: top;
   float: right;
 }
-/* line 16, ../../../app/assets/stylesheets/users.css.sass */
+/* line 16, ../../../../app/assets/stylesheets/users/users.css.sass */
 .users .show interests {
   border: solid 1px #777777;
   color: #777777;
