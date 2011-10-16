@@ -13,7 +13,7 @@ Feature: Edit User
       And choose "Male"
       And I press "Update"
       Then I should see "User: baz T."
-      And I should see "Email: user@test.com"
+      And I should see "Logged in as user@test.com"
       And I should see "Gender: Male"
       
     Scenario: Last initial updates

@@ -1,11 +1,11 @@
 .show
-  %people
+  %user_recommendations
     People Recomendations:
     %br
     - @user_recommender.each do |user|
       #{user.profile.name.first} #{user.profile.name.last_initial}
       %br
-  %interests
+  %like_recommendations
     Interest Recomendations:
     %br
     - @like_recommendations.each do |like|
@@ -23,8 +23,7 @@
     %p 
     Age: #{@user.profile.age.age_in_years}
     %p 
-    Email: #{@user.email if @user.email}
-    %p
+
     -#{@user.habitation.locations.size}
     - @user.habitation.locations.each do |location|
       -#-if location._type == "Zipcode"

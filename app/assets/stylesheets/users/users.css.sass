@@ -2,28 +2,24 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
+@import blueprint
+@import compass/css3/border-radius
+
 .users
   .show
-    position: relative
 
-    people
+    user_recommendations
       +column(8,true)
       border: solid 1px #777
-      color: #777
-      //padding: 6px
-      //float: top
-      //float: right
+      border-color: red
     
-    interests
+    like_recommendations
       +column(8,true)
       border: solid 1px #777
-      color: #777
-      //padding: 6px
-      //float: top
-      //float: right
     
     profile
-      +column(16)
+      +column(8)
+      border: solid 1px #777
     
     add_single_like
       +column(16)

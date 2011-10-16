@@ -23,7 +23,7 @@ Feature: Sign up
       When I follow "user@test.com"
       Then I should see "User: Testy McUserton T."
       And I should see "Gender: Male"
-      And I should see "Email: user@test.com"
+      And I should see "Logged in as user@test.com"
       
     Scenario: User signs up with invalid data redirects to signin page
       And I fill in the following:

@@ -8,14 +8,14 @@ Feature: User Page
       And I have first name "Greg" and last initial "T"
       When I sign in as "greg@test.com/please"
       Then I should be signed in
-      And I should see "User: greg@test.com"
+      And I should see "Logged in as greg@test.com"
       
     Scenario: I see my email on my page
       Given I am a user with an email "greg@test.com" and password "please"
       And I have first name "Greg" and last initial "T"
       When I sign in as "greg@test.com/please"
       And I follow "greg@test.com"
-      Then I should see "Email: greg@test.com"
+      Then I should see "Logged in as greg@test.com"
       
     Scenario: Displays Gender Correctly
       Given I am a user with an email "greg@test.com" and password "please"
