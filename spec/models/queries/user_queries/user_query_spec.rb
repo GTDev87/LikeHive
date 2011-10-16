@@ -26,12 +26,12 @@ describe UserQuery do
     end
     
     it "should return all users when all is called" do
-      users_query = UserQuery.query_all
-      users_query.return_all.should contain_result_with_first_name("Zac")
+      users_query = UserQuery.query_users_without_email(["zac@zac.com"])
+      users_query.return_all.should_not contain_result_with_first_name("Zac")
       users_query.return_all.should contain_result_with_first_name("Amol")
       users_query.return_all.should contain_result_with_first_name("Greg")
 
-      users_query.return_all.size.should == 3   
+      users_query.return_all.size.should == 2  
     end
   end
   

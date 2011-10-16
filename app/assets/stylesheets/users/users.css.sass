@@ -4,22 +4,21 @@
 
 @import blueprint
 @import compass/css3/border-radius
-
+@import blueprint/form
 .users
   .show
 
+    profile
+      +column(16)
+      +border(#777, 5px)
+      
     user_recommendations
       +column(8,true)
-      border: solid 1px #777
-      border-color: red
+      //+border(#777, 5px)
     
     like_recommendations
       +column(8,true)
-      border: solid 1px #777
-    
-    profile
-      +column(8)
-      border: solid 1px #777
+      //+border(#777, 5px)
     
     add_single_like
       +column(16)
@@ -28,4 +27,9 @@
       +column(16)
     
     user_personality
-      +column(16)
+      +column(8,true)
+      +border(#777, 5px)
+
+  .edit
+    +blueprint-form
+  

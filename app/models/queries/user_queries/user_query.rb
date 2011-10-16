@@ -11,7 +11,7 @@ class UserQuery
     return User.first(conditions: { email: StringFormatter.lowercase(email_addr) })
   end
   
-  def self.query_all
-      return UserCriteriaQuery.new(all())
+  def self.query_users_without_email(email_addr)
+    return UserCriteriaQuery.new(User.not_in(email: email_addr))
   end
 end

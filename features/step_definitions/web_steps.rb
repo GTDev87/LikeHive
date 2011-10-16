@@ -151,7 +151,7 @@ Then /^I should see (\d+) of the following:$/ do |number, likes|
       end
     end
   end
-  likes_found.should == number.to_i
+  likes_found.should be(number.to_i), page.text
 end
 
 Then /^(?:|I )should not see \/([^\/]*)\/$/ do |regexp|

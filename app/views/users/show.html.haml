@@ -1,18 +1,6 @@
 .show
-  %user_recommendations
-    People Recomendations:
-    %br
-    - @user_recommender.each do |user|
-      #{user.profile.name.first} #{user.profile.name.last_initial}
-      %br
-  %like_recommendations
-    Interest Recomendations:
-    %br
-    - @like_recommendations.each do |like|
-      #{StringFormatter.capitalize_words(like.name)}
-      %br
-  
   %profile
+    Profile:
     %p
     User: #{@user.profile.name.first} #{@user.profile.name.last_initial}.
     %p
@@ -29,7 +17,19 @@
       -#-if location._type == "Zipcode"
       - if location.number != nil #HACK HACK HACK ALERT
         Zipcode: #{location.number}
-        %p
+
+  %user_recommendations
+    People Recomendations:
+    %br
+    - @user_recommender.each do |user|
+      #{user.profile.name.first} #{user.profile.name.last_initial}
+      %br
+  %like_recommendations
+    Interest Recomendations:
+    %br
+    - @like_recommendations.each do |like|
+      #{StringFormatter.capitalize_words(like.name)}
+      %br
       
   %add_single_like
     = form_for @user do |form|
