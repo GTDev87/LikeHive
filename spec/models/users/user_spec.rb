@@ -44,16 +44,16 @@ describe User do
   end
   
   it "should require valid residence" do
-    residence = Factory.build(:user_residence, :locations => [Factory.build(:zipcode, :number => "")])
-    user_invalid_residence = Factory.build(:user, :residence => residence)
+    habitation = Factory.build(:user_habitation, :locations => [Factory.build(:zipcode, :number => "")])
+    user_invalid_habitation = Factory.build(:user, :habitation => habitation)
     
-    user_invalid_residence.should_not be_valid
+    user_invalid_habitation.should_not be_valid
   end
   
   it "should require non nil residence" do
-      user_invalid_residence = Factory.build(:user, :residence => nil)
+      user_invalid_habitation = Factory.build(:user, :habitation => nil)
     
-      user_invalid_residence.should_not be_valid
+      user_invalid_habitation.should_not be_valid
     end
   
   it "should require non nil personality" do

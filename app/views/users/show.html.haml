@@ -25,8 +25,8 @@
     %p 
     Email: #{@user.email if @user.email}
     %p
-    -#{@user.residence.locations.size}
-    - @user.residence.locations.each do |location|
+    -#{@user.habitation.locations.size}
+    - @user.habitation.locations.each do |location|
       -#-if location._type == "Zipcode"
       - if location.number != nil #HACK HACK HACK ALERT
         Zipcode: #{location.number}

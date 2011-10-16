@@ -13,7 +13,7 @@ describe UserCreator do
       user.profile.name.should_not be_nil
       user.profile.age.should_not be_nil
       user.profile.gender.should_not be_nil
-      user.residence.should_not be_nil
+      user.habitation.should_not be_nil
       user.personality.should_not be_nil
     end
   end

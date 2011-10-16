@@ -1,14 +1,14 @@
 class UsersController < ApplicationController
   def new
     @user = UserCreator.new
-    @user.residence.locations << Zipcode.new
+    @user.habitation.locations << Zipcode.new
   end
   
   def create
     @user = User.new params[:user]
     @user.build_personality
     if @user.save
-      @user.residence.save ### monkey patch
+      @user.habitation.save ### monkey patch
 
       login(params[:user][:email], params[:user][:password])
       redirect_to root_url, :notice => "Welcome! You have signed up successfully."

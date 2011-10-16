@@ -2,7 +2,7 @@ Factory.define :user do |user|
   user.sequence(:email) { |n| "user#{n}@test.com"}
   user.password "please"
   user.profile {Factory.build(:user_profile)}
-  user.residence {Factory.build(:user_residence)}
+  user.habitation {Factory.build(:user_habitation)}
   user.personality {Factory.build(:user_personality)}
 end
 
@@ -25,8 +25,8 @@ Factory.define :user_gender do |gender|
   gender.female false 
 end
 
-Factory.define :user_residence do |residence|
-  residence.locations []
+Factory.define :user_habitation do |habitation|
+  habitation.locations []
 end
 
 Factory.define :zipcode do |zipcode|

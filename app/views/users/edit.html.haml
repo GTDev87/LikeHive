@@ -12,10 +12,10 @@
     = profile_fields.semantic_fields_for :gender do |gender_fields|
       = gender_fields.inputs do
         = gender_fields.input :female, :as => :radio, :label => "Gender", :collection => [["Male",false], ["Female",true]]
-  = f.semantic_fields_for :residence do |residence_fields|  
-    - @user.residence.locations.each do |location|
+  = f.semantic_fields_for :habitation do |habitation_fields|  
+    - @user.habitation.locations.each do |location|
       - if location.number != nil#HACK HACK HACK ALERT
-        = residence_fields.semantic_fields_for :locations, location do |location_fields|
+        = habitation_fields.semantic_fields_for :locations, location do |location_fields|
           = location_fields.inputs do
             = location_fields.input :_type, :as => :hidden, :value => "Zipcode"
             = location_fields.input :number, :label => "Zipcode"

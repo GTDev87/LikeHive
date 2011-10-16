@@ -5,7 +5,7 @@ class UserCreator
     user.profile.build_name
     user.profile.build_age
     user.profile.build_gender
-    user.build_residence
+    user.build_habitation
     user.build_personality
     return user
   end
