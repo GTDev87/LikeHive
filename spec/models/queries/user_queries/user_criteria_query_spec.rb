@@ -24,7 +24,7 @@ describe UserCriteriaQuery do
       
       valid_hash = {}
       users.each do |user|
-        valid_hash[user.name] =true
+        valid_hash[user.profile.name] =true
       end
       
       valid_hash.size.should == 5

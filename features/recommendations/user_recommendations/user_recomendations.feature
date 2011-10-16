@@ -5,39 +5,39 @@ Feature: User Recomendations
   
   Background:
     Given There are the following users:
-    |a@test.com |
-    |b@test.com |
-    |c@test.com |
-    |d@test.com |
-    |e@test.com |
-    |f@test.com |
-    |g@test.com |
-    |h@test.com |
-    |i@test.com |
-    |j@test.com |
-    |k@test.com |
-    |l@test.com |
-    |m@test.com |
-    |n@test.com |
-    |o@test.com |
+    |UserA |
+    |UserB |
+    |UserC |
+    |UserD |
+    |UserE |
+    |UserF |
+    |UserG |
+    |UserH |
+    |UserI |
+    |UserJ |
+    |UserK |
+    |UserL |
+    |UserM |
+    |UserN |
+    |UserO |
       
     Scenario: Seeing 5 User Recomendations
       Given I am a user with an email "greg@greg.com" and password "please"
       When I sign in as "greg@greg.com/please"
       And I follow "greg@greg.com"
       Then I should see 5 of the following:
-      |a@test.com |
-      |b@test.com |
-      |c@test.com |
-      |d@test.com |
-      |e@test.com |
-      |f@test.com |
-      |g@test.com |
-      |h@test.com |
-      |i@test.com |
-      |j@test.com |
-      |k@test.com |
-      |l@test.com |
-      |m@test.com |
-      |n@test.com |
-      |o@test.com |
+      |UserA |
+      |UserB |
+      |UserC |
+      |UserD |
+      |UserE |
+      |UserF |
+      |UserG |
+      |UserH |
+      |UserI |
+      |UserJ |
+      |UserK |
+      |UserL |
+      |UserM |
+      |UserN |
+      |UserO |

@@ -4,7 +4,7 @@ class UserName
   field :first
   field :last_initial
   
-  embedded_in :user, :inverse_of => :name 
+  embedded_in :profile, :inverse_of => :name 
   
   attr_accessible :first, :last_initial
   validates_presence_of :first

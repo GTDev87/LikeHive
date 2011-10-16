@@ -20,11 +20,15 @@
 @import likes/likes.css.sass
 
 // Combine the partials into a single screen stylesheet.
+@import partials/base
 @import partials/page
 @import partials/form
 @import partials/two_col
 
 +blueprint
+
+body
+  +container
 
 header
   background-color: #111111

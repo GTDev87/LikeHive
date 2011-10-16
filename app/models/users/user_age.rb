@@ -3,7 +3,7 @@ class UserAge
   include Mongoid::MultiParameterAttributes
   field :date_of_birth, type: Date
   
-  embedded_in :user, :inverse_of => :age
+  embedded_in :profile, :inverse_of => :age
   
   attr_accessible :date_of_birth
   validates_presence_of :date_of_birth

@@ -3,7 +3,7 @@
     People Recomendations:
     %br
     - @user_recommender.each do |user|
-      #{user.name.first} #{user.name.last_initial}
+      #{user.profile.name.first} #{user.profile.name.last_initial}
       %br
   %interests
     Interest Recomendations:
@@ -11,42 +11,46 @@
     - @like_recommendations.each do |like|
       #{StringFormatter.capitalize_words(like.name)}
       %br
+  
+  %profile
+    %p
+    User: #{@user.profile.name.first} #{@user.profile.name.last_initial}.
+    %p
+    - if @user.profile.gender.female == true
+      Gender: Female
+    - else
+      Gender: Male
+    %p 
+    Age: #{@user.profile.age.age_in_years}
+    %p 
+    Email: #{@user.email if @user.email}
+    %p
+    -#{@user.residence.locations.size}
+    - @user.residence.locations.each do |location|
+      -#-if location._type == "Zipcode"
+      - if location.number != nil #HACK HACK HACK ALERT
+        Zipcode: #{location.number}
+        %p
       
-  %p
-  User: #{@user.name.first} #{@user.name.last_initial}.
-  %p
-  - if @user.gender.female == true
-    Gender: Female
-  - else
-    Gender: Male
-  %p 
-  Age: #{@user.age.age_in_years}
-  %p 
-  Email: #{@user.email if @user.email}
-  %p
-  -#{@user.residence.locations.size}
-  - @user.residence.locations.each do |location|
-    -#-if location._type == "Zipcode"
-    - if location.number != nil #HACK HACK HACK ALERT
-      Zipcode: #{location.number}
+  %add_single_like
+    = form_for @user do |form|
       %p
-      
-  = form_for @user do |form|
-    %p
-      = form.text_field :like_name
-      = form.submit "Add Like"
-    
-  = form_for @user do |form|
-    %p
-      = form.text_area :like_box
-    %p
-      = form.submit "Add Likes"
+        = form.text_field :like_name
+        = form.submit "Add Like"
+  
+  %add_multiple_likes
+    = form_for @user do |form|
+      %p
+        = form.text_area :like_box
+      %p
+        = form.submit "Add Likes"
 
-  %p Likes (#{@user.personality.likes.size}):
-  %script
-  - if @user.personality.likes.size == 0#find way of updating num_likes
-    %p No Likes
-  - else
-    - @user.personality.likes.each do |like|
-      #{link_to StringFormatter.capitalize_words(like.name), like}
-      %br
+  %user_personality
+    %p Likes (#{@user.personality.likes.size}):
+    %script
+    - if @user.personality.likes.size == 0#find way of updating num_likes
+      %p No Likes
+    - else
+      - @user.personality.likes.each do |like|
+        #{link_to StringFormatter.capitalize_words(like.name), like}
+        %br

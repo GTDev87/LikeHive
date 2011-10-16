@@ -5,18 +5,14 @@ Feature: User Page
 
     Scenario: I see my account and email
       Given I am a user with an email "greg@test.com" and password "please"
-      And I have the following user name:
-      | first       | last_initial  |
-      | Greg        | T             |
+      And I have first name "Greg" and last initial "T"
       When I sign in as "greg@test.com/please"
       Then I should be signed in
       And I should see "User: greg@test.com"
       
     Scenario: I see my email on my page
       Given I am a user with an email "greg@test.com" and password "please"
-      And I have the following user name:
-      | first       | last_initial  |
-      | Greg        | T             |
+      And I have first name "Greg" and last initial "T"
       When I sign in as "greg@test.com/please"
       And I follow "greg@test.com"
       Then I should see "Email: greg@test.com"
@@ -31,9 +27,7 @@ Feature: User Page
       
     Scenario: Displays Name Correctly
       Given I am a user with an email "greg@test.com" and password "please"
-      And I have the following user name:
-      | first       | last_initial  |
-      | Greg        | T             |
+      And I have first name "Greg" and last initial "T"
       When I sign in as "greg@test.com/please"
       Then I should be signed in
       When I follow "greg@test.com"

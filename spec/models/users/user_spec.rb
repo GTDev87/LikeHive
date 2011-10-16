@@ -31,16 +31,16 @@ describe User do
     end
   end  
   
-  it "should require valid birthday" do    
-    user_invalid_age = Factory.build(:user, :age => Factory.build(:user_age, :date_of_birth => ""))
+  it "should require vaild profile" do
+    user_nil_profile = Factory.build(:user, :profile => Factory.build(:user_profile, :name => nil))
     
-    user_invalid_age.should_not be_valid
+    user_nil_profile.should_not be_valid
   end
   
-  it "should require non nil birthday" do    
-    user_invalid_age = Factory.build(:user, :age => nil)
+  it "should require non nil profile" do
+    user_nil_profile = Factory.build(:user, :profile => nil)
     
-    user_invalid_age.should_not be_valid
+    user_nil_profile.should_not be_valid
   end
   
   it "should require valid residence" do
@@ -51,34 +51,10 @@ describe User do
   end
   
   it "should require non nil residence" do
-    user_invalid_residence = Factory.build(:user, :residence => nil)
+      user_invalid_residence = Factory.build(:user, :residence => nil)
     
-    user_invalid_residence.should_not be_valid
-  end
-  
-  it "should require valid name" do
-    user_invalid_name = Factory.build(:user, :name => Factory.build(:user_name, :first => ""))
-    
-    user_invalid_name.should_not be_valid
-  end
-  
-  it "should require non nil name" do
-    user_invalid_name = Factory.build(:user, :name => nil)
-    
-    user_invalid_name.should_not be_valid
-  end
-  
-  it "should require valid gender" do
-    user_invalid_gender = Factory.build(:user, :gender => Factory.build(:user_gender, :female => nil))
-    
-    user_invalid_gender.should_not be_valid
-  end
-  
-  it "should require non nil gender" do
-    user_invalid_gender = Factory.build(:user, :gender => nil)
-    
-    user_invalid_gender.should_not be_valid
-  end
+      user_invalid_residence.should_not be_valid
+    end
   
   it "should require non nil personality" do
     user_invalid_personality = Factory.build(:user, :personality => nil)

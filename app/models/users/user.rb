@@ -2,14 +2,8 @@ class User
   include Mongoid::Document
   authenticates_with_sorcery!
 
-  embeds_one :name, class_name: "UserName"
-  accepts_nested_attributes_for :name
-  
-  embeds_one :age, class_name: "UserAge"
-  accepts_nested_attributes_for :age
-  
-  embeds_one :gender, class_name: "UserGender"
-  accepts_nested_attributes_for :gender
+  embeds_one :profile, class_name: "UserProfile"
+  accepts_nested_attributes_for :profile
   
   embeds_one :residence, class_name: "UserResidence"
   accepts_nested_attributes_for :residence
@@ -23,12 +17,12 @@ class User
   belongs_to :like_following, inverse_of: :users
   
   key :email
-  validates_presence_of :name, :age, :gender, :residence, :personality
+  validates_presence_of :residence, :personality, :profile
   validates_uniqueness_of :email, :case_sensitive => false
 
   validates :email, :presence => true, :email => true
   
-  attr_accessible :email, :password, :password_confirmation, :remember_me, :like_box, :like_name, :name_attributes, :age_attributes, :gender_attributes, :residence_attributes, :personality_attributes
+  attr_accessible :email, :password, :password_confirmation, :remember_me, :like_box, :like_name, :residence_attributes, :personality_attributes, :profile_attributes
   
   attr_accessor :like_name, :like_box
   

@@ -12,31 +12,30 @@ Given /^There is a user with an email "([^"]*)" and password "([^"]*)"$/ do |ema
   user.residence.locations = [Factory.build(:zipcode)]
 end
 
-Given /^I have the following user name:$/ do |table|
-  table.hashes.each do |attributes|
-    @user.name = Factory.build(:user_name, attributes)
-    @user.save
-  end
+Given /^I have first name "([^"]*)" and last initial "([^"]*)"$/ do |first_name, last_initial|
+  @user.profile.name.first = first_name
+  @user.profile.name.last_initial = last_initial
+  @user.save!
 end
 
 Given /^the email "([^"]*)" has the user name "([^"]*)"$/ do |email, name|
   user = UserQuery.find_user_by_email(email)
-  user.name = Factory.build(:user_name, :first => name)
-  user.name.save
+  user.profile.name = Factory.build(:user_name, :first => name)
+  user.profile.name.save
 end
 
 Given /^my gender is "([^"]*)"$/ do |gender|
   if gender.downcase == "male"
-    @user.gender.female = false
+    @user.pofile.gender.female = false
   end
   if gender.downcase == "female"
-    @user.gender.female = true
+    @user.profile.gender.female = true
   end
   @user.save!
 end
 
 Given /^my date of birth is "([^"]*)"$/ do |date_of_birth|
-  @user.age = Factory.build(:user_age, :date_of_birth => date_of_birth)
+  @user.profile.age.date_of_birth = date_of_birth
   @user.save!
 end
 
@@ -111,6 +110,6 @@ end
 
 Given /^There are the following users:$/ do |users|
   users.raw.flatten.map do |user_name|
-    Factory(:user, :name => Factory.build(:user_name, :first => user_name))
+    Factory(:user, :profile => Factory.build(:user_profile, :name => Factory.build(:user_name, :first => user_name)))
   end
 end

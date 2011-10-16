@@ -62,7 +62,7 @@ module CustomMatchers
     def matches?(target)
       @target = target
       @target.each do |result|
-        if result.name.first == @expected
+        if result.profile.name.first == @expected
           return true
         end
       end

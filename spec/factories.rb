@@ -1,11 +1,15 @@
 Factory.define :user do |user|
-  user.name {Factory.build(:user_name)}
   user.sequence(:email) { |n| "user#{n}@test.com"}
   user.password "please"
-  user.age  {Factory.build(:user_age)}
-  user.gender {Factory.build(:user_gender)}
+  user.profile {Factory.build(:user_profile)}
   user.residence {Factory.build(:user_residence)}
   user.personality {Factory.build(:user_personality)}
+end
+
+Factory.define :user_profile do |profile|
+  profile.name {Factory.build(:user_name)}
+  profile.age  {Factory.build(:user_age)}
+  profile.gender {Factory.build(:user_gender)}  
 end
 
 Factory.define :user_name do |name|

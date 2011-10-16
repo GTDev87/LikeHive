@@ -51,7 +51,7 @@ describe CriteriaQuery do
       
       valid_hash = {}
       users.each do |user|
-        valid_hash[user.name] =true
+        valid_hash[user] =true
       end
       
       valid_hash.size.should == 5
