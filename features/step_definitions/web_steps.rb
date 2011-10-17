@@ -95,9 +95,8 @@ Given /^I select date "([^"]*)" in "([^"]*)"$/ do |date, field|
   month = date_parts[0]
   day = date_parts[1]
   year = date_parts[2]
-  select(month, :from => field)
-  select(day, :from => field)
-  select(year, :from => field)
+  organized_date = "#{year}/#{month}/#{day}"
+  select_date(field, :with => organized_date)
 end
 
 When /^(?:|I )check "([^"]*)"$/ do |field|

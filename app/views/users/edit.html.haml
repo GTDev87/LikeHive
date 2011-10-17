@@ -1,29 +1,27 @@
 .edit
   %h2
-  = semantic_form_for @user do |f|
+  = simple_form_for @user do |f|
     = f.error_messages
-    = f.semantic_fields_for :profile do |profile_fields|
-      = profile_fields.semantic_fields_for :name do |name_fields|
-        = name_fields.inputs do
-          = name_fields.input :first, :label => "First name"
-          = name_fields.input :last_initial, :as => :select, :collection => [['A', 'A'],['B', 'B'],['C', 'C'],['D', 'D'],['E', 'E'],['F', 'F'],['G', 'G'],['H', 'H'],['I', 'I'],['J', 'J'],['K', 'K'],['L', 'L'],['M', 'M'],['N', 'N'],['O', 'O'],['P', 'P'],['Q', 'Q'],['R', 'R'],['S', 'S'],['T', 'T'],['U', 'U'],['V', 'V'],['W', 'W'],['X', 'X'],['Y', 'Y'],['Z', 'Z']]
-      = profile_fields.semantic_fields_for :age do |age_fields|
-        = age_fields.inputs do
-          = age_fields.input :date_of_birth, :as => :date, :start_year => 1900, :end_year => Time.now.year
-      = profile_fields.semantic_fields_for :gender do |gender_fields|
-        = gender_fields.inputs do
-          = gender_fields.input :female, :as => :radio, :label => "Gender", :collection => [["Male",false], ["Female",true]]
-    = f.semantic_fields_for :habitation do |habitation_fields|  
+    = f.simple_fields_for :profile do |profile_fields|
+      = profile_fields.simple_fields_for :name do |name_fields|
+
+        = name_fields.input :first, :label => "First name"
+        = name_fields.input :last_initial, :as => :select, :collection => [['A', 'A'],['B', 'B'],['C', 'C'],['D', 'D'],['E', 'E'],['F', 'F'],['G', 'G'],['H', 'H'],['I', 'I'],['J', 'J'],['K', 'K'],['L', 'L'],['M', 'M'],['N', 'N'],['O', 'O'],['P', 'P'],['Q', 'Q'],['R', 'R'],['S', 'S'],['T', 'T'],['U', 'U'],['V', 'V'],['W', 'W'],['X', 'X'],['Y', 'Y'],['Z', 'Z']]
+      = profile_fields.simple_fields_for :age do |age_fields|
+
+        = age_fields.input :date_of_birth, :as => :date, :start_year => 1900, :end_year => Time.now.year
+      = profile_fields.simple_fields_for :gender do |gender_fields|
+        = gender_fields.input :female, :as => :radio, :label => "Gender", :collection => [["Male",false], ["Female",true]]
+    = f.simple_fields_for :habitation do |habitation_fields|  
       - @user.habitation.locations.each do |location|
         - if location.number != nil#HACK HACK HACK ALERT
-          = habitation_fields.semantic_fields_for :locations, location do |location_fields|
-            = location_fields.inputs do
-              = location_fields.input :_type, :as => :hidden, :value => "Zipcode"
-              = location_fields.input :number, :label => "Zipcode"
-    = f.inputs do
-      %i (leave blank if you don't want to change it)
-      = f.input :password, :as => :password
-      = f.input :password_confirmation, :as => :password
+          = habitation_fields.simple_fields_for :locations, location do |location_fields|
+            = location_fields.input :_type, :as => :hidden, :value => "Zipcode"
+            = location_fields.input :number, :label => "Zipcode"
+
+    %i (leave blank if you don't want to change it)
+    = f.input :password, :as => :password
+    = f.input :password_confirmation, :as => :password
   
     %p= f.submit "Update"
   %h3 Cancel my account

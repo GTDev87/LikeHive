@@ -134,7 +134,7 @@ Feature: Sign up
       And I select "T" in "Last initial"
       And choose "Male"
       And I press "Sign up"
-      Then I should see "can't be blank"
+      Then I should see "doesn't match confirmation"
 
     Scenario: User signs up without password confirmation
       And I fill in the following:

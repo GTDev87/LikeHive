@@ -36,7 +36,7 @@ gem "sunspot_matchers", "~> 1.2.1.4", :group => :test
 gem "sunspot_test", "~> 0.3.2"
 gem "libnotify"
 gem "cancan"
-gem "formtastic", "~> 2.0.0.rc5"
+gem "simple_form"
 gem "nifty-generators"
 gem "timecop"
 gem "geocoder"
