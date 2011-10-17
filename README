@@ -1,7 +1,9 @@
 Likehive
 ========================
+Just for now:
 
-
+Start passenger with
+CC=gcc-4.4 passenger start
 ________________________
 
 License
