@@ -9,7 +9,6 @@ class UsersController < ApplicationController
     @user.build_personality
     if @user.save
       @user.habitation.save ### monkey patch
-
       login(params[:user][:email], params[:user][:password])
       redirect_to root_url, :notice => "Welcome! You have signed up successfully."
     else

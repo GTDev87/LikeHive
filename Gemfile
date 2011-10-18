@@ -11,6 +11,8 @@ group :assets do
   gem 'compass-susy-plugin', :require => 'susy'
 end
 
+#gem 'ruby-debug19', :require => 'ruby-debug'
+
 gem 'jquery-rails'
 gem "therubyracer", ">= 0.8.2"
 gem "haml", ">= 3.1.2"

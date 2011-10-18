@@ -422,88 +422,88 @@ table {
 }
 
 /* line 18, ../../../../../.rvm/gems/ruby-1.9.2-p290@rails31/gems/compass-0.12.alpha.0/frameworks/blueprint/stylesheets/blueprint/_form.scss */
-.sessions .login .form label {
+.sessions .login form label {
   font-weight: bold;
 }
 /* line 19, ../../../../../.rvm/gems/ruby-1.9.2-p290@rails31/gems/compass-0.12.alpha.0/frameworks/blueprint/stylesheets/blueprint/_form.scss */
-.sessions .login .form fieldset {
+.sessions .login form fieldset {
   padding: 1.4em;
   margin: 0 0 1.5em 0;
 }
 /* line 20, ../../../../../.rvm/gems/ruby-1.9.2-p290@rails31/gems/compass-0.12.alpha.0/frameworks/blueprint/stylesheets/blueprint/_form.scss */
-.sessions .login .form legend {
+.sessions .login form legend {
   font-weight: bold;
   font-size: 1.2em;
 }
 /* line 26, ../../../../../.rvm/gems/ruby-1.9.2-p290@rails31/gems/compass-0.12.alpha.0/frameworks/blueprint/stylesheets/blueprint/_form.scss */
-.sessions .login .form input.text, .sessions .login .form input.title, .sessions .login .form input[type=email], .sessions .login .form input[type=text], .sessions .login .form input[type=password] {
+.sessions .login form input.text, .sessions .login form input.title, .sessions .login form input[type=email], .sessions .login form input[type=text], .sessions .login form input[type=password] {
   margin: 0.5em 0;
   background-color: white;
   padding: 5px;
 }
 /* line 27, ../../../../../.rvm/gems/ruby-1.9.2-p290@rails31/gems/compass-0.12.alpha.0/frameworks/blueprint/stylesheets/blueprint/_form.scss */
-.sessions .login .form input.title {
+.sessions .login form input.title {
   font-size: 1.5em;
 }
 /* line 29, ../../../../../.rvm/gems/ruby-1.9.2-p290@rails31/gems/compass-0.12.alpha.0/frameworks/blueprint/stylesheets/blueprint/_form.scss */
-.sessions .login .form textarea {
+.sessions .login form textarea {
   margin: 0.5em 0;
   padding: 5px;
 }
 /* line 30, ../../../../../.rvm/gems/ruby-1.9.2-p290@rails31/gems/compass-0.12.alpha.0/frameworks/blueprint/stylesheets/blueprint/_form.scss */
-.sessions .login .form select {
+.sessions .login form select {
   margin: 0.5em 0;
 }
 /* line 55, ../../../../../.rvm/gems/ruby-1.9.2-p290@rails31/gems/compass-0.12.alpha.0/frameworks/blueprint/stylesheets/blueprint/_form.scss */
-.sessions .login .form fieldset {
+.sessions .login form fieldset {
   border: 1px solid #cccccc;
 }
 /* line 58, ../../../../../.rvm/gems/ruby-1.9.2-p290@rails31/gems/compass-0.12.alpha.0/frameworks/blueprint/stylesheets/blueprint/_form.scss */
-.sessions .login .form input.text, .sessions .login .form input.title, .sessions .login .form input[type=email], .sessions .login .form input[type=text], .sessions .login .form input[type=password],
-.sessions .login .form textarea {
+.sessions .login form input.text, .sessions .login form input.title, .sessions .login form input[type=email], .sessions .login form input[type=text], .sessions .login form input[type=password],
+.sessions .login form textarea {
   background-color: #fff;
   border: 1px solid #bbbbbb;
 }
 /* line 61, ../../../../../.rvm/gems/ruby-1.9.2-p290@rails31/gems/compass-0.12.alpha.0/frameworks/blueprint/stylesheets/blueprint/_form.scss */
-.sessions .login .form input.text:focus, .sessions .login .form input.title:focus, .sessions .login .form input[type=email]:focus, .sessions .login .form input[type=text]:focus, .sessions .login .form input[type=password]:focus,
-.sessions .login .form textarea:focus {
+.sessions .login form input.text:focus, .sessions .login form input.title:focus, .sessions .login form input[type=email]:focus, .sessions .login form input[type=text]:focus, .sessions .login form input[type=password]:focus,
+.sessions .login form textarea:focus {
   border-color: #666666;
 }
 /* line 65, ../../../../../.rvm/gems/ruby-1.9.2-p290@rails31/gems/compass-0.12.alpha.0/frameworks/blueprint/stylesheets/blueprint/_form.scss */
-.sessions .login .form select {
+.sessions .login form select {
   background-color: #fff;
   border-width: 1px;
   border-style: solid;
 }
 /* line 44, ../../../../../.rvm/gems/ruby-1.9.2-p290@rails31/gems/compass-0.12.alpha.0/frameworks/blueprint/stylesheets/blueprint/_form.scss */
-.sessions .login .form input.text, .sessions .login .form input.title, .sessions .login .form input[type=email], .sessions .login .form input[type=text], .sessions .login .form input[type=password] {
+.sessions .login form input.text, .sessions .login form input.title, .sessions .login form input[type=email], .sessions .login form input[type=text], .sessions .login form input[type=password] {
   width: 300px;
 }
 /* line 46, ../../../../../.rvm/gems/ruby-1.9.2-p290@rails31/gems/compass-0.12.alpha.0/frameworks/blueprint/stylesheets/blueprint/_form.scss */
-.sessions .login .form textarea {
+.sessions .login form textarea {
   width: 390px;
   height: 250px;
 }
 /* line 10, ../../../app/assets/stylesheets/sessions/sessions.css.sass */
-.sessions .login .form label {
+.sessions .login form label {
   display: inline;
   float: left;
   margin-right: 10px;
   width: 150px;
 }
 /* line 147, ../../../../../.rvm/gems/ruby-1.9.2-p290@rails31/gems/compass-0.12.alpha.0/frameworks/blueprint/stylesheets/blueprint/_grid.scss */
-* html .sessions .login .form label {
+* html .sessions .login form label {
   overflow-x: hidden;
 }
 /* line 13, ../../../app/assets/stylesheets/sessions/sessions.css.sass */
-.sessions .login .form input {
+.sessions .login form input {
   display: inline;
   float: left;
   margin-right: 0;
   width: 790px;
 }
 /* line 147, ../../../../../.rvm/gems/ruby-1.9.2-p290@rails31/gems/compass-0.12.alpha.0/frameworks/blueprint/stylesheets/blueprint/_grid.scss */
-* html .sessions .login .form input {
+* html .sessions .login form input {
   overflow-x: hidden;
 }
 

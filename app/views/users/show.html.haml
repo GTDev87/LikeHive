@@ -14,8 +14,7 @@
 
     -#{@user.habitation.locations.size}
     - @user.habitation.locations.each do |location|
-      -#-if location._type == "Zipcode"
-      - if location.number != nil #HACK HACK HACK ALERT
+      - if location._type == "Zipcode"      
         Zipcode: #{location.number}
 
   %user_recommendations 

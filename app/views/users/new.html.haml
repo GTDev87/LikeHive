@@ -9,10 +9,10 @@
       = gender_fields.input :female, :as => :radio, :label => "Gender", :collection => [["Male",false], ["Female",true]]
   = f.simple_fields_for :habitation do |habitation_fields|
     - @user.habitation.locations.each do |location|
-      -# if location._type == "Zipcode"#HACK HACK HACK ALERT
       = habitation_fields.simple_fields_for :locations, location do |location_fields|
-        = location_fields.input :number, :label => "Zipcode"
-        = location_fields.input :_type, :as => :hidden, :value => "Zipcode"
+        - if location._type == "Zipcode"
+          = location_fields.input :number, :label => "Zipcode"
+          = location_fields.input :_type, :as => :hidden, :value => "Zipcode"
   = f.input :email, :as => :email
   = f.input :password, :as => :password
   = f.input :password_confirmation, :as => :password

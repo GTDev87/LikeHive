@@ -26,8 +26,8 @@ class User
   
   attr_accessor :like_name, :like_box
   
-  before_save :assign_like
-  before_save :assign_multiple_likes  
+  after_save :assign_like
+  after_save :assign_multiple_likes  
   
   def email=(email_name)
     self[:email] = StringFormatter.lowercase(email_name)
