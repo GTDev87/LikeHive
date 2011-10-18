@@ -1,19 +1,19 @@
 .simple_form
   label
+    +column(4) 
     float: left
-    width: 100px
-    text-align: left
-    margin: 2px 10px
+    text-align: left    
 
   div.input
-    margin-bottom: 10px
-
+    +append-bottom(10px)    
+    
   input[type='submit']
-    margin-left: 120px
+    +push(4)
+    +column(2)    
   
-
   div.boolean
-    margin-left: 120px
+    +column(4)    
+
     label
       float: none
       margin: 0    
@@ -25,15 +25,15 @@
     margin: 0
 
   .error
-    clear: left
-    margin-left: 120px
+    +column(4)
+    clear: left    
     font-size: 12px
     color: #D00
     display: block  
 
   .hint
-    clear: left
-    margin-left: 120px
+    +column(4)
+    clear: left    
     font-size: 12px
     color: #555
     display: block

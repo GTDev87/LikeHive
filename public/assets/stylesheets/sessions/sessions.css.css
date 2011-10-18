@@ -1,21 +1,45 @@
 /* line 9, ../../../../app/assets/stylesheets/sessions/sessions.css.sass */
 .sessions .login form label {
+  display: inline;
   float: left;
-  width: 100px;
+  margin-right: 10px;
+  width: 150px;
+  float: left;
   text-align: left;
-  margin: 2px 10px;
 }
-/* line 15, ../../../../app/assets/stylesheets/sessions/sessions.css.sass */
+/* line 147, ../../../../../../.rvm/gems/ruby-1.9.2-p290@rails31/gems/compass-0.12.alpha.0/frameworks/blueprint/stylesheets/blueprint/_grid.scss */
+* html .sessions .login form label {
+  overflow-x: hidden;
+}
+/* line 14, ../../../../app/assets/stylesheets/sessions/sessions.css.sass */
 .sessions .login form div.input {
   margin-bottom: 10px;
 }
-/* line 18, ../../../../app/assets/stylesheets/sessions/sessions.css.sass */
+/* line 17, ../../../../app/assets/stylesheets/sessions/sessions.css.sass */
 .sessions .login form input[type='submit'] {
-  margin-left: 120px;
+  display: inline;
+  float: left;
+  position: relative;
+  margin: 0 -160px 1.5em 160px;
+  display: inline;
+  float: left;
+  margin-right: 10px;
+  width: 70px;
 }
-/* line 22, ../../../../app/assets/stylesheets/sessions/sessions.css.sass */
+/* line 147, ../../../../../../.rvm/gems/ruby-1.9.2-p290@rails31/gems/compass-0.12.alpha.0/frameworks/blueprint/stylesheets/blueprint/_grid.scss */
+* html .sessions .login form input[type='submit'] {
+  overflow-x: hidden;
+}
+/* line 21, ../../../../app/assets/stylesheets/sessions/sessions.css.sass */
 .sessions .login form div.boolean {
-  margin-left: 120px;
+  display: inline;
+  float: left;
+  margin-right: 10px;
+  width: 150px;
+}
+/* line 147, ../../../../../../.rvm/gems/ruby-1.9.2-p290@rails31/gems/compass-0.12.alpha.0/frameworks/blueprint/stylesheets/blueprint/_grid.scss */
+* html .sessions .login form div.boolean {
+  overflow-x: hidden;
 }
 /* line 24, ../../../../app/assets/stylesheets/sessions/sessions.css.sass */
 .sessions .login form div.boolean label {
@@ -31,18 +55,32 @@
 }
 /* line 34, ../../../../app/assets/stylesheets/sessions/sessions.css.sass */
 .sessions .login form .error {
+  display: inline;
+  float: left;
+  margin-right: 10px;
+  width: 150px;
   clear: left;
-  margin-left: 120px;
   font-size: 12px;
   color: #dd0000;
   display: block;
 }
+/* line 147, ../../../../../../.rvm/gems/ruby-1.9.2-p290@rails31/gems/compass-0.12.alpha.0/frameworks/blueprint/stylesheets/blueprint/_grid.scss */
+* html .sessions .login form .error {
+  overflow-x: hidden;
+}
 /* line 41, ../../../../app/assets/stylesheets/sessions/sessions.css.sass */
 .sessions .login form .hint {
+  display: inline;
+  float: left;
+  margin-right: 10px;
+  width: 150px;
   clear: left;
-  margin-left: 120px;
   font-size: 12px;
   color: #555555;
   display: block;
   font-style: italic;
+}
+/* line 147, ../../../../../../.rvm/gems/ruby-1.9.2-p290@rails31/gems/compass-0.12.alpha.0/frameworks/blueprint/stylesheets/blueprint/_grid.scss */
+* html .sessions .login form .hint {
+  overflow-x: hidden;
 }

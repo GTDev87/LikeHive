@@ -6,5 +6,6 @@ class UserGender
   embedded_in :profile, :inverse_of => :gender
   
   attr_accessible :female
+  
   validates_inclusion_of :female, :in => [true,false]
 end

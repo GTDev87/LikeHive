@@ -4,6 +4,7 @@ class Zipcode < Location
   field :number
 
   validate :check_zipcode
+  validates_presence_of :number
   
   def check_zipcode
     if self.number == nil
