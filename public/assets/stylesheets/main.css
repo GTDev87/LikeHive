@@ -2311,18 +2311,44 @@ footer {
   overflow-x: hidden;
 }
 
-/* line 53, ../../../app/assets/stylesheets/main.sass */
+/* line 56, ../../../app/assets/stylesheets/main.sass */
 #flash_notice {
-  padding: 5px 8px;
+  display: inline;
+  float: left;
+  position: relative;
+  margin: 0 -160px 1.5em 160px;
+  display: inline;
+  float: left;
+  margin-right: 10px;
+  width: 310px;
   margin: 10px 0;
+  font-size: 16px;
+  color: #111111;
   background-color: #ccffcc;
   border: solid 1px #66cc66;
 }
+/* line 147, ../../../../../.rvm/gems/ruby-1.9.2-p290@rails31/gems/compass-0.12.alpha.0/frameworks/blueprint/stylesheets/blueprint/_grid.scss */
+* html #flash_notice {
+  overflow-x: hidden;
+}
 
-/* line 58, ../../../app/assets/stylesheets/main.sass */
+/* line 61, ../../../app/assets/stylesheets/main.sass */
 #flash_alert {
-  padding: 5px 8px;
+  display: inline;
+  float: left;
+  position: relative;
+  margin: 0 -160px 1.5em 160px;
+  display: inline;
+  float: left;
+  margin-right: 10px;
+  width: 310px;
   margin: 10px 0;
+  font-size: 16px;
+  color: #111111;
   background-color: #aacccc;
   border: solid 1px #cc6666;
+}
+/* line 147, ../../../../../.rvm/gems/ruby-1.9.2-p290@rails31/gems/compass-0.12.alpha.0/frameworks/blueprint/stylesheets/blueprint/_grid.scss */
+* html #flash_alert {
+  overflow-x: hidden;
 }
