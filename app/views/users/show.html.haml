@@ -12,12 +12,8 @@
     Age: #{@user.profile.age.age_in_years}
     %p 
 
-    -#{@user.habitation.locations.size}
     - @user.habitation.locations.each do |location|
-      location = #{location}
-      location.attributes = #{location.attributes}
-      location.type = #{location._type}
-      - if location._type == "Zipcode"      
+      - if location.number != nil ##Hack    
         Zipcode: #{location.number}
 
   %user_recommendations 
