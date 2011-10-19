@@ -36,7 +36,7 @@ class UsersController < ApplicationController
     like_recommender = Recommender.new(RandomLikeRecommendationGenerator.new(@user))
     @like_recommendations = like_recommender.get_recommendations(number_of_interests)
     user_recommender = Recommender.new(RandomUserRecommendationGenerator.new(@user))
-    @user_recommender = user_recommender.get_recommendations(recommended_users)
+    @user_recommendations = user_recommender.get_recommendations(recommended_users)
     authorize! :read, @user
   end
   

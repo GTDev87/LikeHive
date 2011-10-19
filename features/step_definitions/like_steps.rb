@@ -10,8 +10,11 @@ end
 
 Given /^The user with email "([^"]*)" likes "([^"]*)"$/ do |email, like_name|
   user = User.find(:first, :conditions => { :email => email.downcase })
-  like = LikeCreator.create(:name => like_name.downcase)
-  like.following.users << user
+  user.add_like(like_name)
+end
+
+Given /^I like "([^"]*)"$/ do |like_name|
+  @user.add_like(like_name)
 end
 
 When /^I look at the "([^"]*)" like page$/ do |like|
@@ -24,7 +27,6 @@ end
 
 Given /^I like the following:$/ do |likes|
   likes.raw.flatten.map do |like_name|
-    @user.like_name = like_name
-    @user.save!()
+    @user.add_like(like_name)
   end
 end

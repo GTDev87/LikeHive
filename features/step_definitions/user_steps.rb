@@ -108,8 +108,8 @@ Given /^I have a like "([^"]*)"$/ do |like_name|
   @user.save!()
 end
 
-Given /^There are the following users:$/ do |users|
-  users.raw.flatten.map do |user_name|
-    Factory(:user, :profile => Factory.build(:user_profile, :name => Factory.build(:user_name, :first => user_name)))
+Given /^There are the following users:$/ do |emails|
+  emails.raw.flatten.map do |user_email|
+    Factory(:user, :email => user_email)
   end
 end

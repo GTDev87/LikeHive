@@ -15,8 +15,8 @@ Feature: Show Like Page
       Then I should see "Flying Fish"
       
     Scenario: Seeing users on likes page
-      Given There is a user with an email "Greg@test.com" and password "OhThatGreg"
-      And The user with email "Greg@test.com" likes "Pizza" 
+      Given There is a user with an email "greg@test.com" and password "OhThatGreg"
+      And The user with email "greg@test.com" likes "Pizza" 
       When I look at the "pizza" like page
       Then I should see "greg@test.com"
       

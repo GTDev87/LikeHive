@@ -20,7 +20,7 @@
     People Recomendations:
     %br
     - user_index = 1#HACK
-    - @user_recommender.each do |user|
+    - @user_recommendations.each do |user|
       #{link_to("Suggested #{user_index}", user)}
       - user_index = user_index + 1#this can be cleaned up HACK
       %br

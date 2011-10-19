@@ -56,7 +56,7 @@ class User
   end
   
   def add_like(like_name)
-    UserLikeLinker.link_user_and_like(self, @personality.get_new_like(like_name))    
+    UserLikeLinker.link_user_and_like(self, self.personality.get_new_like(like_name))    
   end
 end
 
