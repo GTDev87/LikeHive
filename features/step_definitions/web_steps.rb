@@ -141,16 +141,26 @@ Then /^(?:|I )should not see "([^"]*)"$/ do |text|
   end
 end
 
-Then /^I should see (\d+) of the following:$/ do |number, likes|
-  likes_found = 0
-  likes.raw.flatten.map do |like_name|
+Then /^I should see (\d+) of the following:$/ do |number, strings|
+  strings_found = 0
+  strings.raw.flatten.map do |string|
     if page.respond_to? :should
-      if page.has_content?(like_name)
-        likes_found = likes_found + 1
+      if page.has_content?(string)
+        strings_found = strings_found + 1
       end
     end
   end
-  likes_found.should be(number.to_i), page.text
+  strings_found.should be(number.to_i), page.text
+end
+
+Then /^I should see the following:$/ do |strings|
+  strings.raw.flatten.map do |string|
+    if page.respond_to? :should
+      page.should have_content(string)
+    else
+      assert page.has_content?(string)
+    end
+  end
 end
 
 Then /^(?:|I )should not see \/([^\/]*)\/$/ do |regexp|

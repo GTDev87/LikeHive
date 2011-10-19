@@ -14,21 +14,26 @@
 
     -#{@user.habitation.locations.size}
     - @user.habitation.locations.each do |location|
+      location = #{location}
+      location.attributes = #{location.attributes}
+      location.type = #{location._type}
       - if location._type == "Zipcode"      
         Zipcode: #{location.number}
 
   %user_recommendations 
     People Recomendations:
     %br
+    - user_index = 1#HACK
     - @user_recommender.each do |user|
-      #{user.profile.name.first} #{user.profile.name.last_initial}
+      #{link_to("Suggested #{user_index}", user)}
+      - user_index = user_index + 1#this can be cleaned up HACK
       %br
     %p
   %like_recommendations
     Interest Recomendations:
     %br
     - @like_recommendations.each do |like|
-      #{StringFormatter.capitalize_words(like.name)}
+      #{link_to StringFormatter.capitalize_words(like.name), like}
       %br
     %p
   %add_single_like

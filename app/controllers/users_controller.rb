@@ -7,6 +7,14 @@ class UsersController < ApplicationController
   def create
     @user = User.new params[:user]
     @user.build_personality
+  
+    #puts "params = #{params}"
+    #puts
+    
+    #@user.habitation.locations.each do |loc|
+    #  puts "before location save = #{loc.attributes}"
+    #end
+    
     if @user.save
       @user.habitation.save ### monkey patch hack
       login(params[:user][:email], params[:user][:password])
