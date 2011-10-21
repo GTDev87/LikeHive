@@ -20,8 +20,10 @@
     People Recomendations:
     %br
     - user_index = 1#HACK
-    - @user_recommendations.each do |user|
-      #{link_to("Suggested #{user_index}", user)}
+    - @user_peeks.each do |user_peek|
+      Suggested #{user_index}
+      - user_peek.similar_likes.each do |similar_like|
+        Common Interests #{link_to StringFormatter.capitalize_words(similar_like.name), similar_like}
       - user_index = user_index + 1#this can be cleaned up HACK
       %br
     %p

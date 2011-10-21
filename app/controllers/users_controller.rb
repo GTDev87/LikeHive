@@ -34,9 +34,14 @@ class UsersController < ApplicationController
     recommended_users = 5
     
     like_recommender = Recommender.new(RandomLikeRecommendationGenerator.new(@user))
-    @like_recommendations = like_recommender.get_recommendations(number_of_interests)
+    @like_recommendations = like_recommender.get_recommendations(number_of_interests).like_list
+    
     user_recommender = Recommender.new(RandomUserRecommendationGenerator.new(@user))
-    @user_recommendations = user_recommender.get_recommendations(recommended_users)
+    user_recommendation = user_recommender.get_recommendations(recommended_users)
+    user_glimmer = UserRecommendationGlimmer.new(@user)
+    user_recommendation.accept(user_glimmer)
+    @user_peeks = user_glimmer.user_peeks
+    
     authorize! :read, @user
   end
   
