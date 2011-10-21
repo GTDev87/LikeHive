@@ -1,56 +1,63 @@
 .show
-  %profile
-    Profile:
-    %p
-    User: #{@user.profile.name.first} #{@user.profile.name.last_initial}.
-    %p
-    - if @user.profile.gender.female == true
-      Gender: Female
-    - else
-      Gender: Male
-    %p 
-    Age: #{@user.profile.age.age_in_years}
-    %p 
+  %left_panel
+    %profile
+      Profile:
+      %p
+      User: #{@user.profile.name.first} #{@user.profile.name.last_initial}.
+      %p
+      - if @user.profile.gender.female == true
+        Gender: Female
+      - else
+        Gender: Male
+      %p 
+      Age: #{@user.profile.age.age_in_years}
+      %p 
 
-    - @user.habitation.locations.each do |location|
-      - if location.number != nil ##Hack    
-        Zipcode: #{location.number}
-
-  %user_recommendations 
-    People Recomendations:
-    %br
-    - user_index = 1#HACK
-    - @user_peeks.each do |user_peek|
-      Suggested #{user_index}
-      %br
-      Common Interests:
-      %br
-      - user_peek.similar_likes.each do |similar_like|
-        #{link_to StringFormatter.capitalize_words(similar_like.name), similar_like}
+      - @user.habitation.locations.each do |location|
+        - if location.number != nil ##Hack    
+          Zipcode: #{location.number}
+        
+    %like_adders
+      %add_single_like
+        = form_for @user do |form|
+          %p
+            = form.text_field :like_name
+            = form.submit "Add Like"
+        
+      %add_multiple_likes
+        = form_for @user do |form|
+          %p
+            = form.text_area :like_box
+          %p
+            = form.submit "Add Likes"
+          
+  %right_panel
+    %recommendations
+      %user_recommendations 
+        People Recomendations:
         %br
-      - user_index = user_index + 1#this can be cleaned up HACK
-      %br
-      %br
-    %p
-  %like_recommendations
-    Interest Recomendations:
-    %br
-    - @like_recommendations.each do |like|
-      #{link_to StringFormatter.capitalize_words(like.name), like}
-      %br
-    %p
-  %add_single_like
-    = form_for @user do |form|
-      %p
-        = form.text_field :like_name
-        = form.submit "Add Like"
+        - user_index = 1#HACK
+        - @user_peeks.each do |user_peek|
+          Suggested #{user_index}
+          %br
+          Common Interests:
+          %br
+          - user_peek.similar_likes.each do |similar_like|
+            #{link_to StringFormatter.capitalize_words(similar_like.name), similar_like}
+            %br
+          - user_index = user_index + 1#this can be cleaned up HACK
+          %br
+          %br
+        %p
   
-  %add_multiple_likes
-    = form_for @user do |form|
-      %p
-        = form.text_area :like_box
-      %p
-        = form.submit "Add Likes"
+        
+      %like_recommendations
+        Interest Recomendations:
+        %br
+        - @like_recommendations.each do |like|
+          #{link_to StringFormatter.capitalize_words(like.name), like}
+          %br
+        %p
 
   %user_personality
     Likes (#{@user.personality.likes.size}):
