@@ -5,6 +5,6 @@ class RandomLikeRecommendationGenerator
   
   def generate_recommendations(number_of_interests)
     other_likes = LikeQuery.query_likes_without_names(@user.personality.get_like_names)
-    return other_likes.return_n_random(number_of_interests)
+    return LikeRecommendation.new(other_likes.return_n_random(number_of_interests))
   end
 end

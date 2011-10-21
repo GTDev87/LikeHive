@@ -12,7 +12,7 @@ describe Recommender do
       user = Factory(:user)
       random_generator = RandomLikeRecommendationGenerator.new(user)
       recommender = Recommender.new(random_generator)
-      recommender.get_recommendations(5).size.should == 5
+      recommender.get_recommendations(5).like_list.size.should == 5
     end
   end
   
@@ -27,7 +27,7 @@ describe Recommender do
       user = Factory(:user)
       random_generator = RandomUserRecommendationGenerator.new(user)
       recommender = Recommender.new(random_generator)
-      recommender.get_recommendations(5).size.should == 5
+      recommender.get_recommendations(5).user_list.size.should == 5
     end
   end
   

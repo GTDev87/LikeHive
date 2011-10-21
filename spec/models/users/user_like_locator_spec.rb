@@ -18,11 +18,6 @@ describe UserLikeLocator do
     
     it "should return nil if like is not found" do      
       @user_locator.find_like("running").should == nil
-    end
-    
-    it "should return likes are not initialized" do
-      @user_personality.likes = nil
-      @user_locator.find_like("running").should == nil
-    end
+    end    
   end
 end

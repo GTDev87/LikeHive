@@ -11,7 +11,7 @@ describe RandomLikeRecommendationGenerator do
       7.times do
         Factory(:like)
       end
-      @recommendation_generator.generate_recommendations(5).size.should == 5
+      @recommendation_generator.generate_recommendations(5).like_list.size.should == 5
     end
     
     it "should return likes not owned by user" do
@@ -31,7 +31,7 @@ describe RandomLikeRecommendationGenerator do
         owned_likes[like.name] = true
       end
       
-      @recommendation_generator.generate_recommendations(4).each do |like|
+      @recommendation_generator.generate_recommendations(4).like_list.each do |like|
         owned_likes.should_not have_key(like.name)
         unowned_likes.should have_key(like.name)
       end
