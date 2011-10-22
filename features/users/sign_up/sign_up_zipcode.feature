@@ -1,4 +1,4 @@
-Feature: Sign up
+Feature: Sign up Zipcode
   In order to get access to protected sections of the site
   As a user
   I want to be able to sign up with my zipcode
@@ -20,7 +20,6 @@ Feature: Sign up
       And I fill in "Zipcode" with "11210"
       And I press "Sign up"
       Then I should see "Welcome! You have signed up successfully."
-      When I follow "user@test.com"
       Then I should see "Zipcode: 11210"
       
     Scenario: User signs up wrong number of number with zipcode

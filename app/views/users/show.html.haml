@@ -36,7 +36,7 @@
     %recommendations
       %user_recommendations
         %user_header
-          People Recomendations:
+          People Recommendations:
         %br
         - @user_peeks.each_with_index do |user_peek, user_index|
           Suggested #{user_index+1}
@@ -52,7 +52,7 @@
         
       %like_recommendations
         %user_header
-          Interest Recomendations:
+          Interest Recommendations:
         %br
         - @like_recommendations.each do |like|
           #{link_to StringFormatter.capitalize_words(like.name), like}

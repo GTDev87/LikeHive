@@ -9,14 +9,12 @@ Feature: Add Likes
       And I have a like "pizza"
       And I have a like "breadsticks"
       When I sign in as "greg@test.com/please"
-      When I follow "greg@test.com"
       Then I should see "Pizza"
       And I should see "Breadsticks"
 
     Scenario: Adding likes
       Given I am a user with an email "greg@test.com" and password "please"
       When I sign in as "greg@test.com/please"
-      And I follow "greg@test.com"
       And I fill in "user_like_name" with "Pony"
       And I press "Add Like"
       Then I should see "Pony"
@@ -24,7 +22,6 @@ Feature: Add Likes
     Scenario: Adding multiple likes
       Given I am a user with an email "greg@test.com" and password "please"
       When I sign in as "greg@test.com/please"
-      And I follow "greg@test.com"
       And I fill in "user_like_name" with "Cucumbers"
       And I press "Add Like"
       And I fill in "user_like_name" with "Cheese"
@@ -35,7 +32,6 @@ Feature: Add Likes
     Scenario: Likes are capitalized
       Given I am a user with an email "greg@test.com" and password "please"
       When I sign in as "greg@test.com/please"
-      And I follow "greg@test.com"
       And I fill in "user_like_name" with "cUcUmBeRs"
       And I press "Add Like"
       Then I should see "Cucumbers"
@@ -43,7 +39,6 @@ Feature: Add Likes
     Scenario: Adding likes with leading and trailing spaces the same like
       Given I am a user with an email "greg@test.com" and password "please"
       When I sign in as "greg@test.com/please"
-      And I follow "greg@test.com"
       And I fill in "user_like_name" with " potato"
       And I press "Add Like"
       And I fill in "user_like_name" with "potato "
@@ -54,13 +49,11 @@ Feature: Add Likes
     Scenario: "No Likes" is displayed with user has no likes
       Given I am a user with an email "greg@test.com" and password "please"
       When I sign in as "greg@test.com/please"
-      And I follow "greg@test.com"
       Then I should see "No Likes"
       
     Scenario: Blank Likes are not created program does not crash
       Given I am a user with an email "greg@test.com" and password "please"
       When I sign in as "greg@test.com/please"
-      And I follow "greg@test.com"
       And I fill in "user_like_name" with " "
       And I press "Add Like"
       Then I should see "No Likes"
@@ -68,7 +61,6 @@ Feature: Add Likes
     Scenario: Empty Likes are not created program does not crash
       Given I am a user with an email "greg@test.com" and password "please"
       When I sign in as "greg@test.com/please"
-      And I follow "greg@test.com"
       And I fill in "user_like_name" with ""
       And I press "Add Like"
       Then I should see "No Likes"

@@ -16,7 +16,6 @@ Feature: User Recomendations
       |g@test.com  |
       And I am a user with an email "greg@greg.com" and password "please"
       When I sign in as "greg@greg.com/please"
-      And I follow "greg@greg.com"
       Then I should see the following:
       |Suggested 1|
       |Suggested 2|
@@ -30,7 +29,6 @@ Feature: User Recomendations
       And I am a user with an email "greg@greg.com" and password "please"
       And I like "pizza"
       When I sign in as "greg@greg.com/please"
-      And I follow "greg@greg.com"
       Then I should see a recommended user with:
       |Suggested 1      |
       |Common Interests |

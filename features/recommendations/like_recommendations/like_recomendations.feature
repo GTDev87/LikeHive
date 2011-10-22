@@ -25,7 +25,6 @@ Feature: Like Recomendations
     Scenario: Seeing 5 Like Recomendations
       Given I am a user with an email "greg@test.com" and password "please"
       When I sign in as "greg@test.com/please"
-      And I follow "greg@test.com"
       Then I should see 5 of the following:
       |Fish       |
       |Pizza      |
@@ -60,7 +59,6 @@ Feature: Like Recomendations
       |Aggression |
       |Galileo    |
       When I sign in as "greg@test.com/please"
-      And I follow "greg@test.com"
       Then I should not be recommended:
       |Fish       |
       |Pizza      |
@@ -91,7 +89,6 @@ Feature: Like Recomendations
       |Aggression |
       |Galileo    |
       When I sign in as "greg@test.com/please"
-      And I follow "greg@test.com"
       Then I should be recommended:
       |Keplar     |
       |Euler      |
@@ -114,6 +111,5 @@ Feature: Like Recomendations
       |Aggression |
       |Galileo    |
       When I sign in as "greg@test.com/please"
-      And I follow "greg@test.com"
       And I follow "Interest Nobody Likes"
       Then I should see "Interest Nobody Likes"

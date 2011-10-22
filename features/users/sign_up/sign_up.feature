@@ -20,8 +20,7 @@ Feature: Sign up
       And I select date "06/27/1987" in "Date of birth"
       And I press "Sign up"
       Then I should see "Welcome! You have signed up successfully."
-      When I follow "user@test.com"
-      Then I should see "User: Testy McUserton T."
+      And I should see "User: Testy McUserton T."
       And I should see "Gender: Male"
       And I should see "Logged in as user@test.com"
       
@@ -56,7 +55,6 @@ Feature: Sign up
       And choose "Female"
       And I select date "06/27/1987" in "Date of birth"
       And I press "Sign up"
-      And I follow "user@test.com"
       And I should see "Gender: Female"
       
     Scenario: User signs up Last Initial reflected
@@ -70,7 +68,6 @@ Feature: Sign up
       And choose "Female"
       And I select date "06/27/1987" in "Date of birth"
       And I press "Sign up"
-      And I follow "user@test.com"
       Then I should see "User: Testy McUserton X."
       
     Scenario: User signs up without age
@@ -97,7 +94,6 @@ Feature: Sign up
       And choose "Female"
       And I select date "06/27/1987" in "Date of birth"
       And I press "Sign up"
-      And I follow "user@test.com"
       Then I should see "Age: 24"
     
     Scenario: User signs up without first name

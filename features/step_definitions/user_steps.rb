@@ -72,6 +72,10 @@ When /^I login$/ do
   visit('/login')
 end
 
+When /^I navigate to the user "([^"]*)" page$/ do |user_page|
+  visit("/users/#{user_page}")
+end
+
 Given /^I am logout$/ do
   Given %{I sign out}
 end
