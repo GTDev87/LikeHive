@@ -1,5 +1,18 @@
 Release Notes
 
+10/22/11 LikeHive0.0.5
+Added user recommendations to page
+  - recommendations do not show user names currently
+
+Shows common interests between users
+  - Also adds links to like pages between them
+
+Redirect to login url when authentication fails
+
+Deleted testing email homepage names
+
+Made things prettier by using compass and blueprint
+
 10/15/11 LikeHive0.0.4
 Added To user's show page:
   Random interests they may enjoy:
