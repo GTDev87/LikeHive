@@ -14,14 +14,29 @@ describe UserPersonality do
   end
   
   describe "Getting All Like Names" do
-    it "should return all like names" do
-      @user_personality.likes << Factory.build(:like, :name => "Pizza")
-      @user_personality.likes << Factory.build(:like, :name => "Fish")
-      @user_personality.likes << Factory.build(:like, :name => "French Fries")
-      @user_personality.likes << Factory.build(:like, :name => "Cheese")
-
-      like_names = @user_personality.get_like_names
-      like_names.should =~ ["pizza", "fish", "french fries", "cheese"]
+    
+    class MockLikeVisitor
+      attr_reader :likes_visited
+      def initialize()
+        @likes_visited = []
+      end
+      def continue_visit_like(like)
+        @likes_visited << like
+      end
+    end
+    
+    it "should let visitor visit all likes" do
+      like_array = []
+      like_array << Factory.build(:like, :name => "Pizza")
+      like_array << Factory.build(:like, :name => "Fish")
+      like_array << Factory.build(:like, :name => "French Fries")
+      like_array << Factory.build(:like, :name => "Cheese")
+    
+      @user_personality.likes.concat(like_array)
+      
+      mock_visitor = MockLikeVisitor.new
+      like_names = @user_personality.accept_like_visitor(mock_visitor)
+      mock_visitor.likes_visited.should =~ like_array
     end
   end
   

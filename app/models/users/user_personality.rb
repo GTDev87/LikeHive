@@ -26,11 +26,11 @@ class UserPersonality
     return @user_like_locator.find_like(like_name)
   end
   
-  def get_like_names
-    array = []
+  def accept_like_visitor(visitor)
     self.likes.each do |like|
-      array << like.name
+      if !visitor.continue_visit_like(like)
+        return
+      end
     end
-    return array
   end
 end

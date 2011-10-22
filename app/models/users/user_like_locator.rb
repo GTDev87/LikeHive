@@ -7,11 +7,8 @@ class UserLikeLocator
     if @user_personality.likes == nil
       return nil
     end
-    @user_personality.likes.each do |like|
-      if like.name == like_name
-        return like
-      end
-    end
-    return nil
+    user_locator_visitor = UserLikeLocatorVisitor.new(like_name)
+    @user_personality.accept_like_visitor(user_locator_visitor)
+    return user_locator_visitor.found_like
   end
 end

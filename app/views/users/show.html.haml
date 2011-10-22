@@ -1,7 +1,8 @@
 .show
   %left_panel
     %profile
-      Profile:
+      %user_header
+        Profile:
       %p
       User: #{@user.profile.name.first} #{@user.profile.name.last_initial}.
       %p
@@ -33,26 +34,25 @@
           
   %right_panel
     %recommendations
-      %user_recommendations 
-        People Recomendations:
+      %user_recommendations
+        %user_header
+          People Recomendations:
         %br
-        - user_index = 1#HACK
-        - @user_peeks.each do |user_peek|
-          Suggested #{user_index}
+        - @user_peeks.each_with_index do |user_peek, user_index|
+          Suggested #{user_index+1}
           %br
           Common Interests:
           %br
           - user_peek.similar_likes.each do |similar_like|
             #{link_to StringFormatter.capitalize_words(similar_like.name), similar_like}
             %br
-          - user_index = user_index + 1#this can be cleaned up HACK
-          %br
           %br
         %p
   
         
       %like_recommendations
-        Interest Recomendations:
+        %user_header
+          Interest Recomendations:
         %br
         - @like_recommendations.each do |like|
           #{link_to StringFormatter.capitalize_words(like.name), like}
@@ -60,7 +60,8 @@
         %p
 
   %user_personality
-    Likes (#{@user.personality.likes.size}):
+    %user_header
+      Likes (#{@user.personality.likes.size}):
     %br
     %script
     - if @user.personality.likes.size == 0#find way of updating num_likes
