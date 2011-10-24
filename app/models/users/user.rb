@@ -10,19 +10,20 @@ class User
 
   embeds_one :personality, class_name: "UserPersonality"
   accepts_nested_attributes_for :personality
+    
+  embeds_one :mailbox, class_name: "UserMailbox"
+  accepts_nested_attributes_for :mailbox
 
   validates_confirmation_of :password
   validates_presence_of :password, :on => :create
   
-  belongs_to :like_following, inverse_of: :users
-  
   key :email
-  validates_presence_of :habitation, :personality, :profile
+  validates_presence_of :habitation, :personality, :profile, :mailbox
   validates_uniqueness_of :email, :case_sensitive => false
 
   validates :email, :presence => true, :email => true
   
-  attr_accessible :email, :password, :password_confirmation, :remember_me, :like_box, :like_name, :habitation_attributes, :personality_attributes, :profile_attributes
+  attr_accessible :email, :password, :password_confirmation, :remember_me, :like_box, :like_name, :habitation_attributes, :personality_attributes, :profile_attributes, :mailbox_attributes
   
   attr_accessor :like_name, :like_box
   

@@ -4,6 +4,7 @@ Factory.define :user do |user|
   user.profile {Factory.build(:user_profile)}
   user.habitation {Factory.build(:user_habitation)}
   user.personality {Factory.build(:user_personality)}
+  user.mailbox {Factory.build(:user_mailbox)}
 end
 
 Factory.define :user_profile do |profile|
@@ -35,6 +36,19 @@ end
 
 Factory.define :user_personality do |personality|
   personality.likes []
+end
+
+Factory.define :user_mailbox do |mailbox|
+  mailbox.messages []
+end
+
+Factory.define :message do |message|
+  message.subject "Subject"
+  message.body "Body"
+  message.time "2011-06-16 00:00:00 Z"
+  
+  message.from { |from| from.association(:user) }
+  message.to []
 end
 
 Factory.define :like do |like|

@@ -62,6 +62,12 @@ describe User do
     user_invalid_personality.should_not be_valid
   end
   
+  it "should require non nil personality" do
+    user_invalid_mailbox = Factory.build(:user, :mailbox => nil)
+    
+    user_invalid_mailbox.should_not be_valid
+  end
+  
   it "should reject duplicate email addresses" do
     Factory(:user, :email => "duplicate@email.com")
     user_with_duplicate_email = Factory.build(:user, :email => "duplicate@email.com")

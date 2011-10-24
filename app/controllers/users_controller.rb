@@ -7,6 +7,7 @@ class UsersController < ApplicationController
   def create
     @user = User.new params[:user]
     @user.build_personality
+    @user.build_mailbox
   
     #puts "params = #{params}"
     #puts
