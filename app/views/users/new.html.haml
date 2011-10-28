@@ -12,7 +12,7 @@
       = habitation_fields.simple_fields_for :locations, location do |location_fields|
         - if location._type == "Zipcode"
           = location_fields.input :number, :label => "Zipcode"
-          = location_fields.input :_type, :as => :hidden, :value => "Zipcode"
+          = location_fields.input "_type", :as => :hidden, :value => "Zipcode"
   = f.input :email, :as => :email
   = f.input :password, :as => :password
   = f.input :password_confirmation, :as => :password

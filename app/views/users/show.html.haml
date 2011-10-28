@@ -15,7 +15,7 @@
       %p 
 
       - @user.habitation.locations.each do |location|
-        - if location.number != nil ##Hack    
+        - if location._type == "Zipcode"
           Zipcode: #{location.number}
         
     %like_adders

@@ -1,8 +1,7 @@
 class Location
-  include Mongoid::Document
+  include Mongoid::Document 
   
-  field :latitude
-  field :longitude
+  ##THIS LINE OF CODE IS THE CULPRIT
   
-  belongs_to :locatable, polymorphic: true
+  belongs_to :locatable, polymorphic: true, :inverse_of => :locations
 end

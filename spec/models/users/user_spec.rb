@@ -190,4 +190,22 @@ describe User do
       Like.count.should == 1
     end
   end
+  
+  describe "nested attribute assignment" do
+    before(:each) do
+      @params = {:user=>{:profile_attributes=>{:name_attributes=>{:first=>"s", :last_initial=>"S"}, :age_attributes=>{"date_of_birth(1i)"=>"1900", "date_of_birth(2i)"=>"06", "date_of_birth(3i)"=>"27"}, :gender_attributes=>{:female=>"false"}}, :habitation_attributes=>{:locations_attributes=>{"0"=>{:number=>"11111", :_type=>"Zipcode"}}}, :email=>"s@s.com", :password=>"s", :password_confirmation=>"s"}, :controller=>"users", :action=>"create"}
+    end
+    it "should assign zipcode when added to habitation through nested attributes" do
+      @params[:user][:habitation_attributes][:locations_attributes]["0"][:_type] = "Zipcode"
+      @params[:user][:habitation_attributes][:locations_attributes]["0"][:number] = "11111"
+      
+      user = User.new @params[:user]
+      
+      user.habitation.locations.each do |location|
+        puts "locatino = #{location.attributes}"
+        location._type.should == "Zipcode"
+        location.number.should == "11111"
+      end
+    end
+  end
 end

@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe Location do   
+describe Geolocation do   
   
   it "should create zipcode" do
     Factory(:zipcode)

@@ -32,6 +32,11 @@ end
 
 Factory.define :zipcode do |zipcode|
   zipcode.number "11210"
+  zipcode.geolocation {Factory.build(:geolocation)}
+end
+
+Factory.define :geolocation do |geolocation|
+  geolocation.coordinates []
 end
 
 Factory.define :user_personality do |personality|

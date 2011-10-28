@@ -6,6 +6,9 @@ class Zipcode < Location
   validate :check_zipcode
   validates_presence_of :number
   
+  embeds_one :geolocation, as: :mappable
+  
+  
   def check_zipcode
     if self.number == nil
       errors.add(:number, "Zipcode is invalid")
