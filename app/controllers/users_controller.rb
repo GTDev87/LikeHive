@@ -5,19 +5,9 @@ class UsersController < ApplicationController
   end
   
   def create
-    puts "params = #{params}"
-    puts
-    
     @user = User.new params[:user]
-    @user.habitation.locations.each do |loc|
-      puts "before location save = #{loc.attributes}"
-    end
-    puts @user.attributes
-    puts
     @user.build_personality
     @user.build_mailbox
-    
-    
     
     if @user.save
       @user.habitation.save ### monkey patch hack

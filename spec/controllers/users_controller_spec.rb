@@ -71,18 +71,11 @@ describe UsersController do
     end
     
     it "should pass zipcode type residence to user" do
-      puts "IM BEING RUN BITCHES"
       @user_params[:habitation_attributes][:locations_attributes]["0"][:_type] = "Zipcode"
       @user_params[:habitation_attributes][:locations_attributes]["0"][:number] = "11111"
 
-      puts "params are #{@user_params}"
-      puts
       post 'create', :user => @user_params
       
-      assigns[:user].habitation.locations.each do |loc|
-        puts "user location = #{loc.attributes}"
-      end
-
       assigns[:user].habitation.locations.each do |location|
         location._type.should == "Zipcode"
         location.number.should == "11111"

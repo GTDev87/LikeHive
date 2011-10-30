@@ -5,6 +5,6 @@ class UserHabitation
   
   embedded_in :user, :inverse_of => :habitation
   
-  #attr_accessible :locations_attributes
+  attr_accessible :locations_attributes
   accepts_nested_attributes_for :locations
 end

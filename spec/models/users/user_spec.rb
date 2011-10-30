@@ -198,11 +198,9 @@ describe User do
     it "should assign zipcode when added to habitation through nested attributes" do
       @params[:user][:habitation_attributes][:locations_attributes]["0"][:_type] = "Zipcode"
       @params[:user][:habitation_attributes][:locations_attributes]["0"][:number] = "11111"
-      
       user = User.new @params[:user]
-      
+
       user.habitation.locations.each do |location|
-        puts "locatino = #{location.attributes}"
         location._type.should == "Zipcode"
         location.number.should == "11111"
       end
