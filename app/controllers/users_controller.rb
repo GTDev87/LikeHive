@@ -32,6 +32,7 @@ class UsersController < ApplicationController
     
     user_recommender = Recommender.new(RandomUserRecommendationGenerator.new(@user))
     user_recommendation = user_recommender.get_recommendations(recommended_users)
+    
     user_glimmer = UserRecommendationGlimmer.new(@user)
     user_recommendation.accept(user_glimmer)
     @user_peeks = user_glimmer.user_peeks
