@@ -13,7 +13,7 @@ LikeHive::Application.routes.draw do
   get "signup" => "users#new", :as => "signup"
   match "signup" => "users#create", :via => "post"
 
-  get "mailbox" => "messages#index", :as => "mailbox"
+  get "mailbox" => "user_mailbox#show", :as => "mailbox"
 
   # The priority is based upon order of creation:
   # first created -> highest priority.

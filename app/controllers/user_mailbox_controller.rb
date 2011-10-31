@@ -1,4 +1,4 @@
-class MessagesController < ApplicationController
+class UserMailboxController < ApplicationController
   def new
   end
   
