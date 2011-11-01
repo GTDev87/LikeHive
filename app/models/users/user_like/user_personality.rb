@@ -11,7 +11,7 @@ class UserPersonality
 
   def initialize_user_personality
     @user_like_locator = UserLikeLocator.new(self)
-    @user_like_generator = UserLikeGenerator.new(self)
+    @user_like_generator = UserLikeGenerator.new(@user_like_locator)
   end
   
   def get_new_likes(likes_string)

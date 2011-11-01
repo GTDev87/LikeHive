@@ -7,4 +7,14 @@ class UserMailbox
   
   attr_accessible :messages_attributes
   accepts_nested_attributes_for :messages
+  
+  after_initialize :initialize_user_inbox, :initialize_user_outbox
+  
+  def initialize_user_inbox
+    #UserInbox.new(self.messages.where())
+  end
+  
+  def initialize_user_outbox
+    #UserOutbox.new(self.messages.where())
+  end
 end
