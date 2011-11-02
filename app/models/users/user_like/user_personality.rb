@@ -7,10 +7,11 @@ class UserPersonality
   embedded_in :user, :inverse_of => :personality
   after_initialize :initialize_user_personality
   
-  attr_reader :user_like_locator
+  attr_reader :user_like_locator, :user_like_container
 
   def initialize_user_personality
-    @user_like_locator = UserLikeLocator.new(self)
+    @user_like_container = UserLikeContainer.new(self.likes)
+    @user_like_locator = UserLikeLocator.new(@user_like_container)
     @user_like_generator = UserLikeGenerator.new(@user_like_locator)
   end
   
@@ -24,13 +25,5 @@ class UserPersonality
   
   def find_like(like_name)   
     return @user_like_locator.find_like(like_name)
-  end
-  
-  def accept_like_visitor(visitor)
-    self.likes.each do |like|
-      if !visitor.continue_visit_like(like)
-        return
-      end
-    end
   end
 end
