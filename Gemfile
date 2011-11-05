@@ -25,7 +25,9 @@ gem "factory_girl_rails", :group => :test
 gem "cucumber-rails", :group => :test
 gem "capybara", :group => :test
 gem "launchy", :group => :test
-gem "bson_ext"
+gem 'mongo', '= 1.3.1' 
+gem 'bson', '= 1.3.1' 
+gem 'bson_ext', '= 1.3.1' 
 gem "mongoid"
 gem "frontend-helpers"
 gem "rails-footnotes", :group => :development
