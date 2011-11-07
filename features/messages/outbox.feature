@@ -1,12 +1,12 @@
 Feature: User Inbox
   In order for users to communicate
   As a registered user of the website
-  I want to receive messages
+  I want to send messages
 
-  Scenario: Viewing incoming messages
+  Scenario: Viewing outgoing messages
     Given I am a user with an email "greg@test.com" and password "please"
     And There is a user with an email "reid@test.com" and password "please"
-    And "reid@test.com" sent a message to "greg@test.com" with subject "foo" and body "bar"
+    And "greg@test.com" sent a message to "reid@test.com" with subject "foo" and body "bar"
     When I sign in as "greg@test.com/please"    
     And I follow "Mailbox"
-    Then I should have message "foo" in my inbox
+    Then I should have message "foo" in my outbox

@@ -1,17 +1,17 @@
 require 'spec_helper'
 
-describe LikeCriteriaQuery do
+describe CriteriaQueryReturner do
   before(:each) do
     
   end
-  describe "finding likes" do
+  describe "returning likes" do
     it "should return random likes" do      
       7.times do
         like = Factory(:like)
       end
       
-      query = LikeCriteriaQuery.new(Like.all)
-      query.query_returner.return_n_random(5).size.should == 5
+      query_returner = CriteriaQueryReturner.new(CriteriaQuery.new(Like.all))
+      query_returner.return_n_random(5).size.should == 5
     end
     
     it "should return all distinct likes" do      
@@ -19,8 +19,8 @@ describe LikeCriteriaQuery do
         like = Factory(:like)
       end
       
-      query = LikeCriteriaQuery.new(Like.all)
-      likes = query.query_returner.return_n_random(5)
+      query_returner = CriteriaQueryReturner.new(CriteriaQuery.new(Like.all))
+      likes = query_returner.return_n_random(5)
       
       valid_hash = {}
       likes.each do |like|

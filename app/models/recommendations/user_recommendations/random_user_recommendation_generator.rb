@@ -5,6 +5,6 @@ class RandomUserRecommendationGenerator
   
   def generate_recommendations(number_of_users)
     users = UserQuery.query_users_without_email([@user.email])
-    return UserRecommendation.new(users.return_n_random(number_of_users))
+    return UserRecommendation.new(users.query_returner.return_n_random(number_of_users))
   end
 end

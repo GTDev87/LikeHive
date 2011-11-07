@@ -11,7 +11,7 @@ describe UserCriteriaQuery do
       end
       
       query = UserCriteriaQuery.new(User.all)
-      query.return_n_random(5).size.should == 5
+      query.query_returner.return_n_random(5).size.should == 5
     end
     
     it "should return all distinct likes" do      
@@ -20,7 +20,7 @@ describe UserCriteriaQuery do
       end
       
       query = UserCriteriaQuery.new(User.all)
-      users = query.return_n_random(5)
+      users = query.query_returner.return_n_random(5)
       
       valid_hash = {}
       users.each do |user|

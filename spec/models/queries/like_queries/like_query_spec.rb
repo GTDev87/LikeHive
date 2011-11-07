@@ -45,29 +45,29 @@ describe LikeQuery do
     
     it "should return criteria with all except single name specified" do
       criteria = LikeQuery.query_likes_without_names(["sunshine"])
-      criteria.return_all.should_not contain_result_named("sunshine")
-      criteria.return_all.should contain_result_named("french fries")
-      criteria.return_all.should contain_result_named("galileo")
-      criteria.return_all.should contain_result_named("anger")
-      criteria.return_all.should contain_result_named("pizza")
+      criteria.query_returner.return_all.should_not contain_result_named("sunshine")
+      criteria.query_returner.return_all.should contain_result_named("french fries")
+      criteria.query_returner.return_all.should contain_result_named("galileo")
+      criteria.query_returner.return_all.should contain_result_named("anger")
+      criteria.query_returner.return_all.should contain_result_named("pizza")
     end
     
     it "should return criteria with all except multiple names specified" do
       criteria = LikeQuery.query_likes_without_names(["sunshine", "pizza", "galileo"])
-      criteria.return_all.should_not contain_result_named("sunshine")
-      criteria.return_all.should_not contain_result_named("galileo")
-      criteria.return_all.should_not contain_result_named("pizza")
-      criteria.return_all.should contain_result_named("french fries")
-      criteria.return_all.should contain_result_named("anger")
+      criteria.query_returner.return_all.should_not contain_result_named("sunshine")
+      criteria.query_returner.return_all.should_not contain_result_named("galileo")
+      criteria.query_returner.return_all.should_not contain_result_named("pizza")
+      criteria.query_returner.return_all.should contain_result_named("french fries")
+      criteria.query_returner.return_all.should contain_result_named("anger")
     end
     
     it "should return all if no names specified" do
       criteria = LikeQuery.query_likes_without_names([])
-      criteria.return_all.should contain_result_named("sunshine")
-      criteria.return_all.should contain_result_named("galileo")
-      criteria.return_all.should contain_result_named("pizza")
-      criteria.return_all.should contain_result_named("french fries")
-      criteria.return_all.should contain_result_named("anger")
+      criteria.query_returner.return_all.should contain_result_named("sunshine")
+      criteria.query_returner.return_all.should contain_result_named("galileo")
+      criteria.query_returner.return_all.should contain_result_named("pizza")
+      criteria.query_returner.return_all.should contain_result_named("french fries")
+      criteria.query_returner.return_all.should contain_result_named("anger")
     end
   end
 end
