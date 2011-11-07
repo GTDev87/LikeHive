@@ -1,12 +1,11 @@
 require 'spec_helper'
 
 describe UserMailbox do  
-  describe "User messages" do    
+  describe "User messages validation" do    
     it "should be valid with valid message" do
       user_mailbox = Factory.build(:user_mailbox)
       message = Factory.build(:message)
       message.to << Factory.build(:user)
-      user_mailbox.messages << message
       
       user_mailbox.should be_valid
     end
@@ -25,5 +24,13 @@ describe UserMailbox do
     end
   end
   
-  
+  describe "Message finding" do
+    it "should be able to find messages that are sent from a specific user" do
+      
+    end
+    
+    it "should be able to find messages that are sent to a specific user" do
+      
+    end
+  end
 end

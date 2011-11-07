@@ -11,6 +11,7 @@ class UserMailbox
   after_initialize :initialize_user_inbox, :initialize_user_outbox
   
   def initialize_user_inbox
+    puts messages
     #UserInbox.new(self.messages.where())
   end
   
