@@ -9,6 +9,7 @@ class UserMailboxController < ApplicationController
   end
 
   def show
+    @mailbox = current_user.mailbox
   end
   
   def edit
