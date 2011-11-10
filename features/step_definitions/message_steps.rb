@@ -1,5 +1,7 @@
-Given /^"([^"]*)" sent a message to "([^"]*)" with subject "([^"]*)" and body "([^"]*)"$/ do |from_user, to_user, subject, body|
-  Factory(:message, :from => UserQuery.find_user_by_email(from_user), :to => [UserQuery.find_user_by_email(to_user)], :subject => subject, :body => body)
+Given /^"([^"]*)" has a message sent from "([^"]*)" to "([^"]*)" with subject "([^"]*)" and body "([^"]*)"$/ do |user, from_user, to_user, subject, body|
+  message = Factory(:message, :from => UserQuery.find_user_by_email(from_user), :to => [UserQuery.find_user_by_email(to_user)], :subject => subject, :body => body)
+  found_user = UserQuery.find_user_by_email(user)
+  found_user.mailbox.messages << message
 end
 
 Then /^I should have message "([^"]*)" in my inbox$/ do |subject|
@@ -8,6 +10,7 @@ Then /^I should have message "([^"]*)" in my inbox$/ do |subject|
   else
     assert page.has_xpath?('//user_inbox', :text => subject)
   end
+  
 end
 
 Then /^I should have message "([^"]*)" in my outbox$/ do |subject|

@@ -30,4 +30,25 @@ describe UserPersonality do
       likes.size.should == 3
     end
   end
+=begin  
+  describe "User Initialization" do
+    before(:each) do
+      @user = Factory(:user)
+      @user.build_personality
+      @like_array = []
+      5.times do
+        @like_array << Factory.build(:like)
+      end
+      @user.personality.likes.concat(@like_array)
+      @user.save!
+    end
+    
+    it "should have all of its likes previously saved" do
+      user = UserQuery.find_user_by_email(@user.email)
+      
+      user.email.should == @user.email
+      user.personality.likes.should =~ @like_array 
+    end
+  end
+=end  
 end

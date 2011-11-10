@@ -2,20 +2,22 @@ class UserMailbox
   include Mongoid::Document
   
   has_and_belongs_to_many :messages, class_name: "Message", validate: true, autosave: true, inverse_of: nil
+  accepts_nested_attributes_for :messages
+  attr_accessible :message_attributes
   
   embedded_in :user, :inverse_of => :mailbox
   
-  attr_accessible :messages_attributes
-  accepts_nested_attributes_for :messages
+  attr_reader :inbox, :outbox
   
-  after_initialize :initialize_user_inbox, :initialize_user_outbox
-  
-  def initialize_user_inbox
-    puts messages
-    #UserInbox.new(self.messages.where())
-  end
-  
-  def initialize_user_outbox
-    #UserOutbox.new(self.messages.where())
+  def setup_mailbox_folders
+    @user_message_container = UserMessageContainer.new(self.messages)
+    
+    user_incoming = UserIncomingMessageVisitor.new(self.user)
+    @user_message_container.accept_message_visitor(user_incoming)
+    @inbox = UserFolder.new(user_incoming.incoming_messages)
+    
+    user_outgoing = UserOutgoingMessageVisitor.new(self.user)
+    @user_message_container.accept_message_visitor(user_outgoing)
+    @outbox = UserFolder.new(user_outgoing.outgoing_messages)
   end
 end

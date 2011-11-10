@@ -1,6 +1,9 @@
 .show
-  Inbox
-  %br
-  Outbox
-  huh
-  #{@user}
+  %user_inbox
+    Inbox
+    - @mailbox.inbox.container.messages.each do |message|
+      From: #{message.from}, Subject: #{message.subject}
+  %user_outbox
+    Outbox
+    - @mailbox.outbox.container.messages.each do |message|
+      From: #{message.from}, Subject: #{message.subject}
