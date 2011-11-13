@@ -10,7 +10,7 @@ class UserPersonality
   attr_reader :user_like_locator, :user_like_container
 
   def initialize_user_personality
-    @user_like_container = UserLikeContainer.new(self.likes)
+    @user_like_container = LikeContainer.new(self.likes)
     @user_like_locator = UserLikeLocator.new(@user_like_container)
     @user_like_generator = UserLikeGenerator.new(@user_like_locator)
   end

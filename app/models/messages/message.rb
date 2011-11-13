@@ -24,9 +24,9 @@ private
     temp_email_list = @to_email_list
     @to_email_list = nil
     
-    message_visitor = UserVisitor.new(self.to)
+    user_visitor = UserVisitor.new(self.to)
     email_parser = MessageEmailParser.new(temp_email_list)
-    email_parser.accept_user_visitor(message_visitor)
+    email_parser.accept_user_visitor(user_visitor)
   end
   
   def assign_messages

@@ -3,7 +3,7 @@ require 'spec_helper'
 describe UserLikeLocator do
   before(:each) do
     @like_array = []
-    @user_like_container = UserLikeContainer.new(@like_array)
+    @user_like_container = LikeContainer.new(@like_array)
     @user_locator = UserLikeLocator.new(@user_like_container)
   end
   describe "locating user" do

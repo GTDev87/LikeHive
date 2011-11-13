@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe UserLikeContainer do  
+describe LikeContainer do  
   describe "Getting All Like Names" do
     
     class MockLikeVisitor
@@ -20,7 +20,7 @@ describe UserLikeContainer do
       like_array << Factory.build(:like, :name => "French Fries")
       like_array << Factory.build(:like, :name => "Cheese")
       
-      user_like_container = UserLikeContainer.new(like_array)
+      user_like_container = LikeContainer.new(like_array)
       
       mock_visitor = MockLikeVisitor.new
       like_names = user_like_container.accept_like_visitor(mock_visitor)
