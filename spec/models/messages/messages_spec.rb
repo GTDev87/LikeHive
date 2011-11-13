@@ -87,4 +87,51 @@ describe Message do
       message.to.should == [user_to_1, user_to_2]
     end
   end
+  
+  describe "To email parsing" do
+    before(:each) do
+      @greg = Factory(:user, email: "greg@test.com")
+      @reid = Factory(:user, email: "reid@test.com")
+      @amol = Factory(:user, email: "amol@test.com")
+      @zac = Factory(:user, email: "zac@test.com")
+    end
+        
+    it "should add existing users to to list" do
+      message = Factory.build(:message)
+      message.to_email_list = "greg@test.com, reid@test.com, amol@test.com, zac@test.com"
+      message.save!
+      
+      message.to.size.should == 4
+    end
+    
+    it "should parse emails before validation" do
+      message = Factory.build(:message)
+      message.to_email_list = "greg@test.com, reid@test.com, amol@test.com, zac@test.com"
+
+      message.should be_valid
+    end
+    
+    it "should parse emails before save" do
+      message = Factory.build(:message)
+      message.to_email_list = "greg@test.com, reid@test.com, amol@test.com, zac@test.com"
+      message.save!
+      
+      message.should be_valid
+    end
+        
+    it "should not be valid if list is empty" do
+      message = Factory.build(:message)
+      message.to_email_list = ""
+      
+      message.should_not be_valid
+    end
+    
+    it "should not be valid if does not recognize any user" do
+      message = Factory.build(:message)
+      message.to_email_list = "a@Test.com, b@test.com, c@test.com, d@test.com"
+      
+      message.should_not be_valid
+      message.to.size.should == 0
+    end
+  end
 end

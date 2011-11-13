@@ -27,16 +27,30 @@ class User
 
   validates :email, :presence => true, :email => true
   
-  attr_accessible :email, :password, :password_confirmation, :remember_me, :like_box, :like_name
+  attr_accessible :email, :password, :password_confirmation, :remember_me
   
+  #virtual attributes
+  attr_accessible :like_box, :like_name
   attr_accessor :like_name, :like_box
   
   after_save :assign_like
   after_save :assign_multiple_likes  
   
   
-  after_create :initialize_mailbox#HACK KILL THIS LATER WHEN MONGOID IS COMPETNENT
-    
+  after_create :initialize_mailbox#HACK KILL THIS LATER WHEN MONGOID IS COMPETNENT  
+  
+  def add_likes(likes_names)
+    @personality.get_new_likes(likes_names).each do |like|
+      UserLikeLinker.link_user_and_like(self, like)
+    end
+  end
+  
+  
+  def add_like(like_name)
+    UserLikeLinker.link_user_and_like(self, self.personality.get_new_like(like_name))    
+  end
+  
+private
   def initialize_mailbox
     #####################HACK THIS IS A TEMPORARY METHOD TILL MONGOID FIX #900 ###################
     #######################HACK NEED TO FIND WAY OF AUTOINITIALIZING MAILBOX#################
@@ -59,22 +73,12 @@ class User
     add_likes(likes_names)
   end
   
-  def add_likes(likes_names)
-    @personality.get_new_likes(likes_names).each do |like|
-      UserLikeLinker.link_user_and_like(self, like)
-    end
-  end
-  
   def assign_like
     #maybe move sanitization up to here and here
     if @like_name == nil then return end
     like_name = @like_name
     @like_name = nil
     add_like(like_name)
-  end
-  
-  def add_like(like_name)
-    UserLikeLinker.link_user_and_like(self, self.personality.get_new_like(like_name))    
   end
 end
 

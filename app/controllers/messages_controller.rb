@@ -1,9 +1,17 @@
 class MessagesController < ApplicationController
   def new
-    puts "new called"
+    @message = MessageCreator.new
+    @message.from = current_user
   end
   
   def create
+    @message = MessageCreator.new params[:message]
+    
+    if @message.save
+      redirect_to mailbox_path, :notice => "You have successfully sent the message"
+    else
+      render :new
+    end
   end
   
   def list

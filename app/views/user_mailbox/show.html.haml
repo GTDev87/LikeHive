@@ -1,4 +1,5 @@
 .show
+  = link_to "New Message", new_message_path
   %user_inbox
     Inbox
     - @mailbox.inbox.container.messages.each do |message|
