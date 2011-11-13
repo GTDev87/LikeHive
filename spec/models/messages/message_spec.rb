@@ -100,6 +100,7 @@ describe Message do
       message = Factory.build(:message)
       message.to_email_list = "greg@test.com, reid@test.com, amol@test.com, zac@test.com"
       message.save!
+      message.save!
       
       message.to.size.should == 4
     end

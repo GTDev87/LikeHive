@@ -3,9 +3,9 @@ class MessageEmailParser
     @email_list = StringFormatter.split_by_commas(StringFormatter.lowercase(string_email_list))
   end
   
-  def accept_email_string(email_string_visitor)
+  def accept_user_visitor(user_visitor)
     @email_list.each do |email_string|
-      email_string_visitor.visit_email_string(email_string)
+      user_visitor.visit_user(UserQuery.find_user_by_email(email_string))
     end
   end
 end

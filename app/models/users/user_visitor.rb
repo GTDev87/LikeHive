@@ -1,10 +1,9 @@
-class MessageToEmailVisitor
+class UserVisitor
   def initialize(field)
     @field = field
   end
   
-  def visit_email_string(email_string)
-    user = UserQuery.find_user_by_email(email_string)
+  def visit_user(user)
     if(user != nil && !@field.include?(user))
       @field << user
     end

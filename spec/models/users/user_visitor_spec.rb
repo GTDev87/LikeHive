@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe MessageToEmailVisitor do  
+describe UserVisitor do  
   describe "To email parsing" do
     before(:each) do
       @greg = Factory(:user, email: "greg@test.com")
@@ -11,24 +11,24 @@ describe MessageToEmailVisitor do
     
     it "should not add user to array if does not exist" do
       message_array = []
-      message_visitor = MessageToEmailVisitor.new(message_array)
-      message_visitor.visit_email_string("does_not_exist@test.com")
+      message_visitor = UserVisitor.new(message_array)
+      message_visitor.visit_user(nil)
       
       message_array.should == []
     end
     
     it "should not add users is user already exists" do
       message_array = [@greg]
-      message_visitor = MessageToEmailVisitor.new(message_array)
-      message_visitor.visit_email_string("greg@test.com")
+      message_visitor = UserVisitor.new(message_array)
+      message_visitor.visit_user(@greg)
       
       message_array.should == [@greg]
     end
     
     it "should add user if none in array" do
       message_array = []
-      message_visitor = MessageToEmailVisitor.new(message_array)
-      message_visitor.visit_email_string("greg@test.com")
+      message_visitor = UserVisitor.new(message_array)
+      message_visitor.visit_user(@greg)
       
       message_array.size.should == 1
       message_array[0].email == @greg.email
@@ -36,8 +36,8 @@ describe MessageToEmailVisitor do
     
     it "should add user if differnet user than in array" do
       message_array = [@amol]
-      message_visitor = MessageToEmailVisitor.new(message_array)
-      message_visitor.visit_email_string("greg@test.com")
+      message_visitor = UserVisitor.new(message_array)
+      message_visitor.visit_user(@greg)
       
       message_array.size.should == 2
     end

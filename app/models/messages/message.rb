@@ -16,14 +16,22 @@ class Message
   
   before_validation :parse_to_list
 
+  after_save :assign_messages
+
 private
   def parse_to_list
     if @to_email_list == nil then return end
     temp_email_list = @to_email_list
     @to_email_list = nil
     
-    message_visitor = MessageToEmailVisitor.new(self.to)
+    message_visitor = UserVisitor.new(self.to)
     email_parser = MessageEmailParser.new(temp_email_list)
-    email_parser.accept_email_string(message_visitor)
+    email_parser.accept_user_visitor(message_visitor)
+  end
+  
+  def assign_messages
+    if self.changed?
+      
+    end
   end
 end
