@@ -45,6 +45,14 @@ describe Message do
     
       message.should_not be_valid
     end
+    
+    it "should initialize time to current time" do
+      Timecop.freeze(2011, 11, 14, 4, 45, 0)
+      message = Message.new
+      message.time.should == "2011/9/19 4:45:0"
+      
+      Timecop.return()
+    end
   end
   describe "adding multiple users to messages" do
     it "should have the ability to receive message from multiple users" do
@@ -100,7 +108,6 @@ describe Message do
       message = Factory.build(:message)
       message.to_email_list = "greg@test.com, reid@test.com, amol@test.com, zac@test.com"
       message.save!
-      message.save!
       
       message.to.size.should == 4
     end
@@ -133,6 +140,79 @@ describe Message do
       
       message.should_not be_valid
       message.to.size.should == 0
+    end
+  end
+  describe "users receiving messages" do
+    before(:each) do
+      @greg = Factory(:user, email: "greg@test.com")
+      @reid = Factory(:user, email: "reid@test.com")
+      @amol = Factory(:user, email: "amol@test.com")
+      @zac = Factory(:user, email: "zac@test.com")
+    end
+    
+    it "should give message to a user it is sent to after save" do
+      message = Factory.build(:message)
+      message.body = "sent message"
+      message.to_email_list = "greg@test.com"
+      message.save!
+      
+      @greg.reload
+      
+      @greg.mailbox.messages.size.should == 1
+      @greg.mailbox.messages.first.body.should == "sent message"
+    end
+    
+    it "should give message to multiple user it is sent to after save" do
+      message = Factory.build(:message)
+      message.body = "sent message"
+      message.to_email_list = "greg@test.com, reid@test.com, amol@test.com, zac@test.com"
+      message.save!
+      
+      @greg.reload
+      @reid.reload
+      @amol.reload
+      @zac.reload
+      
+      @greg.mailbox.messages.size.should == 1
+      @greg.mailbox.messages.first.body.should == "sent message"
+      
+      @reid.mailbox.messages.size.should == 1
+      @reid.mailbox.messages.first.body.should == "sent message"
+      
+      @amol.mailbox.messages.size.should == 1
+      @amol.mailbox.messages.first.body.should == "sent message"
+      
+      @zac.mailbox.messages.size.should == 1
+      @zac.mailbox.messages.first.body.should == "sent message"
+    end
+    
+    it "should give message to a user it is sent from after save" do
+      message = Factory.build(:message)
+      message.body = "sent message"
+      message.from = @greg
+      message.to_email_list = "amol@test.com"
+      message.save!
+      
+      @greg.mailbox.messages.size.should == 1
+      @greg.mailbox.messages.first.body.should == "sent message"
+    end
+    
+    it "should be able to give multiple messages to users" do
+      message = Factory.build(:message)
+      message.body = "sent message 1"
+      message.to_email_list = "greg@test.com"
+      message.save!
+      
+      message2 = Factory.build(:message)
+      message2.body = "sent message 2"
+      message2.to_email_list = "greg@test.com"
+      message2.save!
+      
+      @greg.reload
+      
+      @greg.mailbox.messages.size.should == 2
+      @greg.mailbox.messages.first.body.should == "sent message 1"
+      @greg.mailbox.messages.last.body.should == "sent message 2"
     end
   end
 end

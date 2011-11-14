@@ -1,3 +1,4 @@
+=begin
 require 'spec_helper'
 
 describe ModelString do
@@ -23,3 +24,4 @@ describe ModelString do
     end
   end
 end
+=end

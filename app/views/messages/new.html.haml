@@ -1,6 +1,6 @@
 = simple_form_for @message do |f|
   = f.input :from, :as => :hidden, :value => @message.from
-  = f.input :to_email_list
+  = f.input :to_email_list, :label => "To"
   = f.input :subject
   = f.input :body, :as => :text
   %p= f.submit "Send"

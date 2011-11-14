@@ -1,7 +1,7 @@
 class UserMailbox
   include Mongoid::Document
   
-  has_and_belongs_to_many :messages, class_name: "Message", validate: true, autosave: true, inverse_of: nil
+  has_and_belongs_to_many :messages, class_name: "Message", inverse_of: nil
   accepts_nested_attributes_for :messages
   attr_accessible :message_attributes
   

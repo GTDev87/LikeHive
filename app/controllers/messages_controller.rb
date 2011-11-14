@@ -5,11 +5,14 @@ class MessagesController < ApplicationController
   end
   
   def create
-    @message = MessageCreator.new params[:message]
-    
+    @message = MessageCreator.new_with_parameters  params[:message]
+    puts "the messages attributes are #{@message.attributes}"
+    @message.save!
     if @message.save
+      puts "message saved!!!!!!!!!!!!!!!"
       redirect_to mailbox_path, :notice => "You have successfully sent the message"
     else
+      puts "message not SAVEDDDDDDDDDDDDDDDDDDDDDDDDDDDD"
       render :new
     end
   end
