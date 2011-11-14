@@ -45,7 +45,7 @@ describe Message do
     
       message.should_not be_valid
     end
-=begin    
+    
     it "should initialize time to current time" do
       Timecop.freeze(DateTime.now) do
         message = Message.new
@@ -53,7 +53,7 @@ describe Message do
       end
       Timecop.return()
     end
-=end    
+
   end
   describe "adding multiple users to messages" do
     it "should have the ability to receive message from multiple users" do

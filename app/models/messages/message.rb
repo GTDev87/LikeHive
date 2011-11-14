@@ -4,7 +4,7 @@ class Message
   
   field :subject
   field :body
-  field :time, type: DateTime, default: Time.now
+  field :time, type: DateTime, default: -> {Time.now}
   
   belongs_to :from, class_name: "User"#one sided has_one :from
   has_and_belongs_to_many :to, class_name: "User", inverse_of: nil #one sided many to many
