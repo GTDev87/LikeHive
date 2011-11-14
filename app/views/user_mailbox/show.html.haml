@@ -3,8 +3,8 @@
   %user_inbox
     Inbox
     - @mailbox.inbox.container.messages.each do |message|
-      From: #{message.from}, Subject: #{message.subject}
+      From: #{message.from} Subject #{message.subject}
   %user_outbox
     Outbox
     - @mailbox.outbox.container.messages.each do |message|
-      From: #{message.from}, Subject: #{message.subject}
+      From: #{message.from} Subject #{message.subject}

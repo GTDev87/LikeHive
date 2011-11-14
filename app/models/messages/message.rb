@@ -4,7 +4,7 @@ class Message
   
   field :subject
   field :body
-  field :time, type: DateTime, default: DateTime.now
+  field :time, type: DateTime, default: Time.now
   
   belongs_to :from, class_name: "User"#one sided has_one :from
   has_and_belongs_to_many :to, class_name: "User", inverse_of: nil #one sided many to many
@@ -12,7 +12,7 @@ class Message
   validates_presence_of :from, :time
   validate :validate_to_users
   
-  attr_accessible :to_email_list
+  attr_accessible :from, :to, :body, :subject, :to_email_list
   attr_accessor :to_email_list
 
   after_save :assign_messages
