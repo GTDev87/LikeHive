@@ -2,9 +2,33 @@
   = link_to "New Message", new_message_path
   %user_inbox
     Inbox
+    %br
+    %message
+      %from
+        From
+      %subject
+        Subject
+    %br
     - @mailbox.inbox.container.messages.each do |message|
-      From: #{message.from} Subject #{message.subject}
+      %message
+        %from
+          #{message.from.email} 
+        %subject
+          #{message.subject}
+        %br
   %user_outbox
     Outbox
+    %br
+    %message
+      %from
+        From
+      %subject
+        Subject
+    %br
     - @mailbox.outbox.container.messages.each do |message|
-      From: #{message.from} Subject #{message.subject}
+      %message
+        %from
+          #{message.from.email} 
+        %subject
+          #{message.subject}
+        %br
