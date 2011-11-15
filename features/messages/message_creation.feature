@@ -19,8 +19,20 @@ Feature: Message Creation
     When I follow "Mailbox"
     Then I should have message "foo" in my outbox
 
+  Scenario: I can read messages in my outbox
+    When I follow "Mailbox"
+    And I follow "foo"
+    Then I should see "bar"
+
   Scenario: Sent message is in other's inbox
-	  And I sign out
+	  When I sign out
 	  And I sign in as "reid@test.com/please"
 	  And I follow "Mailbox"
 	  Then I should have message "foo" in my inbox
+    
+  Scenario: Users can read mail in their inbox
+	  When I sign out
+	  And I sign in as "reid@test.com/please"
+	  And I follow "Mailbox"
+	  And I follow "foo"
+    Then I should see "bar"
