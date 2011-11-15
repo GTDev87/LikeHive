@@ -14,7 +14,7 @@
         %from
           #{message.from.email} 
         %subject
-          #{message.subject}
+          #{link_to message.subject, message}
         %br
   %user_outbox
     Outbox
@@ -30,5 +30,5 @@
         %from
           #{message.from.email} 
         %subject
-          #{message.subject}
+          #{link_to message.subject, message}
         %br

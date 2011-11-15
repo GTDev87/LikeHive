@@ -18,6 +18,7 @@ class MessagesController < ApplicationController
   end
 
   def show
+    @message = MessageQuery.find(params[:id])
   end
   
   def edit

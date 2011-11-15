@@ -1,0 +1,35 @@
+.show
+  %reply
+    Reply
+    %br
+    %br
+    
+  %from
+    From:
+    %br
+    #{@message.from.email}
+    %br
+    %br
+    
+  %to
+    To
+    %br
+    - @message.to.each do |to_users|
+      #{to_users.email},
+    %br
+    %br
+    
+  %subject
+    Subject
+    %br
+    #{@message.subject}
+    %br
+    %br
+    
+  %body
+    Body
+    %br
+    #{@message.body}
+    %br
+    %br
+    
