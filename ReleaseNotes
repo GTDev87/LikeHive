@@ -1,6 +1,9 @@
 Release Notes
 11/13/11 LikeHive0.0.6
-
+Added mailbox to users
+  - Users can message other users if they know emails (currently)
+  - Users have a mailbox where they can see other users messages
+  
 10/22/11 LikeHive0.0.5
 Added user recommendations to page
   - recommendations do not show user names currently
