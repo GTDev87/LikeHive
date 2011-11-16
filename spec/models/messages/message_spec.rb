@@ -216,4 +216,29 @@ describe Message do
       @greg.mailbox.messages.last.body.should == "sent message 2"
     end
   end
+  
+  describe "Associated Users" do
+    class MockUserVisitor
+      attr_reader :users_visited
+      def initialize()
+        @users_visited = []
+      end
+      def visit_user(user)
+        @users_visited << user
+      end
+    end
+    
+    it "should return all users in from and to list of message" do
+      @greg = Factory(:user, email: "greg@test.com")
+      @reid = Factory(:user, email: "reid@test.com")
+      @amol = Factory(:user, email: "amol@test.com")
+      @zac = Factory(:user, email: "zac@test.com")
+      message = Factory.build(:message, from: @greg, to: [@reid, @amol, @zac])
+      user_container = message.associated_users
+      user_visitor = MockUserVisitor.new()
+      
+      user_container.accept_user_visitor(user_visitor)
+      user_visitor.users_visited.should =~ [@greg, @reid, @amol, @zac]
+    end
+  end
 end

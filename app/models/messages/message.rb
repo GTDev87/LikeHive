@@ -17,6 +17,10 @@ class Message
 
   after_save :assign_messages
 
+  def associated_users()
+    return UserContainer.new(self.to | [self.from])
+  end
+
 private
   #NOTE TO SELF: CLEAN THIS CODE UP
   def parse_to_list
@@ -34,7 +38,7 @@ private
     
     if self.changed?
       message_assigner = MessageUserAssigner.new(self)
-      message_assigner.assign_message_to_users()
+      message_assigner.assign_message_to_users
     end
   end
   

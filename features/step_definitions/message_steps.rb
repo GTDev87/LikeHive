@@ -20,3 +20,8 @@ Then /^I should have message "([^"]*)" in my outbox$/ do |subject|
     assert page.has_xpath?('//user_outbox', :text => subject)
   end
 end
+
+When /^I visit the message page with subject "([^"]*)"$/ do |message_subject|
+  message = Message.first(conditions: { subject: message_subject })
+  visit("/messages/#{message._id}")
+end

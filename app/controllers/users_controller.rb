@@ -24,6 +24,7 @@ class UsersController < ApplicationController
 
   def show
     @user = UserQuery.find(params[:id])
+    
     number_of_interests = 5
     recommended_users = 5
     
@@ -33,7 +34,6 @@ class UsersController < ApplicationController
     user_recommendation = Recommender.new(RandomUserRecommendationGenerator.new(@user)).get_recommendations(recommended_users)
     user_recommendation.accept(user_glimmer)
     @user_peeks = user_glimmer.user_peeks
-    
     authorize! :read, @user
   end
   

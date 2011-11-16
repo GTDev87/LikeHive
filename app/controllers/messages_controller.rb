@@ -15,10 +15,12 @@ class MessagesController < ApplicationController
   end
   
   def list
+    authorize! :read, current_user
   end
 
   def show
     @message = MessageQuery.find(params[:id])
+    authorize! :read, @message
   end
   
   def edit
