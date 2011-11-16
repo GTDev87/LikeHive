@@ -39,10 +39,12 @@ class UsersController < ApplicationController
   
   def edit
     @user = UserQuery.find(params[:id])
+    authorize! :read, @user
   end
   
   def update
     @user = UserQuery.find(params[:id])
+    authorize! :read, @user
     if @user.update_attributes(params[:user]) 
       redirect_to :action => 'show', :id => @user
     else

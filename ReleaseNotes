@@ -5,6 +5,7 @@ Added mailbox to users
   - Users have a mailbox where they cannot see each others messages or mailboxes
   - Users can read their own mailboxes
   - Access Denied is displayed when messages are accessed with out being appropriate user
+  - took out the ability for users to edit other user's accounts
   
 10/22/11 LikeHive0.0.5
 Added user recommendations to page
