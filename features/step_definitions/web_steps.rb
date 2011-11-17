@@ -49,6 +49,10 @@ When /^(?:|I )go to (.+)$/ do |page_name|
   visit path_to(page_name)
 end
 
+When /^I visit the "([^"]*)" page$/ do |page|
+  visit("/#{page}")
+end
+
 When /^(?:|I )press "([^"]*)"$/ do |button|
   click_button(button)
 end
@@ -244,3 +248,4 @@ end
 Then /^show me the page$/ do
   save_and_open_page
 end
+

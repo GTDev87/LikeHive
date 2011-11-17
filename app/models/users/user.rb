@@ -4,30 +4,40 @@ class User
 
   embeds_one :profile, class_name: "UserProfile"
   accepts_nested_attributes_for :profile
+  validates_presence_of :profile
   attr_accessible :profile_attributes
   
   embeds_one :habitation, class_name: "UserHabitation"
   accepts_nested_attributes_for :habitation
+  validates_presence_of :habitation
   attr_accessible :habitation_attributes
 
   embeds_one :personality, class_name: "UserPersonality"
+  validates_presence_of :personality
   accepts_nested_attributes_for :personality
   attr_accessible :personality_attributes
 
   embeds_one :mailbox, class_name: "UserMailbox"
+  validates_presence_of :mailbox
   accepts_nested_attributes_for :mailbox
   attr_accessible :mailbox_attributes
 
+  field :email
+  validates_uniqueness_of :email, :case_sensitive => false
+  validates :email, :presence => true, :email => true
+  validates_presence_of :email
+  attr_accessible :email
+  
+  field :username
+  validates_uniqueness_of :username
+  validates_presence_of :username
+  attr_accessible :username
+
   validates_confirmation_of :password
   validates_presence_of :password, :on => :create
+  attr_accessible :password
   
-  key :email
-  validates_presence_of :habitation, :personality, :profile, :mailbox
-  validates_uniqueness_of :email, :case_sensitive => false
-
-  validates :email, :presence => true, :email => true
-  
-  attr_accessible :email, :password, :password_confirmation, :remember_me
+  attr_accessible :password_confirmation, :remember_me
   
   #virtual attributes
   attr_accessible :like_box, :like_name

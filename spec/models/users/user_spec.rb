@@ -10,9 +10,31 @@ describe User do
     user.should be_valid
   end
   
+  it "should be valid when proper username is passed" do
+    user = Factory.build(:user, username: "gregT87")
+    user.should be_valid
+  end
+  
+  it "should require a username" do
+    no_username_user = Factory.build(:user, username: "")
+    no_username_user.should_not be_valid
+  end
+  
+  it "should require a unique username address" do
+    existing_user = Factory(:user, :username => "gregt87")
+    new_user = Factory.build(:user, :username => "gregt87")
+    new_user.should_not be_valid
+  end
+  
   it "should require an email address" do
     no_email_user = Factory.build(:user, :email => "")
     no_email_user.should_not be_valid
+  end
+  
+  it "should require a unique email address" do
+    existing_user = Factory(:user, :email => "greg@test.com")
+    new_user = Factory.build(:user, :email => "greg@test.com")
+    new_user.should_not be_valid
   end
   
   it "should accept valid email addresses" do

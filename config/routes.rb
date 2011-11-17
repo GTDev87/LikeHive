@@ -3,14 +3,14 @@ LikeHive::Application.routes.draw do
 
   root :to => "home#index"
 
-  resources :users, :except => [:new, :create]
+  resources :users, :except => [:new, :create, :show]
   resources :sessions
   resources :likes
   resources :messages
   
   get "logout" => "sessions#destroy", :as => "logout"
   get "login" => "sessions#new", :as => "login"
-  get "profile/:id" => "users#show", :as => "profile"
+  get "profile" => "users#show", :as => "profile"
   
   get "signup" => "users#new", :as => "signup"
   match "signup" => "users#create", :via => "post"

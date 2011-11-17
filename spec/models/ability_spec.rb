@@ -17,6 +17,12 @@ describe Ability do
       @ability.should be_able_to(:read, @user)
     end
     
+    it "should not have the ability to read nil users page" do
+      user = nil
+      ability = Ability.new(user)
+      ability.should_not be_able_to(:read, user)
+    end
+    
     it "should not have ability to read other user's page" do
       @ability.should_not be_able_to(:read, Factory(:user))
     end

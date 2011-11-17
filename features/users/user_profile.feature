@@ -2,8 +2,8 @@ Feature: User Profile Page
   As a registered user of the website
   I want see my user profile
   so I can view my profile
-
-    Scenario: I see my account and email
+    
+    Scenario: I see my account
       Given I am a user with an email "greg@test.com" and password "please"
       And I have first name "Greg" and last initial "T"
       When I sign in as "greg@test.com/please"
@@ -11,8 +11,15 @@ Feature: User Profile Page
       Then I should see "Profile:"
       And I should see "User:"
       And I should see "Gender:"      
-
-    Scenario: I see my account and email
+      
+    Scenario: I see my username
+      Given I am a user with an email "greg@test.com" and password "please"
+      And I have first name "Greg" and last initial "T"
+      And I have the username "GregT87"
+      When I sign in as "greg@test.com/please"
+      Then I should see "Username: GregT87"
+    
+    Scenario: I see myself logged in
       Given I am a user with an email "greg@test.com" and password "please"
       And I have first name "Greg" and last initial "T"
       When I sign in as "greg@test.com/please"

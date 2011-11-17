@@ -8,6 +8,7 @@ Feature: User Signup Redirection
       And I am on the home page
       And I signup
       And I fill in the following:
+        | Username              | TestMcUser      |
         | First name            | Testy McUserton |
         | Email                 | user@test.com   |
         | Password              | please          |

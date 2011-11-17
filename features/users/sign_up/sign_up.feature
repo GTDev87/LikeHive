@@ -10,6 +10,7 @@ Feature: Sign up
 
     Scenario: User signs up with valid data
       And I fill in the following:
+        | Username              | TestMcUser      |
         | First name            | Testy McUserton |
         | Email                 | user@test.com   |
         | Password              | please          |
@@ -20,12 +21,14 @@ Feature: Sign up
       And I select date "06/27/1987" in "Date of birth"
       And I press "Sign up"
       Then I should see "Welcome! You have signed up successfully."
+      And I should see "Username: TestMcUser"
       And I should see "User: Testy McUserton T."
       And I should see "Gender: Male"
       And I should see "Logged in as user@test.com"
       
     Scenario: User signs up with invalid data redirects to signin page
       And I fill in the following:
+        | Username              | TestMcUser      |
         | First name            |                 |
         | Email                 | user@test.com   |
         | Password              | please          |
@@ -46,6 +49,7 @@ Feature: Sign up
     
     Scenario: User signs up Gender reflected
       And I fill in the following:
+        | Username              | TestMcUser      |
         | First name            | Testy McUserton |
         | Email                 | user@test.com   |
         | Password              | please          |
@@ -59,6 +63,7 @@ Feature: Sign up
       
     Scenario: User signs up Last Initial reflected
       And I fill in the following:
+        | Username              | TestMcUser      |
         | First name            | Testy McUserton |
         | Email                 | user@test.com   |
         | Password              | please          |
@@ -72,6 +77,7 @@ Feature: Sign up
       
     Scenario: User signs up without age
       And I fill in the following:
+        | Username              | TestMcUser      |
         | First name            | Testy McUserton |
         | Email                 | user@test.com   |
         | Password              | please          |
@@ -85,6 +91,7 @@ Feature: Sign up
     Scenario: User signs up Age is reflected
       And the current date is "09/19/2011"
       And I fill in the following:
+        | Username              | TestMcUser      |
         | First name            | Testy McUserton |
         | Email                 | user@test.com   |
         | Password              | please          |
@@ -96,8 +103,22 @@ Feature: Sign up
       And I press "Sign up"
       Then I should see "Age: 24"
     
+    Scenario: User signs up without username
+      And I fill in the following:
+        | Username              |                 |
+        | First name            | Testy McUserton |
+        | Email                 | user@test.com   |
+        | Password              | please          |
+        | Password confirmation | please          |
+        | Zipcode               | 11210           |
+      And I select date "06/27/1987" in "Date of birth"
+      And I select "T" in "Last initial"
+      And I press "Sign up"
+      Then I should see "can't be blank"
+    
     Scenario: User signs up without first name
       And I fill in the following:
+        | Username              | TestMcUser      |
         | First name            |                 |
         | Email                 | user@test.com   |
         | Password              | please          |
@@ -110,6 +131,7 @@ Feature: Sign up
       
     Scenario: User signs up with invalid email
       And I fill in the following:
+        | Username              | TestMcUser      |
         | First name            | Testy McUserton |
         | Email                 | invalidemail    |
         | Password              | please          |
@@ -122,6 +144,7 @@ Feature: Sign up
 
     Scenario: User signs up without password
       And I fill in the following:
+        | Username              | TestMcUser      |
         | First name            | Testy McUserton |
         | Email                 | user@test.com   |
         | Password              |                 |
@@ -134,6 +157,7 @@ Feature: Sign up
 
     Scenario: User signs up without password confirmation
       And I fill in the following:
+        | Username              | TestMcUser      |
         | First name            | Testy McUserton |
         | Email                 | user@test.com   |
         | Password              | please          |
@@ -146,6 +170,7 @@ Feature: Sign up
 
     Scenario: User signs up with mismatched password and confirmation
       And I fill in the following:
+        | Username              | TestMcUser      |
         | First name            | Testy McUserton |
         | Email                 | user@test.com   |
         | Password              | please          |

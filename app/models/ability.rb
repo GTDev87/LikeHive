@@ -5,7 +5,7 @@ class Ability
     user ||= User.new#Guest user account
     
     can :read, User do |page_user|
-      page_user == user
+      page_user == user && page_user != nil
     end
     
     can :read, Message do |page_message|

@@ -12,7 +12,7 @@ class UsersController < ApplicationController
     if @user.save
       @user.habitation.save ### monkey patch hack
       login(params[:user][:email], params[:user][:password])
-      redirect_to @user, :notice => "Welcome! You have signed up successfully."
+      redirect_to profile_path(@user), :notice => "Welcome! You have signed up successfully."
     else
       render :new
     end
@@ -22,8 +22,8 @@ class UsersController < ApplicationController
   end
 
   def show
-    puts "params are #{params}"
-    @user = UserQuery.find(params[:id])
+    @user = current_user
+    authorize! :read, @user
     
     number_of_interests = 5
     recommended_users = 5
@@ -34,16 +34,15 @@ class UsersController < ApplicationController
     user_recommendation = Recommender.new(RandomUserRecommendationGenerator.new(@user)).get_recommendations(recommended_users)
     user_recommendation.accept(user_glimmer)
     @user_peeks = user_glimmer.user_peeks
-    authorize! :read, @user
   end
   
   def edit
-    @user = UserQuery.find(params[:id])
+    @user = current_user
     authorize! :read, @user
   end
   
   def update
-    @user = UserQuery.find(params[:id])
+    @user = current_user
     authorize! :read, @user
     if @user.update_attributes(params[:user]) 
       redirect_to :action => 'show', :id => @user

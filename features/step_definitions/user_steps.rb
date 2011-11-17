@@ -12,6 +12,11 @@ Given /^There is a user with an email "([^"]*)" and password "([^"]*)"$/ do |ema
   user.habitation.locations = [Factory.build(:zipcode)]
 end
 
+Given /^I have the username "([^"]*)"$/ do |username|
+  @user.username = username
+  @user.save!
+end
+
 Given /^I have first name "([^"]*)" and last initial "([^"]*)"$/ do |first_name, last_initial|
   @user.profile.name.first = first_name
   @user.profile.name.last_initial = last_initial
