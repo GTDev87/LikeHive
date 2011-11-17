@@ -19,7 +19,7 @@
           %nav
             - if current_user
               Logged in as #{current_user.email},
-              = link_to('Profile', profile_path(current_user))
+              = link_to('Profile', profile_path)
               = link_to('Edit account', edit_user_path(current_user))
               = link_to('Mailbox', mailbox_path)
               

@@ -12,7 +12,7 @@ class UsersController < ApplicationController
     if @user.save
       @user.habitation.save ### monkey patch hack
       login(params[:user][:email], params[:user][:password])
-      redirect_to profile_path(@user), :notice => "Welcome! You have signed up successfully."
+      redirect_to profile_path, :notice => "Welcome! You have signed up successfully."
     else
       render :new
     end

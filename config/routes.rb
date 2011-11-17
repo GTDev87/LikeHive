@@ -3,7 +3,7 @@ LikeHive::Application.routes.draw do
 
   root :to => "home#index"
 
-  resources :users, :except => [:new, :create, :show]
+  resources :users, :except => [:new, :create, :show, :index]
   resources :sessions
   resources :likes
   resources :messages
