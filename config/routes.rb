@@ -10,11 +10,13 @@ LikeHive::Application.routes.draw do
   
   get "logout" => "sessions#destroy", :as => "logout"
   get "login" => "sessions#new", :as => "login"
-  get "profile" => "users#show", :as => "profile"
   
   get "signup" => "users#new", :as => "signup"
   match "signup" => "users#create", :via => "post"
-
+  
+  get "profile" => "users#show", :as => "profile"
+  get "profile/edit" => "users#edit", :as => "profile/edit"
+  
   get "mailbox" => "user_mailbox#show", :as => "mailbox"
 
   # The priority is based upon order of creation:
