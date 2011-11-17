@@ -10,6 +10,9 @@ Added mailbox to users
   - Added username to website.  It is a unique id.
     - The page will no longer hash on email but instead on random id
     - paths are changed to not have hashes in url
+  - Changed paths
+    - user show path to profile
+    - user edit path to profile/edit
   
 10/22/11 LikeHive0.0.5
 Added user recommendations to page
