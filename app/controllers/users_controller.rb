@@ -19,10 +19,10 @@ class UsersController < ApplicationController
   end
   
   def list
-    @users = UserQuery.all()
   end
 
   def show
+    puts "params are #{params}"
     @user = UserQuery.find(params[:id])
     
     number_of_interests = 5

@@ -15,7 +15,6 @@ class MessagesController < ApplicationController
   end
   
   def list
-    authorize! :read, current_user
   end
 
   def show

@@ -7,6 +7,15 @@ Feature: User Profile Page
       Given I am a user with an email "greg@test.com" and password "please"
       And I have first name "Greg" and last initial "T"
       When I sign in as "greg@test.com/please"
+      And I follow "Profile"
+      Then I should see "Profile:"
+      And I should see "User:"
+      And I should see "Gender:"      
+
+    Scenario: I see my account and email
+      Given I am a user with an email "greg@test.com" and password "please"
+      And I have first name "Greg" and last initial "T"
+      When I sign in as "greg@test.com/please"
       Then I should be signed in
       And I should see "Logged in as greg@test.com"
       
