@@ -1,7 +1,7 @@
 Release Notes
 11/13/11 LikeHive0.0.6
 Added mailbox to users
-  - Users can message other users if they know emails (currently)
+  - Users can message other users using their usernames (currently)
   - Users have a mailbox where they cannot see each others messages or mailboxes
   - Users can read their own mailboxes
   - Access Denied is displayed when messages are accessed with out being appropriate user
