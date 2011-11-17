@@ -2,9 +2,9 @@ require 'spec_helper'
 
 describe UserQuery do
   before(:each) do
-    @greg = Factory(:user, :profile => Factory.build(:user_profile, :name => Factory.build(:user_name, :first => "Greg")), :email => "Greg@greg.com")
-    @zac = Factory(:user, :profile => Factory.build(:user_profile, :name => Factory.build(:user_name, :first => "Zac")), :email => "Zac@Zac.com")
-    @amol = Factory(:user, :profile => Factory.build(:user_profile, :name => Factory.build(:user_name, :first => "Amol")), :email => "amol@amol.com")
+    @greg = Factory(:user, :profile => Factory.build(:user_profile, :name => Factory.build(:user_name, :first => "Greg")), :email => "Greg@greg.com", username: "GregT")
+    @zac = Factory(:user, :profile => Factory.build(:user_profile, :name => Factory.build(:user_name, :first => "Zac")), :email => "Zac@Zac.com", username: "ZacC")
+    @amol = Factory(:user, :profile => Factory.build(:user_profile, :name => Factory.build(:user_name, :first => "Amol")), :email => "amol@amol.com", username: "AmolK")
   end
   
   describe "finding users" do
@@ -43,6 +43,14 @@ describe UserQuery do
     it "should find the user email case insensitive" do
       UserQuery.find_user_by_email("AMOL@AMOL.com").should == @amol
       UserQuery.find_user_by_email("zAc@ZaC.com").should == @zac 
+    end
+  end
+  
+  describe "finding users by username" do
+    it "should should return user object" do
+      UserQuery.find_user_by_username("GregT").should == @greg
+      UserQuery.find_user_by_username("AmolK").should == @amol
+      UserQuery.find_user_by_username("ZacC").should == @zac 
     end
   end
 end

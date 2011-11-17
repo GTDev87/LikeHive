@@ -12,6 +12,12 @@ Given /^There is a user with an email "([^"]*)" and password "([^"]*)"$/ do |ema
   user.habitation.locations = [Factory.build(:zipcode)]
 end
 
+Given /^The user with the email "([^"]*)" has the username "([^"]*)"$/ do |email, username|
+  user = UserQuery.find_user_by_email(email)
+  user.username = username
+  user.save!
+end
+
 Given /^I have the username "([^"]*)"$/ do |username|
   @user.username = username
   @user.save!

@@ -12,8 +12,8 @@ class Message
   validates_presence_of :from, :time
   validate :validate_to_users
   
-  attr_accessible :from, :to, :body, :subject, :to_email_list
-  attr_accessor :to_email_list
+  attr_accessible :from, :to, :body, :subject, :to_username_list
+  attr_accessor :to_username_list
 
   after_save :assign_messages
 
@@ -24,12 +24,12 @@ class Message
 private
   #NOTE TO SELF: CLEAN THIS CODE UP
   def parse_to_list
-    if @to_email_list == nil then return false end
-    temp_email_list = @to_email_list
-    @to_email_list = nil
+    if @to_username_list == nil then return false end
+    temp_username_list = @to_username_list
+    @to_username_list = nil
     
     user_visitor = UserVisitor.new(@to)
-    MessageEmailParser.new(temp_email_list).return_user_list.accept_user_visitor(user_visitor)
+    MessageUsernameParser.new(temp_username_list).return_user_list.accept_user_visitor(user_visitor)
     return true
   end
   
@@ -50,7 +50,7 @@ private
     
     parsed_sent_to_array = []
     user_visitor = UserVisitor.new(parsed_sent_to_array)
-    MessageEmailParser.new(@to_email_list).return_user_list.accept_user_visitor(user_visitor)
+    MessageUsernameParser.new(@to_username_list).return_user_list.accept_user_visitor(user_visitor)
 
     sent_to_array = parsed_sent_to_array | @to
     

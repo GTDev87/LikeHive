@@ -1,18 +1,18 @@
 require 'spec_helper'
 
-describe MessageEmailParser do  
-  describe "To email parsing" do
+describe MessageUsernameParser do  
+  describe "To username parsing" do
     before(:each) do
-      @greg = Factory(:user, email: "greg@test.com")
-      @reid = Factory(:user, email: "reid@test.com")
-      @amol = Factory(:user, email: "amol@test.com")
-      @zac = Factory(:user, email: "zac@test.com")
+      @greg = Factory(:user, username: "GregT")
+      @reid = Factory(:user, username: "ReidH")
+      @amol = Factory(:user, username: "AmolK")
+      @zac = Factory(:user, username: "ZacC")
     end
     
     it "should add nothing if user list is empty" do
       message_array = []
       user_visitor = UserVisitor.new(message_array)
-      email_parser = MessageEmailParser.new("")
+      email_parser = MessageUsernameParser.new("")
       email_parser.return_user_list.accept_user_visitor(user_visitor)
       
       message_array.size.should == 0
@@ -21,16 +21,16 @@ describe MessageEmailParser do
     it "should add nothing if user list is nil" do
       message_array = []
       user_visitor = UserVisitor.new(message_array)
-      email_parser = MessageEmailParser.new(nil)
+      email_parser = MessageUsernameParser.new(nil)
       email_parser.return_user_list.accept_user_visitor(user_visitor)
       
       message_array.size.should == 0
     end
     
-    it "should add existing users to to lsit" do
+    it "should add existing users to to list" do
       message_array = []
       user_visitor = UserVisitor.new(message_array)
-      email_parser = MessageEmailParser.new("greg@test.com, reid@test.com, amol@test.com, zac@test.com")
+      email_parser = MessageUsernameParser.new("GregT, ReidH, AmolK, ZacC")
       email_parser.return_user_list.accept_user_visitor(user_visitor)
       
       message_array.size.should == 4
@@ -39,25 +39,16 @@ describe MessageEmailParser do
     it "should not add users that do not exist to list" do
       message_array = []
       user_visitor = UserVisitor.new(message_array)
-      email_parser = MessageEmailParser.new("greg@test.com, reid@test.com, foo@test.com, bar@test.com")
+      email_parser = MessageUsernameParser.new("GregT, ReidH, Foo, Bar")
       email_parser.return_user_list.accept_user_visitor(user_visitor)
       
       message_array.size.should == 2
-    end
-    
-    it "should find users reguardless of casing" do
-      message_array = []
-      user_visitor = UserVisitor.new(message_array)
-      email_parser = MessageEmailParser.new("Greg@Test.com, rEiD@tEsT.com, amoL@test.com, ZAC@test.com")
-      email_parser.return_user_list.accept_user_visitor(user_visitor)
-      
-      message_array.size.should == 4
-    end
+    end    
     
     it "should not double count user" do
       message_array = []
       user_visitor = UserVisitor.new(message_array)
-      email_parser = MessageEmailParser.new("greg@test.com, greg@test.com")
+      email_parser = MessageUsernameParser.new("GregT, GregT")
       email_parser.return_user_list.accept_user_visitor(user_visitor)
       
       message_array.size.should == 1
