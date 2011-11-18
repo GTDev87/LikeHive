@@ -13,6 +13,7 @@ Added mailbox to users
   - Changed paths
     - user show path to profile
     - user edit path to profile/edit
+  - Changed user date formate to month/day/year
   
 10/22/11 LikeHive0.0.5
 Added user recommendations to page
