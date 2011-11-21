@@ -14,6 +14,7 @@ Added mailbox to users
     - user show path to profile
     - user edit path to profile/edit
   - Changed user date formate to month/day/year
+  - Added reply functionality so users can reply to other's messages
   
 10/22/11 LikeHive0.0.5
 Added user recommendations to page
