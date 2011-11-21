@@ -4,17 +4,23 @@ Added mailbox to users
   - Users can message other users using their usernames (currently)
   - Users have a mailbox where they cannot see each others messages or mailboxes
   - Users can read their own mailboxes
-  - Access Denied is displayed when messages are accessed with out being appropriate user
+  
+Access Denied is displayed when messages are accessed with out being appropriate user
   - took out the ability for users to edit other user's accounts
-  - Added ability for user to return to profile page
-  - Added username to website.  It is a unique id.
-    - The page will no longer hash on email but instead on random id
-    - paths are changed to not have hashes in url
-  - Changed paths
-    - user show path to profile
-    - user edit path to profile/edit
-  - Changed user date formate to month/day/year
-  - Added reply functionality so users can reply to other's messages
+
+Added ability for user to return to profile page
+
+Added username to website.  It is a unique id.
+  - The page will no longer hash on email but instead on random id
+  - paths are changed to not have hashes in url
+
+Changed paths
+  - user show path to profile
+  - user edit path to profile/edit
+
+Changed user date formate to month/day/year
+
+Added reply functionality so users can reply to other's messages
   
 10/22/11 LikeHive0.0.5
 Added user recommendations to page
