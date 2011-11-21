@@ -1,11 +1,18 @@
 class MessagesController < ApplicationController
   def new
+   
     @message = MessageCreator.new
+    if not params[:reply_message] == nil
+      prev_message = MessageQuery.find(params[:reply_message])
+      @message.to_username_list = prev_message.from.username
+      @message.subject = prev_message.subject
+      @message.body = prev_message.body
+    end
     @message.from = current_user
   end
   
   def create
-    @message = MessageCreator.new_with_parameters  params[:message]
+    @message = MessageCreator.new_with_parameters params[:message]
     @message.from = current_user
     if @message.save
       redirect_to mailbox_path, :notice => "You have successfully sent the message"

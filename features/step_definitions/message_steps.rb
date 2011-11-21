@@ -25,3 +25,27 @@ When /^I visit the message page with subject "([^"]*)"$/ do |message_subject|
   message = Message.first(conditions: { subject: message_subject })
   visit("/messages/#{message._id}")
 end
+
+Then /^I should be about to send a message to "([^"]*)"$/ do |to|
+  if page.respond_to? :should
+    page.should have_field('message_to_username_list', :with => to)
+  else
+    assert page.has_field?('message_to_username_list', :with => to)
+  end
+end
+
+Then /^I should be about to send a message with the subject "([^"]*)"$/ do |subject|
+  if page.respond_to? :should
+    page.should have_field('message_subject', :with => subject)
+  else
+    assert page.has_field?('message_subject', :with => subject)
+  end
+end
+
+Then /^I should be about to send a message with body "([^"]*)"$/ do |body|
+  if page.respond_to? :should
+    page.should have_field('message_body', :with => body)
+  else
+    assert page.has_field?('message_body', :with => body)
+  end
+end
