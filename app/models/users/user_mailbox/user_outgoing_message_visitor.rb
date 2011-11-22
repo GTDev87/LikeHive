@@ -7,10 +7,10 @@ class UserOutgoingMessageVisitor
   end
   
   def visit_message(message)
-    if(message == nil|| message.from == nil)
+    if(message == nil|| message.message_data.from == nil)
       return
     end
-    if(message.from.email == @user.email)
+    if(message.message_data.from.email == @user.email)
       @outgoing_messages << message
     end
   end

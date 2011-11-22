@@ -18,7 +18,7 @@ describe UserMessageContainer do
     it "should accept visitors which iterate through message collection" do
       messages = []
       5.times do
-        messages << Factory.build(:message)
+        messages << Factory.build(:connection_message)
       end
       user_message_container = UserMessageContainer.new(messages)
       mock_visitor = MockMessageVisitor.new()

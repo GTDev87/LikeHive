@@ -7,10 +7,11 @@ class UserIncomingMessageVisitor
   end
   
   def visit_message(message)
-    if(message == nil || message.to == nil)
+    if(message == nil || message.message_data.to == nil)
       return
     end
-    if(message.to.include?(@user))
+    
+    if(message.message_data.to.include?(@user))
       @incoming_messages << message
     end
   end

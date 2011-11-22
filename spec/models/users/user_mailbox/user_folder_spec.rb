@@ -5,7 +5,7 @@ describe UserFolder do
     it "should have all incoming messages" do
       messages = []
       5.times do
-        messages << Factory.build(:message, :to => [Factory.build(:user)])
+        messages << Factory.build(:connection_message, message_data: Factory.build(:message_data, :to => [Factory.build(:user)]))
       end
       user_folder = UserFolder.new(messages)
 

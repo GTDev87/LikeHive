@@ -1,5 +1,5 @@
 .show
-  = link_to "New Message", new_message_path
+  = link_to "New Message", new_connection_message_path
   %user_inbox
     Inbox
     %br
@@ -12,9 +12,9 @@
     - @mailbox.inbox.container.messages.each do |message|
       %message
         %from
-          #{message.from.email} 
+          #{message.message_data.from.email} 
         %subject
-          #{link_to message.subject, message}
+          #{link_to message.message_data.subject, message}
         %br
   %user_outbox
     Outbox
@@ -28,7 +28,7 @@
     - @mailbox.outbox.container.messages.each do |message|
       %message
         %from
-          #{message.from.email} 
+          #{message.message_data.from.email} 
         %subject
-          #{link_to message.subject, message}
+          #{link_to message.message_data.subject, message}
         %br

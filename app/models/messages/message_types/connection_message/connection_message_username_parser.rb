@@ -1,4 +1,4 @@
-class MessageUsernameParser
+class ConnectionMessageUsernameParser
   def initialize(string_username_list)
     if string_username_list == nil 
       @username_list = []

@@ -48,13 +48,21 @@ Factory.define :user_mailbox do |mailbox|
   mailbox.messages []
 end
 
-Factory.define :message do |message|
-  message.subject "Subject"
-  message.body "Body"
-  message.time "2011-06-16 00:00:00 Z"
+Factory.define :connection_message do |connection_message|
+  connection_message.message_data {Factory.build(:message_data)}
+end
+
+Factory.define :message_data do |message_data|
+  message_data.subject "Subject"
+  message_data.body "Body"
+  message_data.time "2011-06-16 00:00:00 Z"
   
-  message.from { |from| from.association(:user) }
-  message.to []
+  message_data.from { |from| from.association(:user) }
+  message_data.to []
+end
+
+Factory.define :handshake_message do |handshake_message|
+  handshake_message.message_data {Factory.build(:message_data)}
 end
 
 Factory.define :like do |like|

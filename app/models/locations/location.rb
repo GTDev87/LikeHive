@@ -1,3 +1,4 @@
+#interface object... maybe define interface
 class Location
   include Mongoid::Document 
   

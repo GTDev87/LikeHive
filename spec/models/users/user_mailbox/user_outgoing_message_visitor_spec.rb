@@ -8,14 +8,14 @@ describe UserOutgoingMessageVisitor do
     end
     
     it "should visit outgoing message" do      
-      outgoing_message = Factory.build(:message, :from => @user)
+      outgoing_message = Factory.build(:connection_message, message_data: Factory.build(:message_data, :from => @user))
       
       @user_outgoing_visitor.visit_message(outgoing_message)
       @user_outgoing_visitor.outgoing_messages.should == [outgoing_message]
     end    
     
     it "should not visit not outgoing message" do
-      not_outgoing_message = Factory.build(:message, :from => Factory.build(:user))
+      not_outgoing_message = Factory.build(:connection_message, message_data: Factory.build(:message_data, :from => Factory.build(:user)))
       
       @user_outgoing_visitor.visit_message(not_outgoing_message)
       @user_outgoing_visitor.outgoing_messages.should == []
@@ -26,8 +26,8 @@ describe UserOutgoingMessageVisitor do
       outgoing_messages = []
       
       5.times do
-        outgoing_messages << Factory.build(:message, :from => @user)
-        message_array << Factory.build(:message, :from => Factory.build(:user))
+        outgoing_messages << Factory.build(:connection_message, message_data: Factory.build(:message_data, :from => @user))
+        message_array << Factory.build(:connection_message, message_data: Factory.build(:message_data, :from => Factory.build(:user)))
       end
       message_array.concat(outgoing_messages)
       
