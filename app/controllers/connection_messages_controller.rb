@@ -17,7 +17,7 @@ class ConnectionMessagesController < ApplicationController
     if @message.save
       redirect_to mailbox_path, :notice => "You have successfully sent the message"
     else
-      render :new
+      render new_connection_message_path
     end
   end
   
