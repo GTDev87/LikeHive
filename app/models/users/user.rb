@@ -40,8 +40,8 @@ class User
   attr_accessible :password_confirmation, :remember_me
   
   #virtual attributes
-  attr_accessible :like_box, :like_name
-  attr_accessor :like_name, :like_box
+  attr_accessible :virtual_like_box, :virtual_like_name
+  attr_accessor :virtual_like_name, :virtual_like_box
   
   after_save :assign_like
   after_save :assign_multiple_likes  
@@ -77,18 +77,18 @@ private
   
   def assign_multiple_likes
     #maybe move sanitization up to here
-    if @like_box == nil then return end
-    likes_names = @like_box
-    @like_box = nil
-    add_likes(likes_names)
+    if @virtual_like_box == nil then return end
+    virtual_likes_names = @virtual_like_box
+    @virtual_like_box = nil
+    add_likes(virtual_likes_names)
   end
   
   def assign_like
     #maybe move sanitization up to here and here
-    if @like_name == nil then return end
-    like_name = @like_name
-    @like_name = nil
-    add_like(like_name)
+    if @virtual_like_name == nil then return end
+    virtual_like_name = @virtual_like_name
+    @virtual_like_name = nil
+    add_like(virtual_like_name)
   end
 end
 

@@ -119,7 +119,7 @@ end
 
 Given /^I have a like "([^"]*)"$/ do |like_name|
   like = LikeCreator.create(name: like_name)
-  @user.like_name = like_name
+  @user.virtual_like_name = like_name
   @user.save!()
 end
 

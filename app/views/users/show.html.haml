@@ -24,13 +24,13 @@
       %add_single_like
         = form_for @user do |form|
           %p
-            = form.text_field :like_name
+            = form.text_field :virtual_like_name
             = form.submit "Add Like"
         
       %add_multiple_likes
         = form_for @user do |form|
           %p
-            = form.text_area :like_box
+            = form.text_area :virtual_like_box
           %p
             = form.submit "Add Likes"
           
@@ -48,12 +48,12 @@
           - user_peek.similar_likes.each do |similar_like|
             #{link_to StringFormatter.capitalize_words(similar_like.name), similar_like}
             %br
-          %br
-          -# link_to "Handshake #{user_peek.user.username}", user_peek.handshake
+          = form_for @user do |form|
+            = form.hidden_field :virtual_handshake, {:value => user_peek.handshake}
+            = form.submit "Handshake #{user_peek.user.username}"
           %br
         %p
   
-        
       %like_recommendations
         %user_header
           Interest Recommendations:

@@ -164,10 +164,10 @@ describe User do
     end
     
     it "should add like data after save" do
-      @user.like_name = "Pizza"
+      @user.virtual_like_name = "Pizza"
       @user.save!
 
-      @user.like_name = "BreadSticks"
+      @user.virtual_like_name = "BreadSticks"
       @user.save!
       
       @user.personality.find_like("pizza").should be_true
@@ -176,21 +176,21 @@ describe User do
     end        
     
     it "should clear like_name after save" do
-      @user.like_name = "Pizza"
+      @user.virtual_like_name = "Pizza"
       @user.save!
       
-      @user.like_name.should be_nil
+      @user.virtual_like_name.should be_nil
     end
     
     it "should clear like_box after save" do
-      @user.like_box = "Pizza, French Fries"
+      @user.virtual_like_box = "Pizza, French Fries"
       @user.save!
       
-      @user.like_box.should be_nil
+      @user.virtual_like_box.should be_nil
     end
     
     it "should add multiple likes data after save" do
-      @user.like_box = "Pizza, BreadSticks"
+      @user.virtual_like_box = "Pizza, BreadSticks"
       @user.save!
       
       @user.personality.find_like("pizza").should be_true
@@ -202,11 +202,11 @@ describe User do
   describe "between multiple users" do    
     it "should keep likes referenced between multiple users" do 
       user1 = Factory(:user)
-      user1.like_name = "ketchup"
+      user1.virtual_like_name = "ketchup"
       user1.save!
       
       user2 = Factory(:user)
-      user2.like_name = "ketchup"
+      user2.virtual_like_name = "ketchup"
       user2.save!
       
       Like.count.should == 1
