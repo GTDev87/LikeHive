@@ -3,7 +3,7 @@ Feature: User extending Handshakes
   As a registered user of the website
   I extend handshakes to other users
       
-    Scenario: Shows common interest between yourself recommendation
+    Scenario: Handshake button exists
       Given There is a user with an email "a@test.com" and password "pizza"
       And The user with email "a@test.com" likes "pizza"
       And The user with the email "a@test.com" has the username "UserA"

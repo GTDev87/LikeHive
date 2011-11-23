@@ -45,9 +45,9 @@ class UsersController < ApplicationController
     @user = current_user
     authorize! :read, @user
     if @user.update_attributes(params[:user]) 
-      redirect_to :action => 'show', :id => @user
+      redirect_to profile_path
     else
-      render :action => 'edit'
+      render profile_edit_path
     end
   end
 end
