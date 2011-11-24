@@ -1,7 +1,4 @@
-class HandshakeMessagesController < ApplicationController
-  def new
-  end
-  
+class HandshakeMessagesController < ApplicationController  
   def create
     #this code sucks FIX THIS LATER
     if params[:handshake_message] != nil
@@ -17,19 +14,10 @@ class HandshakeMessagesController < ApplicationController
     
     redirect_to profile_path
   end
-  
-  def list
-  end
 
   def show
     @message = MessageQuery.find(params[:id])
+    @handshake_accept_message = @message.create_accept_message()
     authorize! :read, @message
-  end
-  
-  def edit
-  end
-  
-  def update
-    puts "params are params #{params}"
   end
 end

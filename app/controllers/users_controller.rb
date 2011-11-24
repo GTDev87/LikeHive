@@ -18,9 +18,6 @@ class UsersController < ApplicationController
     end
   end
   
-  def list
-  end
-
   def show
     @user = current_user
     authorize! :read, @user

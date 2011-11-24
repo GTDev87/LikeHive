@@ -6,6 +6,14 @@ class HandshakeMessage < Message
   
   around_save :assign_messages
   
+  def create_accept_message
+    accept_message = MessageCreator.new_connection_message
+    accept_message.message_data.to = [self.message_data.from]
+    accept_message.message_data.from = self.message_data.to.first
+    accept_message.message_data.subject = "[Handshake Accepted] #{accept_message.message_data.from.username}"
+    return accept_message
+  end
+  
 private
   def assign_messages
     if self.message_data.changed?

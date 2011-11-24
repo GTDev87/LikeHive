@@ -30,6 +30,11 @@
     %br
     
   %accept
-    = link_to "Accept", mailbox_path(:reply_message => @message)
-    %br
-    %br
+    - if @message.message_data.to.first == current_user
+      = form_for @handshake_accept_message, :url => {:action=>"create", :controller=>"connection_messages"}  do |accept_field|
+        = accept_field.hidden_field :to_username_list, {:value => @message.message_data.to.first.username}
+        = accept_field.fields_for :message_data do |message_data_field|
+          = message_data_field.hidden_field :from, {:value => @message.message_data.from}
+          = message_data_field.hidden_field :subject
+          = message_data_field.hidden_field :body
+        = accept_field.submit "Accept Handshake"
