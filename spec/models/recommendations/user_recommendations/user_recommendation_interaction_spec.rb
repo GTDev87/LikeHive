@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe UserRecommendationGlimmer do
+describe UserRecommendationInteraction do
   describe "Recommending users" do
     before(:each) do
       @user = Factory.build(:user)
@@ -10,21 +10,21 @@ describe UserRecommendationGlimmer do
       5.times do
         @user_array << Factory.build(:user)
       end
-      glimmer = UserRecommendationGlimmer.new(@user)
+      interaction = UserRecommendationInteraction.new(@user)
       @user_array.each do |user|
-        glimmer.visit(user)
+        interaction.visit(user)
       end
       
       found_users = []
-      glimmer.user_peeks.each do |peek|
-        found_users << peek.user
+      interaction.user_links.each do |peek|
+        found_users << peek.other_user
       end
       
       @user_array.should =~ found_users
     end
     
     it "should find similar likes when it visits" do
-      glimmer = UserRecommendationGlimmer.new(@user)
+      interaction = UserRecommendationInteraction.new(@user)
       pizza = Factory.build(:like, :name => "pizza")
       
       @user.personality.likes << pizza
@@ -32,9 +32,9 @@ describe UserRecommendationGlimmer do
       recommended_user = Factory.build(:user)
       recommended_user.personality.likes << pizza
       
-      glimmer.visit(recommended_user)
+      interaction.visit(recommended_user)
       
-      glimmer.user_peeks.each do |peek|
+      interaction.user_links.each do |peek|
         peek.similar_likes.should == [pizza]
       end
     end

@@ -1,0 +1,36 @@
+.show
+  %reply
+    = link_to "Reply", new_connection_message_path(:reply_message => @message)
+    %br
+    %br
+    
+  %from
+    From:
+    %br
+    #{@message.message_data.from.username}
+    %br
+    %br
+    
+  %to
+    To
+    %br
+    - @message.message_data.to.each do |to_users|
+      #{to_users.username},
+    %br
+    %br
+    
+  %subject
+    Subject
+    %br
+    #{@message.message_data.subject}
+    %br
+    %br
+    
+  %body
+    Body
+    %br
+    You have been extended a handshake by user #{@message.message_data.from.username} if you would like to accept the handshake click the following link.
+    #{@message.message_data.body}
+    %br
+    %br
+    

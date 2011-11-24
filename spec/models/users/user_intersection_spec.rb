@@ -7,6 +7,7 @@ describe UserIntersection do
       @user2 = Factory.build(:user)
       @user_intersection = UserIntersection.new(@user1, @user2)
     end
+
     it "should find all similar likes" do
       like1 = Factory.build(:like)
       like2 = Factory.build(:like)

@@ -1,6 +1,6 @@
 Factory.define :user do |user|
   user.sequence(:email) { |n| "user#{n}@test.com"}
-  user.sequence(:username) { |n| "username#{n}@test.com"}
+  user.sequence(:username) { |n| "username#{n}"}
   user.password "please"
   user.profile {Factory.build(:user_profile)}
   user.habitation {Factory.build(:user_habitation)}

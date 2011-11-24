@@ -19,10 +19,10 @@ class MessageData
   
   attr_accessible :from, :to, :body, :subject
 
-  after_save :assign_messages
   embedded_in :sendable, polymorphic: true
 
   def associated_users()
-    return UserContainer.new(self.to | [self.from])
+    associated_user_list = self.to | [self.from]
+    return UserContainer.new(associated_user_list)
   end
 end

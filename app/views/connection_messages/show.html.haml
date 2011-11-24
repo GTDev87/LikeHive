@@ -7,7 +7,7 @@
   %from
     From:
     %br
-    #{@message.message_data.from.email}
+    #{@message.message_data.from.username}
     %br
     %br
     
@@ -15,7 +15,7 @@
     To
     %br
     - @message.message_data.to.each do |to_users|
-      #{to_users.email},
+      #{to_users.username},
     %br
     %br
     

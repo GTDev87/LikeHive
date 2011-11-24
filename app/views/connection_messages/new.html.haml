@@ -3,7 +3,6 @@
     = message_data_fields.input :from, :as => :hidden, :value => @message.message_data.from
   = f.input :to_username_list, :as => :string, :label => "To:"
   = f.simple_fields_for :message_data do |message_data_fields|
-    = message_data_fields.input :from, :as => :hidden, :value => @message.message_data.from
     = message_data_fields.input :subject, :as => :string, :label => "Subject:"
     = message_data_fields.input :body, :as => :text, :label => "Body:"
   %p= f.submit "Send"

@@ -4,6 +4,6 @@ class MessageUserLinkingVisitor
   end
   
   def visit_user(user)
-    user.mailbox.messages <<  @message
+    user.mailbox.messages << @message
   end
 end

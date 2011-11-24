@@ -4,7 +4,7 @@ class ConnectionMessage < Message
   attr_accessible :to_username_list
   attr_accessor :to_username_list
 
-  after_save :assign_messages
+  around_save :assign_messages
   
   embeds_one :message_data, as: :sendable, validate: false
   accepts_nested_attributes_for :message_data
@@ -23,10 +23,9 @@ private
     return true
   end
   
-  def assign_messages
-    if !parse_to_list() then return end
-    
-    if self.changed? || self.message_data.changed?
+  def assign_messages    
+    if parse_to_list() || self.message_data.changed?
+      yield
       message_assigner = MessageUserAssigner.new(self)
       message_assigner.assign_message_to_users
     end

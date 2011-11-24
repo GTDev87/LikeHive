@@ -120,7 +120,6 @@ describe User do
   end
   
   describe "password validations" do
-
     it "should be valid if matching" do
       Factory.build(:user, :password => "validpass", :password_confirmation => "validpass")
         .should be_valid
@@ -135,11 +134,9 @@ describe User do
       Factory.build(:user, :password_confirmation => "invalid")
         .should_not be_valid
     end
-    
   end
   
   describe "password encryption" do
-    
     before(:each) do
       @user = Factory(:user)
     end
@@ -197,9 +194,7 @@ describe User do
       @user.personality.find_like("breadsticks").should be_true
       @user.personality.likes.size.should == 2
     end
-  end  
-  
-  describe "between multiple users" do    
+    
     it "should keep likes referenced between multiple users" do 
       user1 = Factory(:user)
       user1.virtual_like_name = "ketchup"
@@ -213,6 +208,38 @@ describe User do
     end
   end
   
+  describe "sending virtual handshake" do
+    before(:each) do
+      @user_1 = Factory(:user)
+      @user_2 = Factory(:user)
+      @user_3 = Factory(:user)
+    end
+    
+    it "should create handshake when virtual field filled" do 
+      @user_1.virtual_handshake = Factory.build(:handshake_message, message_data: Factory.build(:message_data, from: @user_1, to: [@user_2]))
+      @user_1.save!
+
+      @user_1.virtual_handshake = Factory.build(:handshake_message, message_data: Factory.build(:message_data, from: @user_1, to: [@user_3]))
+      @user_1.save!
+      
+      @user_1.reload
+      @user_2.reload
+      @user_3.reload
+      
+      @user_1.mailbox.messages.first.message_data.from.should == @user_1
+      @user_1.mailbox.messages.first.message_data.to.should == [@user_2]
+      
+      @user_1.mailbox.messages.last.message_data.from.should == @user_1
+      @user_1.mailbox.messages.last.message_data.to.should == [@user_3]
+      
+      @user_2.mailbox.messages.first.message_data.from.should == @user_1
+      @user_2.mailbox.messages.first.message_data.to.should == [@user_2]
+      
+      @user_3.mailbox.messages.first.message_data.from.should == @user_1
+      @user_3.mailbox.messages.first.message_data.to.should == [@user_3]
+    end
+  end
+
   describe "nested attribute assignment" do
     before(:each) do
       @params = {:user=>{:profile_attributes=>{:name_attributes=>{:first=>"s", :last_initial=>"S"}, :age_attributes=>{"date_of_birth(1i)"=>"1900", "date_of_birth(2i)"=>"06", "date_of_birth(3i)"=>"27"}, :gender_attributes=>{:female=>"false"}}, :habitation_attributes=>{:locations_attributes=>{"0"=>{:number=>"11111", :_type=>"Zipcode"}}}, :email=>"s@s.com", :password=>"s", :password_confirmation=>"s"}, :controller=>"users", :action=>"create"}

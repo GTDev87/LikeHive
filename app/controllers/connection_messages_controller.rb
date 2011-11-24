@@ -1,6 +1,5 @@
 class ConnectionMessagesController < ApplicationController
   def new
-   
     @message = MessageCreator.new_connection_message
     if not params[:reply_message] == nil
       prev_message = MessageQuery.find(params[:reply_message])

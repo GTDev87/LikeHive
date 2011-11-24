@@ -40,17 +40,22 @@
         %user_header
           People Recommendations:
         %br
-        - @user_peeks.each_with_index do |user_peek, user_index|
+        - @user_interaction.user_links.each_with_index do |user_link, user_index|
           Suggested #{user_index+1}
           %br
           Common Interests:
           %br
-          - user_peek.similar_likes.each do |similar_like|
+          - user_link.similar_likes.each do |similar_like|
             #{link_to StringFormatter.capitalize_words(similar_like.name), similar_like}
             %br
-          = form_for @user do |form|
-            = form.hidden_field :virtual_handshake, {:value => user_peek.handshake}
-            = form.submit "Handshake #{user_peek.user.username}"
+          = form_for @user do |user_fields|
+            = fields_for :virtual_handshake, user_link.handshake do |handshake_field|
+              = handshake_field.fields_for :message_data do |message_data_field|
+                = message_data_field.hidden_field(:to, {:value => user_link.other_user.id})
+                = message_data_field.hidden_field :from
+                = message_data_field.hidden_field :subject
+                = message_data_field.hidden_field :body
+            = user_fields.submit "Handshake #{user_link.other_user.username}"
           %br
         %p
   
