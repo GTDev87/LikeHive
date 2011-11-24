@@ -1,9 +1,4 @@
 .show
-  %reply
-    = link_to "Reply", new_connection_message_path(:reply_message => @message)
-    %br
-    %br
-    
   %from
     From:
     %br
@@ -34,3 +29,7 @@
     %br
     %br
     
+  %accept
+    = link_to "Accept", mailbox_path(:reply_message => @message)
+    %br
+    %br

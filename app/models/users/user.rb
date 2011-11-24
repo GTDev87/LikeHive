@@ -40,13 +40,11 @@ class User
   attr_accessible :password_confirmation, :remember_me
   
   #virtual attributes
-  attr_accessible :virtual_like_box, :virtual_like_name, :virtual_handshake
-  attr_accessor :virtual_like_name, :virtual_like_box, :virtual_handshake
+  attr_accessible :virtual_like_box, :virtual_like_name
+  attr_accessor :virtual_like_name, :virtual_like_box
   
   after_save :assign_like
   after_save :assign_multiple_likes
-  after_save :assign_handshake
-  
   
   after_create :initialize_mailbox#HACK KILL THIS LATER WHEN MONGOID IS COMPETNENT  
   
@@ -89,13 +87,6 @@ private
     virtual_like_name = @virtual_like_name
     @virtual_like_name = nil
     add_like(virtual_like_name)
-  end
-  
-  def assign_handshake
-    if @virtual_handshake == nil then return end
-    virtual_handshake = @virtual_handshake
-    @virtual_handshake = nil
-    virtual_handshake.save!
-  end
+  end  
 end
 

@@ -44,27 +44,10 @@ class UsersController < ApplicationController
     @user = current_user
     authorize! :read, @user
 
-    create_handshake_message params[:virtual_handshake]
-    
     if @user.update_attributes(params[:user])
       redirect_to profile_path
     else
       render profile_edit_path
-    end
-  end
-  
-  def create_handshake_message(handshake_param)
-    #this code sucks
-    if handshake_param != nil
-      handshake = MessageCreator.new_handshake_message()
-      handshake.message_data.from = current_user
-      handshake.message_data.to = [User.find(handshake_param[:message_data_attributes][:to])]
-      handshake.message_data.subject = handshake_param[:message_data_attributes][:subject]
-      handshake.message_data.body = handshake_param[:message_data_attributes][:body]
-      
-      @user.virtual_handshake = handshake
-        
-      flash[:error] = "Handshake Sent" 
     end
   end
 end

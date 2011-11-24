@@ -206,39 +206,7 @@ describe User do
       
       Like.count.should == 1
     end
-  end
-  
-  describe "sending virtual handshake" do
-    before(:each) do
-      @user_1 = Factory(:user)
-      @user_2 = Factory(:user)
-      @user_3 = Factory(:user)
-    end
-    
-    it "should create handshake when virtual field filled" do 
-      @user_1.virtual_handshake = Factory.build(:handshake_message, message_data: Factory.build(:message_data, from: @user_1, to: [@user_2]))
-      @user_1.save!
-
-      @user_1.virtual_handshake = Factory.build(:handshake_message, message_data: Factory.build(:message_data, from: @user_1, to: [@user_3]))
-      @user_1.save!
-      
-      @user_1.reload
-      @user_2.reload
-      @user_3.reload
-      
-      @user_1.mailbox.messages.first.message_data.from.should == @user_1
-      @user_1.mailbox.messages.first.message_data.to.should == [@user_2]
-      
-      @user_1.mailbox.messages.last.message_data.from.should == @user_1
-      @user_1.mailbox.messages.last.message_data.to.should == [@user_3]
-      
-      @user_2.mailbox.messages.first.message_data.from.should == @user_1
-      @user_2.mailbox.messages.first.message_data.to.should == [@user_2]
-      
-      @user_3.mailbox.messages.first.message_data.from.should == @user_1
-      @user_3.mailbox.messages.first.message_data.to.should == [@user_3]
-    end
-  end
+  end  
 
   describe "nested attribute assignment" do
     before(:each) do
