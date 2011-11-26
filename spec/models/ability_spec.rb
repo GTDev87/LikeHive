@@ -35,17 +35,17 @@ describe Ability do
     end
     
     it "should have ability to read message sent to user" do
-      message = Factory(:connection_message, message_data: Factory.build(:message_data, to: [@user], from: Factory(:user)) )
+      message = Factory(:contact_message, message_data: Factory.build(:message_data, to: [@user], from: Factory(:user)) )
       @ability.should be_able_to(:read, message)
     end
     
     it "should have ability to read message sent from user" do
-      message = Factory(:connection_message, message_data: Factory.build(:message_data, to: [Factory(:user)], from: @user))
+      message = Factory(:contact_message, message_data: Factory.build(:message_data, to: [Factory(:user)], from: @user))
       @ability.should be_able_to(:read, message)
     end
     
     it "should not have ability to read message not from or to user" do
-      message = Factory(:connection_message, message_data: Factory.build(:message_data, to: [Factory(:user)], from: Factory(:user)))
+      message = Factory(:contact_message, message_data: Factory.build(:message_data, to: [Factory(:user)], from: Factory(:user)))
       @ability.should_not be_able_to(:read, message)
     end
   end

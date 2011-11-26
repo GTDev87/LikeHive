@@ -16,6 +16,7 @@ describe UserCreator do
       user.habitation.should_not be_nil
       user.personality.should_not be_nil
       user.mailbox.should_not be_nil
+      user.network.should_not be_nil
     end
   end
 end

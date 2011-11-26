@@ -1,5 +1,6 @@
 class UserCreator
   def self.new()
+    #maybe move behavior
     user = User.new
     user.build_profile
     user.profile.build_name
@@ -8,6 +9,7 @@ class UserCreator
     user.build_habitation
     user.build_personality
     user.build_mailbox
+    user.build_network
     return user
   end
 end

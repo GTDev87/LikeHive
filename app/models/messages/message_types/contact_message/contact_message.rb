@@ -1,4 +1,4 @@
-class ConnectionMessage < Message
+class ContactMessage< Message
   validate :validate_to_users
   
   attr_accessible :to_username_list
@@ -19,7 +19,7 @@ private
     @to_username_list = nil
     
     user_visitor = UserVisitor.new(self.message_data.to)
-    ConnectionMessageUsernameParser.new(temp_username_list).return_user_list.accept_user_visitor(user_visitor)
+    ContactMessageUsernameParser.new(temp_username_list).return_user_list.accept_user_visitor(user_visitor)
     return true
   end
   
@@ -39,7 +39,7 @@ private
     
     parsed_sent_to_array = []
     user_visitor = UserVisitor.new(parsed_sent_to_array)
-    ConnectionMessageUsernameParser.new(self.to_username_list).return_user_list.accept_user_visitor(user_visitor)
+    ContactMessageUsernameParser.new(self.to_username_list).return_user_list.accept_user_visitor(user_visitor)
 
     sent_to_array = parsed_sent_to_array | self.message_data.to
     

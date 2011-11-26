@@ -1,12 +1,12 @@
 class MessageCreator
   #untested needs tests
-  def self.new_connection_message()
-    message = ConnectionMessage.new
+  def self.new_contact_message()
+    message = ContactMessage.new
     return message
   end  
   
-  def self.new_connection_message_with_parameters(params)
-    message = ConnectionMessage.new params
+  def self.new_contact_message_with_parameters(params)
+    message = ContactMessage.new params
     return message
   end
   

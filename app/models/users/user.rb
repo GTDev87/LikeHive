@@ -21,7 +21,12 @@ class User
   validates_presence_of :mailbox
   accepts_nested_attributes_for :mailbox
   attr_accessible :mailbox_attributes
-
+  
+  embeds_one :network, class_name: "UserNetwork"
+  validates_presence_of :network
+  accepts_nested_attributes_for :network
+  attr_accessible :network_attributes
+  
   field :email
   validates_uniqueness_of :email, :case_sensitive => false
   validates :email, :presence => true, :email => true

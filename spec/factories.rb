@@ -6,6 +6,7 @@ Factory.define :user do |user|
   user.habitation {Factory.build(:user_habitation)}
   user.personality {Factory.build(:user_personality)}
   user.mailbox {Factory.build(:user_mailbox)}
+  user.network {Factory.build(:user_network)}
 end
 
 Factory.define :user_profile do |profile|
@@ -48,8 +49,12 @@ Factory.define :user_mailbox do |mailbox|
   mailbox.messages []
 end
 
-Factory.define :connection_message do |connection_message|
-  connection_message.message_data {Factory.build(:message_data)}
+Factory.define :user_network do |network|
+  network.contacts []
+end
+
+Factory.define :contact_message do |contact_message|
+  contact_message.message_data {Factory.build(:message_data)}
 end
 
 Factory.define :message_data do |message_data|

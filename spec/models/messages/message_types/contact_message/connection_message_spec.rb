@@ -1,13 +1,13 @@
 require 'spec_helper'
 
-describe ConnectionMessage do  
+describe ContactMessage do  
   
-  describe "Connection message properties" do
+  describe "Contact message properties" do
     it "should have type ConnectionMessage" do      
       user = Factory.build(:user)
-      connection_message = Factory(:connection_message, message_data: Factory.build(:message_data, to: [user]))
+      contact_message = Factory(:contact_message, message_data: Factory.build(:message_data, to: [user]))
     
-      connection_message._type.should == "ConnectionMessage"
+      contact_message._type.should == "ContactMessage"
     end
   end
   
@@ -20,7 +20,7 @@ describe ConnectionMessage do
     end
         
     it "should add existing users to to list" do
-      message = Factory.build(:connection_message)
+      message = Factory.build(:contact_message)
       message.to_username_list = "GregT, ReidH, AmolK, ZacC"
       message.save!
       
@@ -28,14 +28,14 @@ describe ConnectionMessage do
     end
     
     it "should parse usernames before validation" do
-      message = Factory.build(:connection_message)
+      message = Factory.build(:contact_message)
       message.to_username_list = "GregT, ReidH, AmolK, ZacC"
 
       message.should be_valid
     end
     
     it "should parse usernames before save" do
-      message = Factory.build(:connection_message)
+      message = Factory.build(:contact_message)
       message.to_username_list = "GregT, ReidH, AmolK, ZacC"
       message.save!
       
@@ -43,14 +43,14 @@ describe ConnectionMessage do
     end
         
     it "should not be valid if list is empty" do
-      message = Factory.build(:connection_message)
+      message = Factory.build(:contact_message)
       message.to_username_list = ""
       
       message.should_not be_valid
     end
     
     it "should not be valid if does not recognize any user" do
-      message = Factory.build(:connection_message)
+      message = Factory.build(:contact_message)
       message.to_username_list = "A, B, C, D"
       
       message.should_not be_valid
@@ -66,7 +66,7 @@ describe ConnectionMessage do
     end
     
     it "should give message to a user it is sent to after save" do
-      message = Factory.build(:connection_message)
+      message = Factory.build(:contact_message)
       message.message_data.body = "sent message"
       message.to_username_list = "GregT"
       message.save!
@@ -78,7 +78,7 @@ describe ConnectionMessage do
     end
     
     it "should give message to multiple user it is sent to after save" do
-      message = Factory.build(:connection_message)
+      message = Factory.build(:contact_message)
       message.message_data.body = "sent message"
       message.to_username_list = "GregT, ReidH, AmolK, ZacC"
       message.save!
@@ -102,7 +102,7 @@ describe ConnectionMessage do
     end
     
     it "should give message to a user it is sent from after save" do
-      message = Factory.build(:connection_message)
+      message = Factory.build(:contact_message)
       message.message_data.body = "sent message"
       message.message_data.from = @greg
       message.to_username_list = "AmolK"
@@ -115,12 +115,12 @@ describe ConnectionMessage do
     end
     
     it "should be able to give multiple messages to users" do
-      message = Factory.build(:connection_message)
+      message = Factory.build(:contact_message)
       message.message_data.body = "sent message 1"
       message.to_username_list = "GregT"
       message.save!
       
-      message2 = Factory.build(:connection_message)
+      message2 = Factory.build(:contact_message)
       message2.message_data.body = "sent message 2"
       message2.to_username_list = "GregT"
       message2.save!

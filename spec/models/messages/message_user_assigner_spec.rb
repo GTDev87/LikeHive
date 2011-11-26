@@ -10,7 +10,7 @@ describe MessageUserAssigner do
     end
     
     it "should assign message to_list and from_list to users" do
-      message = Factory.build(:connection_message, message_data: Factory.build(:message_data, from: @greg, to: [@amol], body: "Sent Message"))
+      message = Factory.build(:contact_message, message_data: Factory.build(:message_data, from: @greg, to: [@amol], body: "Sent Message"))
       message_assigner = MessageUserAssigner.new(message)
       message_assigner.assign_message_to_users()
       
@@ -22,7 +22,7 @@ describe MessageUserAssigner do
     end
     
     it "should assign multiple users from to list" do
-      message = Factory.build(:connection_message, message_data: Factory.build(:message_data, from: @greg, to: [@amol, @reid, @zac], body: "Sent Message"))
+      message = Factory.build(:contact_message, message_data: Factory.build(:message_data, from: @greg, to: [@amol, @reid, @zac], body: "Sent Message"))
       
       message_assigner = MessageUserAssigner.new(message)
       message_assigner.assign_message_to_users()
@@ -41,7 +41,7 @@ describe MessageUserAssigner do
     end
     
     it "should not send 2 messages when message is addressed to self" do
-      message = Factory.build(:connection_message, message_data: Factory.build(:message_data, from: @greg, to: [@greg], body: "Sent Message"))
+      message = Factory.build(:contact_message, message_data: Factory.build(:message_data, from: @greg, to: [@greg], body: "Sent Message"))
       
       message_assigner = MessageUserAssigner.new(message)
       message_assigner.assign_message_to_users()
@@ -51,7 +51,7 @@ describe MessageUserAssigner do
     end
     
     it "should not send 2 messages when message is addressed to person twice" do
-      message = Factory.build(:connection_message, message_data: Factory.build(:message_data, from: @greg, to: [@reid, @reid], body: "Sent Message"))
+      message = Factory.build(:contact_message, message_data: Factory.build(:message_data, from: @greg, to: [@reid, @reid], body: "Sent Message"))
       
       message_assigner = MessageUserAssigner.new(message)
       message_assigner.assign_message_to_users()

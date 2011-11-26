@@ -8,21 +8,21 @@ describe UserIncomingMessageVisitor do
     end
     
     it "should visit incoming message" do      
-      incoming_message = Factory.build(:connection_message, message_data: Factory.build(:message_data, :to => [@user]))
+      incoming_message = Factory.build(:contact_message, message_data: Factory.build(:message_data, :to => [@user]))
       
       @user_incoming_visitor.visit_message(incoming_message)
       @user_incoming_visitor.incoming_messages.should == [incoming_message]
     end
     
     it "should visit incoming message sent to multiple users" do      
-      incoming_message = Factory.build(:connection_message, message_data: Factory.build(:message_data, :to => [@user, Factory.build(:user)]))
+      incoming_message = Factory.build(:contact_message, message_data: Factory.build(:message_data, :to => [@user, Factory.build(:user)]))
       
       @user_incoming_visitor.visit_message(incoming_message)
       @user_incoming_visitor.incoming_messages.should == [incoming_message]
     end
     
     it "should not visit not incoming message" do
-      not_incoming_message = Factory.build(:connection_message, message_data: Factory.build(:message_data, :to => [Factory.build(:user)]))
+      not_incoming_message = Factory.build(:contact_message, message_data: Factory.build(:message_data, :to => [Factory.build(:user)]))
       
       @user_incoming_visitor.visit_message(not_incoming_message)
       @user_incoming_visitor.incoming_messages.should == []
@@ -33,8 +33,8 @@ describe UserIncomingMessageVisitor do
       incoming_messages = []
       
       5.times do
-        incoming_messages << Factory.build(:connection_message, message_data: Factory.build(:message_data, :to => [@user]))
-        message_array << Factory.build(:connection_message, message_data: Factory.build(:message_data, :to => [Factory.build(:user)]))
+        incoming_messages << Factory.build(:contact_message, message_data: Factory.build(:message_data, :to => [@user]))
+        message_array << Factory.build(:contact_message, message_data: Factory.build(:message_data, :to => [Factory.build(:user)]))
       end
       message_array.concat(incoming_messages)
       

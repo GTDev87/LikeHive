@@ -6,7 +6,7 @@ LikeHive::Application.routes.draw do
   resources :users, :except => [:new, :create, :show, :index]
   resources :sessions
   resources :likes
-  resources :connection_messages
+  resources :contact_messages
   resources :handshake_messages
   
   get "logout" => "sessions#destroy", :as => "logout"

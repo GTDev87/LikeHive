@@ -10,7 +10,7 @@ describe MessageUserLinkingVisitor do
     end
     
     it "should assign message to user" do
-      message = Factory.build(:connection_message, message_data: Factory.build(:message_data, from: @greg, to: [@amol], body: "Sent Message"))
+      message = Factory.build(:contact_message, message_data: Factory.build(:message_data, from: @greg, to: [@amol], body: "Sent Message"))
       
       message_user_visitor = MessageUserLinkingVisitor.new(message)
       message_user_visitor.visit_user(@greg)

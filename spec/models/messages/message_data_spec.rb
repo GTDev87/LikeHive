@@ -48,7 +48,7 @@ describe MessageData do
     
     it "should initialize time to current time" do
       Timecop.freeze(DateTime.now) do
-        message = ConnectionMessage.new
+        message = ContactMessage.new
         message.build_message_data
         message.message_data.time.should == DateTime.now
       end

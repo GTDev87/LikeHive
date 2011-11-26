@@ -6,8 +6,10 @@ class UsersController < ApplicationController
   
   def create
     @user = User.new params[:user]
+    #encapsulate building
     @user.build_personality
     @user.build_mailbox
+    @user.build_network
     
     if @user.save
       @user.habitation.save ### monkey patch hack

@@ -12,7 +12,7 @@ describe MessageUserLinker do
     it "should link message to user" do
       message_user_linker = MessageUserLinker.new()
       
-      message = Factory.build(:connection_message, message_data: Factory.build(:message_data, to: [@greg], body: "Sent Message"))
+      message = Factory.build(:contact_message, message_data: Factory.build(:message_data, to: [@greg], body: "Sent Message"))
       message_user_linker.link_user_and_message(@greg, message)
       
       @greg.mailbox.messages.size.should == 1
