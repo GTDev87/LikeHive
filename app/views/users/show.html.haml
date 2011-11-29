@@ -35,6 +35,12 @@
             = form.submit "Add Likes"
           
   %right_panel
+    %user_contacts
+      %contact_header
+        Contacts (#{@user.network.contacts.size}):
+      %br
+      - @user.network.contacts.each do |contact|
+        #{contact.username}
     %recommendations
       %user_recommendations
         %user_header

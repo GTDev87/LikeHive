@@ -11,7 +11,7 @@ class UserLink
     @other_user = other_user
     user_intersection = UserIntersection.new(user,other_user)
     @similar_likes = user_intersection.similar_interests
-    @handshake = create_handshake
+    @handshake = create_handshake()
   end
   
 private

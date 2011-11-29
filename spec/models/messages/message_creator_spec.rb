@@ -27,5 +27,16 @@ describe MessageCreator do
 
       message._type.should == "HandshakeMessage"
     end
+    
+    it "should create a handshake acceptance message" do
+      greg = Factory.build(:user, username: "Greg")
+      reid = Factory.build(:user, username: "Reid")
+      message = MessageCreator.create_accept_message(greg, reid)
+      
+      message._type.should == "ContactMessage"
+      message.message_data.to.should == [reid]
+      message.message_data.from.should == greg
+      message.message_data.subject.should == "[Handshake Accepted] #{greg.username}"
+    end
   end
 end

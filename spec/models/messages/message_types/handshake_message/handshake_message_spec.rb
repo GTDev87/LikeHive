@@ -48,26 +48,4 @@ describe HandshakeMessage do
       @user_3.mailbox.messages.first.message_data.to.should == [@user_3]
     end
   end
-  
-    
-  describe "responding to handshake messages" do
-    before(:each) do
-      @user_1 = Factory(:user)
-      @user_2 = Factory(:user)
-    end
-    
-    it "should send connection message response to handshake message" do
-      handshake = Factory.build(:handshake_message, message_data: Factory.build(:message_data, from: @user_1, to: [@user_2]))
-      handshake.save!
-      
-      accept_message = handshake.create_accept_message()
-      
-      @user_1.reload
-      @user_2.reload
-      
-      accept_message.message_data.from == @user_2
-      accept_message.message_data.to == [@user_1]
-      accept_message.message_data.subject == "[Handshake Accepted] #{@user_2.username}"
-    end
-  end
 end

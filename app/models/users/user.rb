@@ -72,6 +72,11 @@ private
       self.mailbox.user = self
       self.mailbox.save!
     end
+    if self.network == nil
+      self.create_network
+      self.network.user = self
+      self.network.save!
+    end
   end
    
   def email=(email_name)

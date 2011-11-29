@@ -19,6 +19,9 @@ LikeHive::Application.routes.draw do
   get "profile/edit" => "users#edit", :as => "profile/edit"
   
   get "mailbox" => "user_mailbox#show", :as => "mailbox"
+  
+  #not sure i like this
+  post "user_network/update" => "user_network#update", :as => "user_network/update"
 
   # The priority is based upon order of creation:
   # first created -> highest priority.

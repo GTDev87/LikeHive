@@ -17,7 +17,6 @@ class HandshakeMessagesController < ApplicationController
 
   def show
     @message = MessageQuery.find(params[:id])
-    @handshake_accept_message = @message.create_accept_message()
     authorize! :read, @message
   end
 end
