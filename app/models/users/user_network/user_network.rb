@@ -7,10 +7,18 @@ class UserNetwork
   
   attr_accessor :virtual_contact
   
+  attr_reader :user_connection_container
+  
   attr_accessible :contacts_attributes
   accepts_nested_attributes_for :contacts
   
   after_save :notify_and_assign_contacts
+  
+  after_initialize :initialize_network
+  
+  def initialize_network
+    @user_connection_container = UserContainer.new(self.contacts)
+  end
   
 private 
   def notify_and_assign_contacts

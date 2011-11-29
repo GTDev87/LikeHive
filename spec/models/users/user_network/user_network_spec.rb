@@ -45,6 +45,21 @@ describe UserNetwork do
       @amol.network.contacts.should == [@greg]
       @greg.network.contacts.should == [@amol]
     end
+    
+    it "should hold all contacts in container" do
+      reid = Factory(:user, username: "Reid")
+      zac = Factory(:user, username: "Zac")
+      @greg.network.contacts << reid
+      @greg.network.contacts << zac
+      
+      found_greg = UserQuery.find_user_by_username("Greg")
+      
+      user_holder = []
+      visitor = UserVisitor.new(user_holder)
+      found_greg.network.user_connection_container.accept_user_visitor(visitor)
+      
+      user_holder.should =~ [reid, zac]
+    end
   end
    
   describe "acceptance message" do

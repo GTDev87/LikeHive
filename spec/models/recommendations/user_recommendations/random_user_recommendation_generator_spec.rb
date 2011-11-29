@@ -1,8 +1,8 @@
 require 'spec_helper'
 
 describe RandomUserRecommendationGenerator do
-  before(:each) do
-    @user = Factory.build(:user)
+  before(:each) do    
+    @user = Factory(:user)
     @recommendation_generator = RandomUserRecommendationGenerator.new(@user)
   end
 
@@ -33,6 +33,22 @@ describe RandomUserRecommendationGenerator do
         other_users.should have_key(user.profile.name.first)
         user.profile.name.first.should_not be(@user.profile.name.first)
       end
+    end
+    
+    it "should not recomend contacts" do
+      @amol = Factory(:user)
+      @zac = Factory(:user)
+      @reid = Factory(:user)
+      @deepak = Factory(:user)
+      
+      other_users = {}
+      @user.network.contacts << @amol
+      @user.network.contacts << @zac
+      
+      @user.reload
+      
+      recommendations = @recommendation_generator.generate_recommendations(4).user_list
+      recommendations.should =~ [@deepak, @reid]
     end
   end
 end

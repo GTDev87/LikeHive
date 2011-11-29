@@ -128,3 +128,7 @@ Given /^There are the following users:$/ do |emails|
     Factory(:user, :email => user_email)
   end
 end
+
+Given /^I have a contact of "([^"]*)"$/ do |username|
+  @user.network.contacts << UserQuery.find_user_by_username(username)
+end
