@@ -10,7 +10,6 @@ LikeHive::Application.routes.draw do
   resources :handshake_messages
   
   get "logout" => "sessions#destroy", :as => "logout"
-  get "login" => "sessions#new", :as => "login"
   
   get "signup" => "users#new", :as => "signup"
   match "signup" => "users#create", :via => "post"

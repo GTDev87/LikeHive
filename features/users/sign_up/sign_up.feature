@@ -9,7 +9,7 @@ Feature: Sign up
       And I signup
 
     Scenario: User signs up with valid data
-      And I fill in the following:
+      And I sign up with the following:
         | Username              | TestMcUser      |
         | First name            | Testy McUserton |
         | Email                 | user@test.com   |
@@ -27,7 +27,7 @@ Feature: Sign up
       And I should see "Logged in as user@test.com"
       
     Scenario: User signs up with invalid data redirects to signin page
-      And I fill in the following:
+      And I sign up with the following:
         | Username              | TestMcUser      |
         | First name            |                 |
         | Email                 | user@test.com   |
@@ -48,7 +48,7 @@ Feature: Sign up
       And I should see "Password confirmation"
     
     Scenario: User signs up Gender reflected
-      And I fill in the following:
+      And I sign up with the following:
         | Username              | TestMcUser      |
         | First name            | Testy McUserton |
         | Email                 | user@test.com   |
@@ -62,7 +62,7 @@ Feature: Sign up
       And I should see "Gender: Female"
       
     Scenario: User signs up Last Initial reflected
-      And I fill in the following:
+      And I sign up with the following:
         | Username              | TestMcUser      |
         | First name            | Testy McUserton |
         | Email                 | user@test.com   |
@@ -76,7 +76,7 @@ Feature: Sign up
       Then I should see "User: Testy McUserton X."
       
     Scenario: User signs up without age
-      And I fill in the following:
+      And I sign up with the following:
         | Username              | TestMcUser      |
         | First name            | Testy McUserton |
         | Email                 | user@test.com   |
@@ -90,7 +90,7 @@ Feature: Sign up
       
     Scenario: User signs up Age is reflected
       And the current date is "09/19/2011"
-      And I fill in the following:
+      And I sign up with the following:
         | Username              | TestMcUser      |
         | First name            | Testy McUserton |
         | Email                 | user@test.com   |
@@ -104,7 +104,7 @@ Feature: Sign up
       Then I should see "Age: 24"
     
     Scenario: User signs up without username
-      And I fill in the following:
+      And I sign up with the following:
         | Username              |                 |
         | First name            | Testy McUserton |
         | Email                 | user@test.com   |
@@ -117,7 +117,7 @@ Feature: Sign up
       Then I should see "can't be blank"
     
     Scenario: User signs up without first name
-      And I fill in the following:
+      And I sign up with the following:
         | Username              | TestMcUser      |
         | First name            |                 |
         | Email                 | user@test.com   |
@@ -130,7 +130,7 @@ Feature: Sign up
       Then I should see "can't be blank"
       
     Scenario: User signs up with invalid email
-      And I fill in the following:
+      And I sign up with the following:
         | Username              | TestMcUser      |
         | First name            | Testy McUserton |
         | Email                 | invalidemail    |
@@ -143,7 +143,7 @@ Feature: Sign up
       Then I should see "is not formatted properly"
 
     Scenario: User signs up without password
-      And I fill in the following:
+      And I sign up with the following:
         | Username              | TestMcUser      |
         | First name            | Testy McUserton |
         | Email                 | user@test.com   |
@@ -156,7 +156,7 @@ Feature: Sign up
       Then I should see "doesn't match confirmation"
 
     Scenario: User signs up without password confirmation
-      And I fill in the following:
+      And I sign up with the following:
         | Username              | TestMcUser      |
         | First name            | Testy McUserton |
         | Email                 | user@test.com   |
@@ -169,7 +169,7 @@ Feature: Sign up
       Then I should see "doesn't match confirmation"
 
     Scenario: User signs up with mismatched password and confirmation
-      And I fill in the following:
+      And I sign up with the following:
         | Username              | TestMcUser      |
         | First name            | Testy McUserton |
         | Email                 | user@test.com   |

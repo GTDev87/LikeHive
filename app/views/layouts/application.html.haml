@@ -26,7 +26,14 @@
               = link_to "Log out", logout_path
             - else
               = link_to "Sign up", signup_path
-              = link_to "Log in", login_path
+              = form_tag sessions_path do
+                = label_tag :email
+                = text_field_tag :email, params[:email]
+                = label_tag :password
+                = password_field_tag :password
+                = check_box_tag :remember_me, 1, params[:remember_me]
+                = label_tag :remember_me
+                = submit_tag "Log in"
           - flash.each do |name, msg|
             = content_tag :div, msg, :id => "flash_#{name}" if msg.is_a?(String)
         #main{:role => "main"}

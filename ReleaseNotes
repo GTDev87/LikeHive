@@ -29,6 +29,8 @@ Added contacts under users
   - when accepted handshake is created
   - users are not recommended contacts
   
+Moved Signin to top of nav bar instead of its own signin page
+  
 10/22/11 LikeHive0.0.5
 Added user recommendations to page
   - recommendations do not show user names currently

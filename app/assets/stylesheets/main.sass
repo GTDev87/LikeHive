@@ -38,12 +38,14 @@ header
   background-color: #111111
   color: #FFF
   h1
-    +column(12)
+    +column(6)
     font-size: 30px
     color: #FFF
   nav
-    +column(12,true)
+    +column(18,true)
+    font-size: 10px
     text-align: right
+    @include blueprint-form-sizes(100px,100px,100px)
     
 footer
   +column(24)

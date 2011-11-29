@@ -79,10 +79,6 @@ When /^I signup$/ do
   visit('/signup')
 end
 
-When /^I login$/ do
-  visit('/login')
-end
-
 When /^I navigate to the user "([^"]*)" page$/ do |user_page|
   visit("/users/#{user_page}")
 end
@@ -97,7 +93,7 @@ end
 
 When /^I sign in as "(.*)\/(.*)"$/ do |email, password|
   Given %{I am not logged in}
-  When %{I login}
+  When %{I go to the home page}
   And %{I fill in "Email" with "#{email}"}
   And %{I fill in "Password" with "#{password}"}
   And %{I press "Log in"}
@@ -113,14 +109,13 @@ end
 
 Then /^I should be signed out$/ do
   And %{I should see "Sign up"}
-  And %{I should see "Log in"}
   And %{I should not see "Logout"}
 end
 
 Given /^I have a like "([^"]*)"$/ do |like_name|
   like = LikeCreator.create(name: like_name)
   @user.virtual_like_name = like_name
-  @user.save!()
+  @user.save!
 end
 
 Given /^There are the following users:$/ do |emails|
@@ -131,4 +126,12 @@ end
 
 Given /^I have a contact of "([^"]*)"$/ do |username|
   @user.network.contacts << UserQuery.find_user_by_username(username)
+end
+
+Given /^I sign up with the following:$/ do |fields|
+  within '.signup_form' do
+    fields.rows_hash.each do |name, value|
+      When %{I fill in "#{name}" with "#{value}"}
+    end
+  end
 end
