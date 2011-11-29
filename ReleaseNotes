@@ -22,6 +22,12 @@ Changed paths
 Changed user date formate to month/day/year
 
 Added reply functionality so users can reply to other's messages
+
+Added contacts under users
+  - to create contacts users must extend handshakes
+  - handshakes must be accepted
+  - when accepted handshake is created
+  - users are not recommended contacts
   
 10/22/11 LikeHive0.0.5
 Added user recommendations to page
