@@ -5,7 +5,7 @@ Feature: User Profile Page
     
     Scenario: I see my account
       Given I am a user with an email "greg@test.com" and password "please"
-      And I have first name "Greg" and last initial "T"
+      And I have first name "Greg" and last name "Thompson"
       When I sign in as "greg@test.com/please"
       And I follow "Profile"
       Then I should see "Profile:"
@@ -14,21 +14,21 @@ Feature: User Profile Page
       
     Scenario: I see my username
       Given I am a user with an email "greg@test.com" and password "please"
-      And I have first name "Greg" and last initial "T"
+      And I have first name "Greg" and last name "Thompson"
       And I have the username "GregT87"
       When I sign in as "greg@test.com/please"
       Then I should see "Username: GregT87"
     
     Scenario: I see myself logged in
       Given I am a user with an email "greg@test.com" and password "please"
-      And I have first name "Greg" and last initial "T"
+      And I have first name "Greg" and last name "Thompson"
       When I sign in as "greg@test.com/please"
       Then I should be signed in
       And I should see "Logged in as greg@test.com"
       
     Scenario: I see my email on my page
       Given I am a user with an email "greg@test.com" and password "please"
-      And I have first name "Greg" and last initial "T"
+      And I have first name "Greg" and last name "Thompson"
       When I sign in as "greg@test.com/please"
       Then I should see "Logged in as greg@test.com"
       
@@ -41,10 +41,10 @@ Feature: User Profile Page
       
     Scenario: Displays Name Correctly
       Given I am a user with an email "greg@test.com" and password "please"
-      And I have first name "Greg" and last initial "T"
+      And I have first name "Greg" and last name "Thompson"
       When I sign in as "greg@test.com/please"
       Then I should be signed in
-      Then I should see "User: Greg T."
+      Then I should see "User: Greg Thompson"
       
     Scenario: Displays Age Correctly
       Given the current date is "09/19/2011"

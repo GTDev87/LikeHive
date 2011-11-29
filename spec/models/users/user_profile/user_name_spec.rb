@@ -17,9 +17,9 @@ describe UserName do
       user_name.first.should == "Greg"
     end
   
-    it "should record last initial" do    
-      user_name = Factory.build(:user_name, :last_initial => "T")
-      user_name.last_initial.should == "T"
+    it "should record last name" do    
+      user_name = Factory.build(:user_name, :last => "Thompson")
+      user_name.last.should == "Thompson"
     end
   end
 end

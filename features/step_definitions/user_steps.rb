@@ -23,9 +23,9 @@ Given /^I have the username "([^"]*)"$/ do |username|
   @user.save!
 end
 
-Given /^I have first name "([^"]*)" and last initial "([^"]*)"$/ do |first_name, last_initial|
+Given /^I have first name "([^"]*)" and last name "([^"]*)"$/ do |first_name, last_name|
   @user.profile.name.first = first_name
-  @user.profile.name.last_initial = last_initial
+  @user.profile.name.last = last_name
   @user.save!
 end
 

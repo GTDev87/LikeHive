@@ -17,7 +17,7 @@ end
 
 Factory.define :user_name do |name|
   name.sequence(:first) {|n| "User#{n}"}
-  name.last_initial "T"
+  name.sequence(:last) {|n| "Test#{n}"}
 end
 
 Factory.define :user_age do |age|

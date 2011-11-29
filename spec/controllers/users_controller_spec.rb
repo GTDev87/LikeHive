@@ -24,7 +24,7 @@ describe UsersController do
 
   describe "GET 'create'" do
     before(:each) do
-      @user_params = {:profile_attributes=>{:name_attributes=>{:first=>"s", :last_initial=>"S"}, :age_attributes =>{"date_of_birth(1i)"=>"1900", "date_of_birth(2i)"=>"2", "date_of_birth(3i)"=>"5"}, :gender_attributes=>{:female=>"false"}}, :habitation_attributes=>{:locations_attributes=>{"0"=>{:number=>"11111", :_type=>"Zipcode"}}}, :email=> "s@s.com", :password=>"s", :password_confirmation=>"s"}
+      @user_params = {:profile_attributes=>{:name_attributes=>{:first=>"First_name", :last=>"Last_name"}, :age_attributes =>{"date_of_birth(1i)"=>"1900", "date_of_birth(2i)"=>"2", "date_of_birth(3i)"=>"5"}, :gender_attributes=>{:female=>"false"}}, :habitation_attributes=>{:locations_attributes=>{"0"=>{:number=>"11111", :_type=>"Zipcode"}}}, :email=> "s@s.com", :password=>"s", :password_confirmation=>"s"}
     end
 =begin    
     it "should redirect to index with a notice on successful save" do
@@ -49,10 +49,10 @@ describe UsersController do
       assigns[:user].profile.name.first.should == 'greg'
     end
     
-    it "should pass last initial to user" do
-      @user_params[:profile_attributes][:name_attributes][:last_initial] = "T"
+    it "should pass last name to user" do
+      @user_params[:profile_attributes][:name_attributes][:last] = "Thompson"
       post 'create', :user => @user_params
-      assigns[:user].profile.name.last_initial.should == 'T'
+      assigns[:user].profile.name.last.should == 'Thompson'
     end
     
     it "should pass gender to user" do

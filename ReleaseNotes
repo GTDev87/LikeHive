@@ -30,6 +30,8 @@ Added contacts under users
   - users are not recommended contacts
   
 Moved Signin to top of nav bar instead of its own signin page
+
+Changed stupid user last initial to using full user last name
   
 10/22/11 LikeHive0.0.5
 Added user recommendations to page

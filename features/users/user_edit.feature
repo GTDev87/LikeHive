@@ -9,21 +9,21 @@ Feature: Edit User
       Then I should be signed in
       When I follow "Edit account"
       And I fill in "First name" with "baz"
-      And I select "T" in "Last initial"
+      And I fill in "Last name" with "jones"
       And choose "Male"
       And I press "Update"
-      Then I should see "User: baz T."
+      Then I should see "User: baz jones"
       And I should see "Logged in as user@test.com"
       And I should see "Gender: Male"
       
-    Scenario: Last initial updates
+    Scenario: Last name updates
       Given I am a user with an email "user@test.com" and password "please"
       When I sign in as "user@test.com/please"
       And I follow "Edit account"
       And I fill in "First name" with "baz"
-      And I select "G" in "Last initial"
+      And I fill in "Last name" with "Goodman"
       And I press "Update"
-      Then I should see "User: baz G."
+      Then I should see "User: baz Goodman"
       
     Scenario: Gender updates
       Given I am a user with an email "user@test.com" and password "please"

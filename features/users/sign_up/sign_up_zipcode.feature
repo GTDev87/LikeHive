@@ -10,10 +10,10 @@ Feature: Sign up Zipcode
       And I sign up with the following:
         | Username              | TestMcUser      |
         | First name            | Testy McUserton |
+        | Last name             | Esquire         |
         | Email                 | user@test.com   |
         | Password              | please          |
         | Password confirmation | please          |
-      And I select "T" in "Last initial"
       And choose "Male"
       And I select date "06/27/1987" in "Date of birth"
       

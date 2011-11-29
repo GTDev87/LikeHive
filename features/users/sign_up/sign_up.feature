@@ -12,17 +12,17 @@ Feature: Sign up
       And I sign up with the following:
         | Username              | TestMcUser      |
         | First name            | Testy McUserton |
+        | Last name             | Esquire         |
         | Email                 | user@test.com   |
         | Password              | please          |
         | Password confirmation | please          |
         | Zipcode               | 11210           |
-      And I select "T" in "Last initial"
       And choose "Male"
       And I select date "06/27/1987" in "Date of birth"
       And I press "Sign up"
       Then I should see "Welcome! You have signed up successfully."
       And I should see "Username: TestMcUser"
-      And I should see "User: Testy McUserton T."
+      And I should see "User: Testy McUserton Esquire"
       And I should see "Gender: Male"
       And I should see "Logged in as user@test.com"
       
@@ -30,16 +30,16 @@ Feature: Sign up
       And I sign up with the following:
         | Username              | TestMcUser      |
         | First name            |                 |
+        | Last name             | Esquire         |
         | Email                 | user@test.com   |
         | Password              | please          |
         | Password confirmation | please          |
         | Zipcode               | 11210           |
-      And I select "T" in "Last initial"
       And choose "Male"
       And I select date "06/27/1987" in "Date of birth"
       And I press "Sign up"
       Then I should see "First name"
-      And I should see "Last initial"
+      And I should see "Last name"
       And I should see "Date of birth"
       And I should see "Gender"
       And I should see "Zipcode"
@@ -51,11 +51,11 @@ Feature: Sign up
       And I sign up with the following:
         | Username              | TestMcUser      |
         | First name            | Testy McUserton |
+        | Last name             | Esquire         |
         | Email                 | user@test.com   |
         | Password              | please          |
         | Password confirmation | please          |
         | Zipcode               | 11210           |
-      And I select "T" in "Last initial"
       And choose "Female"
       And I select date "06/27/1987" in "Date of birth"
       And I press "Sign up"
@@ -65,25 +65,25 @@ Feature: Sign up
       And I sign up with the following:
         | Username              | TestMcUser      |
         | First name            | Testy McUserton |
+        | Last name             | Jones           |
         | Email                 | user@test.com   |
         | Password              | please          |
         | Password confirmation | please          |
         | Zipcode               | 11210           |
-      And I select "X" in "Last initial"
       And choose "Female"
       And I select date "06/27/1987" in "Date of birth"
       And I press "Sign up"
-      Then I should see "User: Testy McUserton X."
+      Then I should see "User: Testy McUserton Jones"
       
     Scenario: User signs up without age
       And I sign up with the following:
         | Username              | TestMcUser      |
         | First name            | Testy McUserton |
+        | Last name             | Esquire         |
         | Email                 | user@test.com   |
         | Password              | please          |
         | Password confirmation | please          |
         | Zipcode               | 11210           |
-      And I select "X" in "Last initial"
       And choose "Female"
       And I press "Sign up"
       Then I should see "can't be blank"
@@ -93,11 +93,11 @@ Feature: Sign up
       And I sign up with the following:
         | Username              | TestMcUser      |
         | First name            | Testy McUserton |
+        | Last name             | Esquire         |
         | Email                 | user@test.com   |
         | Password              | please          |
         | Password confirmation | please          |
         | Zipcode               | 11210           |
-      And I select "X" in "Last initial"
       And choose "Female"
       And I select date "06/27/1987" in "Date of birth"
       And I press "Sign up"
@@ -107,12 +107,12 @@ Feature: Sign up
       And I sign up with the following:
         | Username              |                 |
         | First name            | Testy McUserton |
+        | Last name             | Esquire         |
         | Email                 | user@test.com   |
         | Password              | please          |
         | Password confirmation | please          |
         | Zipcode               | 11210           |
       And I select date "06/27/1987" in "Date of birth"
-      And I select "T" in "Last initial"
       And I press "Sign up"
       Then I should see "can't be blank"
     
@@ -120,12 +120,12 @@ Feature: Sign up
       And I sign up with the following:
         | Username              | TestMcUser      |
         | First name            |                 |
+        | Last name             | Esquire         |
         | Email                 | user@test.com   |
         | Password              | please          |
         | Password confirmation | please          |
         | Zipcode               | 11210           |
       And I select date "06/27/1987" in "Date of birth"
-      And I select "T" in "Last initial"
       And I press "Sign up"
       Then I should see "can't be blank"
       
@@ -133,11 +133,11 @@ Feature: Sign up
       And I sign up with the following:
         | Username              | TestMcUser      |
         | First name            | Testy McUserton |
+        | Last name             | Esquire         |
         | Email                 | invalidemail    |
         | Password              | please          |
         | Password confirmation | please          |
         | Zipcode               | 11210           |
-      And I select "T" in "Last initial"
       And choose "Male"
       And I press "Sign up"
       Then I should see "is not formatted properly"
@@ -146,11 +146,11 @@ Feature: Sign up
       And I sign up with the following:
         | Username              | TestMcUser      |
         | First name            | Testy McUserton |
+        | Last name             | Esquire         |
         | Email                 | user@test.com   |
         | Password              |                 |
         | Password confirmation | please          |
         | Zipcode               | 11210           |
-      And I select "T" in "Last initial"
       And choose "Male"
       And I press "Sign up"
       Then I should see "doesn't match confirmation"
@@ -159,11 +159,11 @@ Feature: Sign up
       And I sign up with the following:
         | Username              | TestMcUser      |
         | First name            | Testy McUserton |
+        | Last name             | Esquire         |
         | Email                 | user@test.com   |
         | Password              | please          |
         | Password confirmation |                 |
         | Zipcode               | 11210           |
-      And I select "T" in "Last initial"
       And choose "Male"
       And I press "Sign up"
       Then I should see "doesn't match confirmation"
@@ -172,11 +172,11 @@ Feature: Sign up
       And I sign up with the following:
         | Username              | TestMcUser      |
         | First name            | Testy McUserton |
+        | Last name             | Esquire         |
         | Email                 | user@test.com   |
         | Password              | please          |
         | Password confirmation | please1         |
         | Zipcode               | 11210           |
-      And I select "T" in "Last initial"
       And choose "Male"
       And I press "Sign up"
       Then I should see "doesn't match confirmation"
