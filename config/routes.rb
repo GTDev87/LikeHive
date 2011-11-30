@@ -15,7 +15,7 @@ LikeHive::Application.routes.draw do
   match "signup" => "users#create", :via => "post"
   
   get "profile" => "users#show", :as => "profile"
-  get "profile/edit" => "users#edit", :as => "profile/edit"
+  get "settings" => "users#edit", :as => "settings"
   
   get "mailbox" => "user_mailbox#show", :as => "mailbox"
   

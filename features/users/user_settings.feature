@@ -1,4 +1,4 @@
-Feature: Edit User
+Feature: User Settings
   As a registered user of the website
   I want to edit my user profile
   so I can change my username
@@ -7,7 +7,7 @@ Feature: Edit User
       Given I am a user with an email "user@test.com" and password "please"
       When I sign in as "user@test.com/please"
       Then I should be signed in
-      When I follow "Edit account"
+      When I follow "Settings"
       And I fill in "First name" with "baz"
       And I fill in "Last name" with "jones"
       And choose "Male"
@@ -19,7 +19,7 @@ Feature: Edit User
     Scenario: Last name updates
       Given I am a user with an email "user@test.com" and password "please"
       When I sign in as "user@test.com/please"
-      And I follow "Edit account"
+      And I follow "Settings"
       And I fill in "First name" with "baz"
       And I fill in "Last name" with "Goodman"
       And I press "Update"
@@ -28,7 +28,7 @@ Feature: Edit User
     Scenario: Gender updates
       Given I am a user with an email "user@test.com" and password "please"
       When I sign in as "user@test.com/please"
-      And I follow "Edit account"
+      And I follow "Settings"
       And choose "Female"
       And I press "Update"
       Then I should see "Gender: Female"
@@ -37,7 +37,7 @@ Feature: Edit User
       Given the current date is "09/19/2011"
       And I am a user with an email "user@test.com" and password "please"
       When I sign in as "user@test.com/please"
-      And I follow "Edit account"
+      And I follow "Settings"
       And I select date "06/27/1987" in "Date of birth"
       And I press "Update"
       Then I should see "Age: 24"
@@ -46,10 +46,8 @@ Feature: Edit User
       Given the current date is "09/19/2011"
       And I am a user with an email "user@test.com" and password "please"
       When I sign in as "user@test.com/please"
-      And I follow "Edit account"
+      And I follow "Settings"
       And I fill in "Zipcode" with "12345"
       And I select date "06/27/1987" in "Date of birth"
       And I press "Update"
       Then I should see "Zipcode: 12345"
-      
-    
