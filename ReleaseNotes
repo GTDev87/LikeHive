@@ -16,7 +16,7 @@ Added username to website.  It is a unique id.
 
 Changed paths
   - user show path to profile
-  - user edit path to profile/edit
+  - user edit path to settings
   - messages path will have either connection_messages or handshake_messages
 
 Changed user date formate to month/day/year
