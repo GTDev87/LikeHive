@@ -28,14 +28,14 @@
 @import partials/two_col
 @import partials/simple_form
 
-+blueprint
++blueprint()
 
 body
   +container
 
 header
   +column(24)
-  background-color: #111111
+  background-color: rgba(0,61,245,0.75)
   color: #FFF
   h1
     +column(6)
@@ -45,7 +45,13 @@ header
     +column(18,true)
     font-size: 10px
     text-align: right
-    @include blueprint-form-sizes(100px,100px,100px)
+    +blueprint-form-sizes(100px,100px,100px)
+    a
+      $normal_link: rgba(255,255,255,0.75)
+      $visited_link: rgba(255,255,255,0.75)
+      +link-colors($normal_link, nil, nil, $visited_link, nil)
+      
+      
     
 footer
   +column(24)
