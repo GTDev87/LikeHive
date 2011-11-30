@@ -5,9 +5,13 @@ Feature: Message Authentication
 
   Background:
     Given I am a user with an email "greg@test.com" and password "please"
+    And I have the username "GregT"
     And There is a user with an email "reid@test.com" and password "please"
     And The user with the email "reid@test.com" has the username "ReidH"
     And There is a user with an email "amol@test.com" and password "please"
+    And The following users are contacts:
+    | GregT |
+    | ReidH |
 	  When I sign in as "greg@test.com/please"    
     And I follow "Mailbox"
     And I follow "New Message"    

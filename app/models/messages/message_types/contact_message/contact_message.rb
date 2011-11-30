@@ -40,12 +40,16 @@ private
     parsed_sent_to_array = []
     user_visitor = UserVisitor.new(parsed_sent_to_array)
     ContactMessageUsernameParser.new(self.to_username_list).return_user_list.accept_user_visitor(user_visitor)
-
+    
     sent_to_array = parsed_sent_to_array | self.message_data.to
     
-    if sent_to_array.empty?
+    if sent_to_array.empty? || !receiving_users_are_contacts?(sent_to_array)
       errors.add(:to, "users sent to not valid")
       return
     end
+  end
+  
+  def receiving_users_are_contacts?(sent_to_array)
+    (self.message_data.from.network.contacts & sent_to_array) == sent_to_array
   end
 end

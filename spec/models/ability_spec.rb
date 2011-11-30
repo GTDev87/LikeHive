@@ -30,23 +30,29 @@ describe Ability do
   
   describe "User's Abilities on message's page" do
     before(:each) do
-      @user = Factory(:user)
-      @ability = Ability.new(@user)
+      @sending_user = Factory(:user, username: "Sendy")
+      @receiving_user = Factory(:user, username: "Receivy")
+      @sending_user.network.contacts << @receiving_user
+      @receiving_user.network.contacts << @sending_user
+      @message = Factory(:contact_message, message_data: Factory.build(:message_data, to: [@receiving_user], from: @sending_user))
     end
     
     it "should have ability to read message sent to user" do
-      message = Factory(:contact_message, message_data: Factory.build(:message_data, to: [@user], from: Factory(:user)) )
-      @ability.should be_able_to(:read, message)
+      @ability = Ability.new(@sending_user)
+      
+      @ability.should be_able_to(:read, @message)
     end
     
     it "should have ability to read message sent from user" do
-      message = Factory(:contact_message, message_data: Factory.build(:message_data, to: [Factory(:user)], from: @user))
-      @ability.should be_able_to(:read, message)
+      @ability = Ability.new(@receiving_user)
+
+      @ability.should be_able_to(:read, @message)
     end
     
     it "should not have ability to read message not from or to user" do
-      message = Factory(:contact_message, message_data: Factory.build(:message_data, to: [Factory(:user)], from: Factory(:user)))
-      @ability.should_not be_able_to(:read, message)
+      @ability = Ability.new(Factory(:user))
+
+      @ability.should_not be_able_to(:read, @message)
     end
   end
 end

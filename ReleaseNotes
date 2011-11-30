@@ -28,6 +28,7 @@ Added contacts under users
   - handshakes must be accepted
   - when accepted handshake is created
   - users are not recommended contacts
+  - users can send messages to their contacts (only their contacts)
   
 Moved Signin to top of nav bar instead of its own signin page
 

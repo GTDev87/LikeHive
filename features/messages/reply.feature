@@ -8,6 +8,9 @@ Feature: Replying to messages
     And There is a user with an email "reid@test.com" and password "please"
     And The user with the email "reid@test.com" has the username "ReidH"
     And The user with the email "greg@test.com" has the username "GregT"
+    And The following users are contacts:
+    | GregT |
+    | ReidH |
     And "greg@test.com" has a message sent from "reid@test.com" to "greg@test.com" with subject "foo" and body "bar"
     When I sign in as "greg@test.com/please"    
     And I follow "Mailbox"
