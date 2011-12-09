@@ -9,14 +9,14 @@ describe Like do
   end
   
   describe "name" do
-    it "should create a like using a lowercase name" do
+    it "should not change case of like" do
       pizza = Factory.build(:like, :name => "pIzZa")
-      pizza.name.should == "pizza"
+      pizza.name.should == "pIzZa"
     end
   
-    it "should create a like using a lowercased name with multiple words" do
+    it "should not change case of like name with multiple words" do
       pizza = Factory.build(:like, :name => "PEPPERONNI pizza")
-      pizza.name.should == "pepperonni pizza"
+      pizza.name.should == "PEPPERONNI pizza"
     end
     
     it "should have a unique name" do

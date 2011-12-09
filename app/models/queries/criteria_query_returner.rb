@@ -4,7 +4,7 @@ class CriteriaQueryReturner
   end
   
   def return_all()
-    return @criteria_query.criteria.all
+    return @criteria_query.criteria.all.entries
   end
   
   def return_n_random(number_of_random)

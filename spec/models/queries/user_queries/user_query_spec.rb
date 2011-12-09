@@ -25,8 +25,17 @@ describe UserQuery do
       users.size.should == 3   
     end
     
-    it "should return all users when all is called" do
+    it "should return all users without specified emails" do
       users_query = UserQuery.query_users_without_email(["zac@zac.com"])
+      users_query.query_returner.return_all.should_not contain_result_with_first_name("Zac")
+      users_query.query_returner.return_all.should contain_result_with_first_name("Amol")
+      users_query.query_returner.return_all.should contain_result_with_first_name("Greg")
+
+      users_query.query_returner.return_all.size.should == 2  
+    end
+    
+    it "should return all users without specified usernames" do
+      users_query = UserQuery.query_users_without_username(["ZacC"])
       users_query.query_returner.return_all.should_not contain_result_with_first_name("Zac")
       users_query.query_returner.return_all.should contain_result_with_first_name("Amol")
       users_query.query_returner.return_all.should contain_result_with_first_name("Greg")
@@ -52,5 +61,5 @@ describe UserQuery do
       UserQuery.find_user_by_username("AmolK").should == @amol
       UserQuery.find_user_by_username("ZacC").should == @zac 
     end
-  end
+  end  
 end

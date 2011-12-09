@@ -5,7 +5,7 @@ describe LikeCreator do
     it "should create a like when new is called" do
       attr = {:name => "Pizza"}
       like = LikeCreator.new(attr)
-      like.name.should == "pizza"
+      like.name.should == "Pizza"
       Like.count.should == 0
     end
     

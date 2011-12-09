@@ -78,7 +78,7 @@ private
       self.network.save!
     end
   end
-   
+  
   def email=(email_name)
     self[:email] = StringFormatter.lowercase(email_name)
   end  
@@ -86,7 +86,7 @@ private
   def assign_multiple_likes
     #maybe move sanitization up to here
     if @virtual_like_box == nil then return end
-    virtual_likes_names = @virtual_like_box
+    virtual_likes_names = StringFormatter.lowercase(@virtual_like_box)
     @virtual_like_box = nil
     add_likes(virtual_likes_names)
   end
@@ -94,8 +94,9 @@ private
   def assign_like
     #maybe move sanitization up to here and here
     if @virtual_like_name == nil then return end
-    virtual_like_name = @virtual_like_name
+    virtual_like_name = StringFormatter.lowercase(@virtual_like_name)
     @virtual_like_name = nil
+  
     add_like(virtual_like_name)
   end  
 end

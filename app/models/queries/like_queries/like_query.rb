@@ -8,7 +8,7 @@ class LikeQuery
   end
   
   def self.find_one_by_name(like_name)
-    return Like.first(conditions: { name: StringFormatter.lowercase(like_name) })
+    return Like.first(conditions: { name: like_name })
   end
   
   def self.find_or_create_with_name(like_name)

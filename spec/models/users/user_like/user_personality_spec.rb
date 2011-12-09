@@ -8,7 +8,7 @@ describe UserPersonality do
   describe "Finding likes" do
     it "should find like if exists" do
       @user_personality.likes << Factory.build(:like, :name => "Pizza")
-      @user_personality.find_like("pizza").should_not be_nil
+      @user_personality.find_like("Pizza").should_not be_nil
     end
   end
   
@@ -16,7 +16,7 @@ describe UserPersonality do
     it "should add a like if it does not exist" do
       likes = @user_personality.get_new_like("New Like")
       
-      likes.name.should == "new like"
+      likes.name.should == "New Like"
     end
   end
   

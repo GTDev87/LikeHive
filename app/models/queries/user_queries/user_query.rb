@@ -18,4 +18,8 @@ class UserQuery
   def self.query_users_without_email(email_addr)
     return UserCriteriaQuery.new(User.not_in(email: email_addr))
   end
+  
+  def self.query_users_without_username(username)
+    return UserCriteriaQuery.new(User.not_in(username: username))
+  end
 end

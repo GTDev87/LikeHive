@@ -176,7 +176,18 @@ describe User do
       @user.personality.find_like("pizza").should be_true
       @user.personality.find_like("breadsticks").should be_true
       @user.personality.find_like("running").should be_false
-    end        
+    end
+    
+    it "should lowercase the likes after save" do
+      @user.virtual_like_name = "PiZZa"
+      @user.save!
+
+      @user.virtual_like_name = "BreAdStICKS"
+      @user.save!
+      
+      @user.personality.find_like("pizza").should be_true
+      @user.personality.find_like("breadsticks").should be_true
+    end
     
     it "should clear like_name after save" do
       @user.virtual_like_name = "Pizza"
@@ -194,6 +205,15 @@ describe User do
     
     it "should add multiple likes data after save" do
       @user.virtual_like_box = "Pizza, BreadSticks"
+      @user.save!
+      
+      @user.personality.find_like("pizza").should be_true
+      @user.personality.find_like("breadsticks").should be_true
+      @user.personality.likes.size.should == 2
+    end
+    
+    it "should lowercase multiple likes data after save" do
+      @user.virtual_like_box = "PIZZA, BrEadStIcKs"
       @user.save!
       
       @user.personality.find_like("pizza").should be_true

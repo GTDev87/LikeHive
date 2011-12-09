@@ -6,7 +6,7 @@ class ModelString
       @is_valid = false
       return
     end
-    @string = StringFormatter.lowercase(like_string)
+    @string = like_string
     @is_valid = true
   end
   

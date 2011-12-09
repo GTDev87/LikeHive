@@ -14,8 +14,4 @@ class Like
   searchable do
     text :name
   end
-  
-  def name=(likename)
-    super(StringFormatter.lowercase(likename))
-  end    
 end

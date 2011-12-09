@@ -1,4 +1,4 @@
-class UserEmailVisitor
+class UserUsernameVisitor
   attr_reader :user_list
   
   def initialize()
@@ -6,6 +6,6 @@ class UserEmailVisitor
   end
   
   def visit_user(user)
-    @user_list << user.email
+    @user_list << user.username
   end
 end

@@ -7,7 +7,7 @@ describe UserLikeGenerator do
   end
   describe "adding new like" do
     it "should create a like when generate is called" do      
-      @user_generator.generate_like("Swimming").name.should == "swimming"
+      @user_generator.generate_like("Swimming").name.should == "Swimming"
       Like.count.should == 1
     end
      
@@ -15,7 +15,7 @@ describe UserLikeGenerator do
       Like.count.should == 0
       Factory(:like, :name => "Swimming")
       
-      @user_generator.generate_like("Swimming").name.should == "swimming"
+      @user_generator.generate_like("Swimming").name.should == "Swimming"
       Like.count.should == 1
     end
     
@@ -33,8 +33,8 @@ describe UserLikeGenerator do
       @user_generator.generate_like(nil).should == nil
     end
     
-    it "should ignore capitalization" do
-      @user_generator.generate_like("CaPiTaLiZaTiOn?").name.should == "capitalization?"
+    it "should not ignore capitalization" do
+      @user_generator.generate_like("CaPiTaLiZaTiOn?").name.should == "CaPiTaLiZaTiOn?"
     end    
     
     it "should not add blank likes" do
@@ -44,7 +44,7 @@ describe UserLikeGenerator do
   
   describe "create multiple new likes" do
     it "should create multiple likes when generate is called" do
-      likes = @user_generator.generate_multiple_likes("Swimming, fishing, dogs, cats")
+      likes = @user_generator.generate_multiple_likes("swimming, fishing, dogs, cats")
       
       likes.should contain_result_named("swimming")
       likes.should contain_result_named("fishing")
@@ -55,19 +55,19 @@ describe UserLikeGenerator do
     end
     
     it "should not create multiple new likes if already exists and return them" do
-      Factory(:like, :name => "Swimming")
-      Factory(:like, :name => "Fishing")
-      Factory(:like, :name => "Dogs")
-      Factory(:like, :name => "Cats")
+      Factory(:like, :name => "swimming")
+      Factory(:like, :name => "fishing")
+      Factory(:like, :name => "dogs")
+      Factory(:like, :name => "cats")
 
-      @user_generator.generate_multiple_likes("Swimming, fishing, dogs, cats").size.should == 4
+      @user_generator.generate_multiple_likes("swimming, fishing, dogs, cats").size.should == 4
       Like.count.should == 4
     end
     
     it "should not create multiple likes if user already has them" do
-      @user_personality.likes << Factory.build(:like, :name => "Swimming")
-      @user_personality.likes << Factory.build(:like, :name => "Fishing")
-      likes = @user_generator.generate_multiple_likes("Swimming, fishing, dogs, cats")
+      @user_personality.likes << Factory.build(:like, :name => "swimming")
+      @user_personality.likes << Factory.build(:like, :name => "fishing")
+      likes = @user_generator.generate_multiple_likes("swimming, fishing, dogs, cats")
 
       likes.size.should == 2
       likes.should contain_result_named("dogs")
