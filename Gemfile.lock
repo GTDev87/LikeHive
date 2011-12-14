@@ -61,10 +61,10 @@ GEM
       sass (~> 3.1)
     compass-susy-plugin (0.9)
       compass (>= 0.11.1)
-    cucumber (1.1.3)
+    cucumber (1.1.4)
       builder (>= 2.1.2)
       diff-lcs (>= 1.1.2)
-      gherkin (~> 2.6.7)
+      gherkin (~> 2.7.1)
       json (>= 1.4.6)
       term-ansicolor (>= 1.0.6)
     cucumber-rails (1.2.1)
@@ -95,13 +95,13 @@ GEM
       sprockets
     fssm (0.2.7)
     geocoder (1.1.0)
-    gherkin (2.6.9)
+    gherkin (2.7.1)
       json (>= 1.4.6)
     guard (0.8.8)
       thor (~> 0.14.6)
     guard-rspec (0.5.9)
       guard (>= 0.8.4)
-    guard-spork (0.4.0)
+    guard-spork (0.4.1)
       guard (>= 0.8.4)
       spork (>= 0.8.4)
     haml (3.1.4)
@@ -231,6 +231,8 @@ GEM
     sunspot_rails (1.3.0)
       nokogiri
       sunspot (= 1.3.0)
+    sunspot_solr (1.3.0)
+      escape (~> 0.0.4)
     sunspot_test (0.4.0)
       sunspot_rails (>= 1.2.1)
     term-ansicolor (1.0.7)
@@ -294,6 +296,7 @@ DEPENDENCIES
   sunspot_matchers
   sunspot_mongoid
   sunspot_rails
+  sunspot_solr
   sunspot_test
   therubyracer
   timecop

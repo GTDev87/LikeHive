@@ -32,6 +32,7 @@ gem "mongoid"
 gem "frontend-helpers"
 gem "rails-footnotes", :group => :development
 gem "barista"
+gem "sunspot_solr"
 gem 'sunspot_rails'
 gem "sunspot_mongoid"
 gem 'vinova_sunspot_mongoid', :require => 'sunspot_mongoid'

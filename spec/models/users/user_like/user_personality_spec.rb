@@ -19,17 +19,7 @@ describe UserPersonality do
       likes.name.should == "New Like"
     end
   end
-  
-  describe "Adding multiple likes" do    
-    it "should be able to accept likes and find likes" do
-      likes = @user_personality.get_new_likes(" food, cheese , stars ")
-      
-      likes.should contain_result_named("food")
-      likes.should contain_result_named("stars")
-      likes.should contain_result_named("cheese")
-      likes.size.should == 3
-    end
-  end
+    
 =begin  
   describe "User Initialization" do
     before(:each) do

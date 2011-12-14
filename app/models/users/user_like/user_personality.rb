@@ -13,11 +13,7 @@ class UserPersonality
     @user_like_container = LikeContainer.new(self.likes)
     @user_like_locator = UserLikeLocator.new(@user_like_container)
     @user_like_generator = UserLikeGenerator.new(@user_like_locator)
-  end
-  
-  def get_new_likes(likes_string)
-    return @user_like_generator.generate_multiple_likes(likes_string)
-  end
+  end  
   
   def get_new_like(like_string)
     return @user_like_generator.generate_like(like_string)

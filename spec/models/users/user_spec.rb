@@ -194,32 +194,7 @@ describe User do
       @user.save!
       
       @user.virtual_like_name.should be_nil
-    end
-    
-    it "should clear like_box after save" do
-      @user.virtual_like_box = "Pizza, French Fries"
-      @user.save!
-      
-      @user.virtual_like_box.should be_nil
-    end
-    
-    it "should add multiple likes data after save" do
-      @user.virtual_like_box = "Pizza, BreadSticks"
-      @user.save!
-      
-      @user.personality.find_like("pizza").should be_true
-      @user.personality.find_like("breadsticks").should be_true
-      @user.personality.likes.size.should == 2
-    end
-    
-    it "should lowercase multiple likes data after save" do
-      @user.virtual_like_box = "PIZZA, BrEadStIcKs"
-      @user.save!
-      
-      @user.personality.find_like("pizza").should be_true
-      @user.personality.find_like("breadsticks").should be_true
-      @user.personality.likes.size.should == 2
-    end
+    end    
     
     it "should keep likes referenced between multiple users" do 
       user1 = Factory(:user)
