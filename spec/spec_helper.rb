@@ -42,8 +42,6 @@ Spork.each_run do
 
     # Clean up the database
     require 'database_cleaner'
-    
-
   end
   
   #################################################################################

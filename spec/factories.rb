@@ -1,80 +1,92 @@
-Factory.define :user do |user|
-  user.sequence(:email) { |n| "user#{n}@test.com"}
-  user.sequence(:username) { |n| "username#{n}"}
-  user.password "please"
-  user.profile {Factory.build(:user_profile)}
-  user.habitation {Factory.build(:user_habitation)}
-  user.personality {Factory.build(:user_personality)}
-  user.mailbox {Factory.build(:user_mailbox)}
-  user.network {Factory.build(:user_network)}
-end
+FactoryGirl.define do
+  factory :user do
+    sequence(:email) { |n| "user#{n}@test.com"}
+    sequence(:username) { |n| "username#{n}"}
+    password "please"
+    profile {Factory.build(:user_profile)}
+    habitation {Factory.build(:user_habitation)}
+    personality {Factory.build(:user_personality)}
+    mailbox {Factory.build(:user_mailbox)}
+    network {Factory.build(:user_network)}
+  end
 
-Factory.define :user_profile do |profile|
-  profile.name {Factory.build(:user_name)}
-  profile.age  {Factory.build(:user_age)}
-  profile.gender {Factory.build(:user_gender)}  
-end
+  factory :user_profile do
+    name {Factory.build(:user_name)}
+    age  {Factory.build(:user_age)}
+    gender {Factory.build(:user_gender)}  
+  end
 
-Factory.define :user_name do |name|
-  name.sequence(:first) {|n| "User#{n}"}
-  name.sequence(:last) {|n| "Test#{n}"}
-end
+  factory :user_name do
+    sequence(:first) {|n| "User#{n}"}
+    sequence(:last) {|n| "Test#{n}"}
+  end
 
-Factory.define :user_age do |age|
-  age.date_of_birth "1987-06-27"
-end
+  factory :user_age do
+    date_of_birth "1987-06-27"
+  end
 
-Factory.define :user_gender do |gender|
-  gender.female false 
-end
+  factory :user_gender do
+    female false 
+  end
 
-Factory.define :user_habitation do |habitation|
-  habitation.locations []
-end
+  factory :user_habitation do
+    locations []
+  end
 
-Factory.define :zipcode do |zipcode|
-  zipcode.number "11210"
-  zipcode.geolocation {Factory.build(:geolocation)}
-end
+  factory :zipcode do
+    number "11210"
+    geolocation {Factory.build(:geolocation)}
+  end
 
-Factory.define :geolocation do |geolocation|
-  geolocation.coordinates []
-end
+  factory :geolocation do
+    coordinates []
+  end
 
-Factory.define :user_personality do |personality|
-  personality.likes []
-end
+  factory :user_personality do
+    likes []
+  end
 
-Factory.define :user_mailbox do |mailbox|
-  mailbox.messages []
-end
+  factory :user_mailbox do
+    messages []
+  end
 
-Factory.define :user_network do |network|
-  network.contacts []
-end
+  factory :user_network do
+    contacts []
+  end
 
-Factory.define :contact_message do |contact_message|
-  contact_message.message_data {Factory.build(:message_data)}
-end
+  factory :contact_message do
+    message_data {Factory.build(:message_data)}
+  end
 
-Factory.define :message_data do |message_data|
-  message_data.subject "Subject"
-  message_data.body "Body"
-  message_data.time "2011-06-16 00:00:00 Z"
+  factory :message_data do
+    subject "Subject"
+    body "Body"
+    time "2011-06-16 00:00:00 Z"
   
-  message_data.from { |from| from.association(:user) }
-  message_data.to []
-end
+    from { |from| from.association(:user) }
+    to []
+  end
 
-Factory.define :handshake_message do |handshake_message|
-  handshake_message.message_data {Factory.build(:message_data)}
-end
+  factory :handshake_message do
+    message_data {Factory.build(:message_data)}
+  end
 
-Factory.define :like do |like|
-  like.sequence(:name) {|n| "Test Like #{n}"}
-  like.following {Factory.build(:like_following)}
-end
+  factory :like do
+    sequence(:name) {|n| "Test Like #{n}"}
+    following {Factory.build(:like_following)}
+  end
+  
+  factory :facebook_like do
+    facebook_data {Factory.build(:facebook_data)}
+    sequence(:name) {|n| "Test Facebook Like #{n}"}
+    following {Factory.build(:like_following)}
+  end
 
-Factory.define :like_following do |like_following|
-  like_following.users []
+  factory :facebook_data do
+    sequence(:facebook_id) {|n| n }
+  end
+
+  factory :like_following do
+    users []
+  end
 end
