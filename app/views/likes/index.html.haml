@@ -1,7 +1,7 @@
 %p Search For Likes:
 = form_tag likes_path, :method => 'get' do
   %p
-    = text_field_tag :search, params[:search]
+    = text_field_tag :term, params[:term]
     = submit_tag "Search", :name => nil
 
 %p Results:

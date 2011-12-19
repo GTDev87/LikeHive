@@ -8,7 +8,7 @@ Feature: Search Like Home
     Given I am not logged in
     And I am on the home page
     And There is a like named "sunshine"
-    When I fill in "search" with "Sunshine"
+    When I fill in "term" with "Sunshine"
     And I press "Search"
     Then I should see "Sunshine"
     

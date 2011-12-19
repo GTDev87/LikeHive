@@ -1,0 +1,1 @@
+jQuery(function(){return $("#user_virtual_like_name").autocomplete({source:$("#user_virtual_like_name").data("autocomplete-source")})})

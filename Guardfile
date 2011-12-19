@@ -28,3 +28,11 @@ guard 'rspec', :version => 2, :cli => "--color --format nested --fail-fast --drb
   # Capybara request specs
   watch(%r{^app/views/(.+)/.*\.(erb|haml)$})          { |m| "spec/requests/#{m[1]}_spec.rb" }
 end
+
+guard 'coffeescript', :output => 'public/javascripts/compiled' do
+  watch(/^app\/assets\/javascripts\/(.*).coffee/)
+end
+
+guard 'coffeescript', :output => 'spec/javascripts/compiled' do
+  watch(/^spec\/javascripts\/(.*).coffee/)
+end

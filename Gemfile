@@ -49,3 +49,5 @@ gem "sorcery"
 gem "spork"
 gem "guard-spork"
 gem "mocha"
+gem 'guard-coffeescript'
+gem 'jasmine'

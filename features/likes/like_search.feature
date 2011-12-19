@@ -9,7 +9,7 @@ Feature: Search Like Page
       Given I am not logged in
       And I am on the likes page
       And There is a like named "sunshine"
-      When I fill in "search" with "Sunshine"
+      When I fill in "term" with "Sunshine"
       And I press "Search"
       Then I should see "Sunshine"
       
@@ -17,7 +17,7 @@ Feature: Search Like Page
       Given I am not logged in
       And I am on the likes page
       And There is a like named "flowers"
-      When I fill in "search" with "fLoWeRs"
+      When I fill in "term" with "fLoWeRs"
       And I press "Search"
       Then I should see "Flowers"
       
@@ -26,7 +26,7 @@ Feature: Search Like Page
       And I am on the likes page
       And There is a like named "flowers"
       And There is a like named "pretty flowers"
-      When I fill in "search" with "fLoWeRs"
+      When I fill in "term" with "fLoWeRs"
       And I press "Search"
       Then I should see "Flowers"
       Then I should see "Pretty Flowers"
@@ -35,7 +35,7 @@ Feature: Search Like Page
       Given I am not logged in
       And I am on the likes page
       And There is a like named "catfish"
-      When I fill in "search" with "fish"
+      When I fill in "term" with "fish"
       And I press "Search"
       Then I should not see "Catfish"
       
@@ -43,7 +43,7 @@ Feature: Search Like Page
       Given I am not logged in
       And I am on the likes page
       And There is a like named "catfish"
-      When I fill in "search" with ""
+      When I fill in "term" with ""
       And I press "Search"
       Then I should not see "Catfish"
       
@@ -51,7 +51,7 @@ Feature: Search Like Page
       Given I am not logged in
       And I am on the likes page
       And There is a like named "catfish"
-      When I fill in "search" with " "
+      When I fill in "term" with " "
       And I press "Search"
       Then I should not see "Catfish"  
       
@@ -73,7 +73,7 @@ Feature: Search Like Page
       And There is a like named "Like 13"
       And There is a like named "Like 14"
       And There is a like named "Like 15"
-      When I fill in "search" with "Like"
+      When I fill in "term" with "Like"
       And I press "Search"
       Then I should see "Like 1"
       Then I should see "Like 2"

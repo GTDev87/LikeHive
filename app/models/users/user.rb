@@ -74,7 +74,7 @@ private
   
   def email=(email_name)
     self[:email] = StringFormatter.lowercase(email_name)
-  end    
+  end
   
   def assign_like
     #maybe move sanitization up to here and here

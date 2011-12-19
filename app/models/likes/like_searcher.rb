@@ -1,5 +1,5 @@
 class LikeSearcher
-  def search(search_string)
+  def word_search(search_string)
     if StringEvaluator.string_is_blank(search_string)
       return []
     end
